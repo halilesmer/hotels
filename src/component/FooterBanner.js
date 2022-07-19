@@ -5,31 +5,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
 import {
   Box,
-  Divider,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
   Paper,
   Fab,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  ListSubheader,
-  Avatar,
   AppBar,
   CssBaseline,
   Toolbar,
   Typography,
   IconButton,
-  Switch,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
-  Menu,
 } from "@mui/material";
 
 const messages = [
@@ -106,30 +92,6 @@ export default function FooterBanner() {
         >
           Inbox
         </Typography>
-        <List sx={{ mb: 2 }}>
-          {messages.map(({ id, primary, secondary, person }) => (
-            <React.Fragment key={id}>
-              {id === 1 && (
-                <ListSubheader sx={{ bgcolor: "background.paper" }}>
-                  Today
-                </ListSubheader>
-              )}
-
-              {id === 3 && (
-                <ListSubheader sx={{ bgcolor: "background.paper" }}>
-                  Yesterday
-                </ListSubheader>
-              )}
-
-              <ListItem button>
-                <ListItemAvatar>
-                  <Avatar alt="Profile Picture" src={person} />
-                </ListItemAvatar>
-                <ListItemText primary={primary} secondary={secondary} />
-              </ListItem>
-            </React.Fragment>
-          ))}
-        </List>
       </Paper>
       <AppBar
         position="fixed"
@@ -138,11 +100,9 @@ export default function FooterBanner() {
       >
         <Toolbar>
           <IconButton color="inherit" aria-label="open drawer">
-            <MenuIcon />
+            <ArrowBackIosIcon />
           </IconButton>
-          <StyledFab color="secondary" aria-label="add">
-            <AddIcon />
-          </StyledFab>
+
           <Box sx={{ flexGrow: 1 }} />
           <IconButton color="inherit">
             <SearchIcon />

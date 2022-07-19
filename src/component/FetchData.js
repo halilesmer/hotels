@@ -20,7 +20,7 @@ function FetchData() {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ margin: "4rem auto 4rem auto" }}>
+      <Grid container spacing={2}>
         <Grid
           item
           xs={12}
@@ -28,7 +28,8 @@ function FetchData() {
           md={6}
           lg={4}
           xl={3}
-          style={{ padding: "0 2px 0 2px" }}
+          style={{margin: "4rem auto 4rem auto",  }}
+
         >
           {data &&
             data.map((card) => {
