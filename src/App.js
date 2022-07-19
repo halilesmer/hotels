@@ -1,12 +1,16 @@
 import './App.css';
-import Cards from './component/Cards';
+import Home from './views/Home';
+import Main from './views/Main';
+import NavBanner from './views/NavBanner';
+
 
 function App() {
   return (
-
-      <Cards/>
-
+    <>
+      <NavBanner />
+      <Main/>
+    </>
   );
-}
+  }
 
 export default App;
