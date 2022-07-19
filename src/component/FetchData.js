@@ -2,19 +2,33 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import OneCard from "./OneCard";
 
-function FetchData() {
+function FetchData({ queryUrl }) {
   const [data, setData] = useState(null);
   const [url, setUrl] = useState("https://api.magicthegathering.io/v1/cards");
+  // const [url, setUrl] = useState("https://api.magicthegathering.io/v1/cards");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch(url);
-      const data = await result.json();
-      setData(data.cards);
+      queryUrl && setUrl(queryUrl);
+      setIsLoading(true);
+      try {
+        // const result = await fetch(queryUrl ? queryUrl : url);
+        const result = await fetch(url);
+        const data = await result.json();
+        setData(data.cards);
+      } catch (error) {
+        setIsError(true);
+        console.log("error: ", error);
+      }
+      setIsLoading(false);
     };
 
     fetchData();
-  }, [url]);
+  }, [queryUrl]);
+  console.log("url: ", url);
+  console.log("queryUrl: ", queryUrl);
   console.log("data: ", data);
 
   return (
@@ -27,14 +41,14 @@ function FetchData() {
           md={6}
           lg={4}
           xl={3}
-          style={{margin: "4rem auto 4rem auto",  }}
-
+          style={{ margin: "4rem auto 4rem auto" }}
         >
           {data &&
             data.map((card) => {
               return <OneCard key={card.id} card={card} />;
             })}
         </Grid>
+        {isError && <div>Something went wrong ...</div>}
       </Grid>
     </>
   );

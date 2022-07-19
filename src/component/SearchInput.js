@@ -17,20 +17,18 @@ import {
 
 const SearchInput = ({ urlHandle }) => {
   const [query, setQuery] = React.useState("");
-  const [url, setUrl] = React.useState(
-    "https://api.magicthegathering.io/v1/cards"
-  );
-  const [isError, setIsError] = React.useState("");
+//   const [url, setUrl] = React.useState(
+//     "https://api.magicthegathering.io/v1/cards"
+//   );
+//   const [isError, setIsError] = React.useState("");
 
   console.log("query: ", query);
 
   return (
     <form
       onSubmit={(e) => {
-              setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
-              urlHandle(
-                "https://api.magicthegathering.io/v1/cards?query=${query}"
-              );
+        //   setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
+        urlHandle(`https://api.magicthegathering.io/v1/cards?name=${query}`);
         e.preventDefault();
         //  e.target.reset();
         setQuery("");
@@ -42,7 +40,9 @@ const SearchInput = ({ urlHandle }) => {
         inputProps={{ "aria-label": "search cards" }}
         type="search"
         value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={(event) =>
+          setQuery(event.target.value.toLowerCase().replace(/  +/g, " "))
+        }
       />
       <IconButton type="submit" color="inherit">
         <SearchIcon />
@@ -54,9 +54,7 @@ const SearchInput = ({ urlHandle }) => {
     </form>
   );
 
-  {
-    isError && <div>Something went wrong ...</div>;
-  }
+ 
 };
 
 export default SearchInput;

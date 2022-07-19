@@ -21,18 +21,12 @@ import SearchInput from './SearchInput';
 
 
 
-export default function FooterBanner() {
-  const [url, setUrl] = React.useState(
-    "test"
-    );
-    
-    function urlHandle(e) {
-      setUrl(e)
-    }
-React.useEffect(() => {
-    console.log("url: ", url);
+export default function FooterBanner({urlHandle}) {
 
-}, [url])
+// React.useEffect(() => {
+//     console.log("url: ", url);
+
+// }, [url])
 
   return (
     <React.Fragment>

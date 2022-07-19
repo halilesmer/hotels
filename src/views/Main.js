@@ -3,10 +3,10 @@ import React from "react";
 import FetchData from "../component/FetchData";
 
 
-const Main = () => {
+const Main = ({queryUrl}) => {
   return (
     <>
-      <FetchData />
+      <FetchData queryUrl={queryUrl} />
     </>
   );
 };

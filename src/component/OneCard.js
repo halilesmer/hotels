@@ -50,7 +50,7 @@ export default function OneCard({ card }) {
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ padding: "2px 0 0 2px" }}>
             <Typography variant="h6" component="div" align="center">
-              {card.artist}
+              {card.name}
             </Typography>
             <Divider />
 
