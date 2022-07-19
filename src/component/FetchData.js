@@ -4,7 +4,6 @@ import OneCard from "./OneCard";
 
 function FetchData() {
   const [data, setData] = useState(null);
-  const [query, setQuery] = useState("");
   const [url, setUrl] = useState("https://api.magicthegathering.io/v1/cards");
 
   useEffect(() => {
