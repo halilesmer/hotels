@@ -1,11 +1,11 @@
-import React from 'react'
-import Home from './Home'
-
+import React from "react";
+// import Grid from "@mui/material/Grid";
+import Home from "./Home";
 
 const Main = () => {
   return (
-    <Home/>
-  )
-}
+        <Home />
+  );
+};
 
-export default Main
+export default Main;
