@@ -4,9 +4,7 @@ import Grid from "@mui/material/Grid";
 
 const Home = () => {
   return (
-    <Grid container spacing={2} sx={{ margin: "3rem auto 4rem auto" }}>
       <FetchData />
-    </Grid>
   );
 };
 

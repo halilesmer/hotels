@@ -20,8 +20,16 @@ function FetchData() {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ margin: "2rem auto 4rem auto" }}>
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={3} style={{ padding: "0 2px 0 2px" }}>
+      <Grid container spacing={2} sx={{ margin: "4rem auto 4rem auto" }}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={4}
+          xl={3}
+          style={{ padding: "0 2px 0 2px" }}
+        >
           {data &&
             data.map((card) => {
               return <OneCard key={card.id} card={card} />;
