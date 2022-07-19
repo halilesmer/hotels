@@ -82,36 +82,43 @@ const StyledFab = styled(Fab)({
 export default function FooterBanner() {
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Paper square sx={{ pb: "50px" }}>
-        <Typography
-          variant="h5"
-          gutterBottom
-          component="div"
-          sx={{ p: 2, pb: 0 }}
-        >
-          Inbox
-        </Typography>
-      </Paper>
-      <AppBar
-        position="fixed"
-        color="primary"
-        sx={{ top: "auto", left: 0, bottom: 0, maxWidth: 420, width: "100%" }}
-      >
-        <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer">
-            <ArrowBackIosIcon />
-          </IconButton>
+      <footer className='footer' style={{
+        width: '100%',
+        position: 'fixed',
+        bottom: '0',
+        left: 0,
+      }}>
+        <CssBaseline />
 
-          <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+        <AppBar
+          position="unset"
+          color="primary"
+          sx={{
+            margin:'auto',
+            top: "auto",
+            left: "unset",
+            right: "unset",
+            bottom: 0,
+            maxWidth: 420,
+            width: "100%",
+
+          }}
+        >
+          <Toolbar>
+            <IconButton color="inherit" aria-label="open drawer">
+              <ArrowBackIosIcon />
+            </IconButton>
+
+            <Box sx={{ flexGrow: 1 }} />
+            <IconButton color="inherit">
+              <SearchIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <MoreIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </footer>
     </React.Fragment>
   );
 }

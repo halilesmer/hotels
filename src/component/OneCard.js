@@ -33,7 +33,7 @@ export default function OneCard({ card }) {
           maxWidth: 414,
           maxHeight: "110px",
           display: "flex",
-          margin: "1rem 0 1rem 0",
+          margin: "1rem auto 1rem auto",
         }}
       >
         <CardMedia

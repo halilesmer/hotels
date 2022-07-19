@@ -42,25 +42,29 @@ export default function NavBanner() {
     <Box
       sx={{
         flexGrow: 1,
-              position: "fixed",
+        position: "fixed",
         top: 0,
-        maxWidth: 420,
+        left:0,
         width: "100%",
       }}
       gutterBottom
     >
-      <AppBar position="static">
+      <AppBar position="static" sx={{margin: 'auto', maxWidth: "420px" }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, textAlign: "center" }}
+          >
             Magic The Gathering
           </Typography>
           {auth && (
