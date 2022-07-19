@@ -44,7 +44,7 @@ export default function NavBanner() {
         flexGrow: 1,
               position: "fixed",
         top: 0,
-        maxWidth: 414,
+        maxWidth: 420,
         width: "100%",
       }}
       gutterBottom
@@ -60,8 +60,8 @@ export default function NavBanner() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+            Magic The Gathering
           </Typography>
           {auth && (
             <div>

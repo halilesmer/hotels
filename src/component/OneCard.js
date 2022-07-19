@@ -12,19 +12,26 @@ import {
 import euro from "../assests/download.png";
 
 export default function OneCard({ card }) {
-  
   // const test =card && card.map(item => item.artist)
   // console.log("test: ", card);
   // const styleCard = {
   //   maxWidth: "importa",
   // };
+  const styles = {
+    media: {
+      width: "100px",
+      height: "100px",
+      // paddingTop: "56.25%", // 16:9,
+      // marginTop: "30",
+    },
+  };
   return (
     <>
       <Card
         elevation={14}
         sx={{
           maxWidth: 414,
-          maxHeight: "100px",
+          maxHeight: "110px",
           display: "flex",
           margin: "1rem 0 1rem 0",
         }}
@@ -32,10 +39,13 @@ export default function OneCard({ card }) {
         <CardMedia
           component="img"
           alt="green iguana"
-          height="100"
-          //   image="https://dummyimage.com/100x100/cf14bc/bc22bf.jpg"
-          //   title="Hallo"
           image={card?.imageUrl}
+          style={{
+            width: "100px",
+            margin: "2px 0 2px 2px",
+            borderRadius: "10px",
+          }}
+         
         />
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ padding: "2px 0 0 2px" }}>
@@ -50,7 +60,7 @@ export default function OneCard({ card }) {
               //   noWrap
               sx={{ overflow: "auto", height: "63px" }}
             >
-              {card?.flavor ? card.flavor : 'no description' }
+              {card?.flavor ? card.flavor : "no description"}
             </Typography>
           </CardContent>
         </Box>

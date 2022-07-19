@@ -1,10 +1,14 @@
 import React from "react";
 import FetchData from "../component/FetchData";
 import Grid from "@mui/material/Grid";
+import FooterBanner from "../component/FooterBanner";
 
 const Home = () => {
-  return (
+    return (
+      <>
       <FetchData />
+      <FooterBanner/>
+      </>
   );
 };
 
