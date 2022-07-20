@@ -4,7 +4,7 @@ import Main from "./views/Main";
 import NavBanner from "./views/NavBanner";
 import FooterBanner from "./component/FooterBanner";
 import { Container } from "@mui/system";
-
+import Login from './views/Login'
 function App() {
   const [url, setUrl] = React.useState("");
   
@@ -14,10 +14,13 @@ function App() {
 
   return (
     <>
-      <Container>
-        <NavBanner />
-        <Main queryUrl={url} />
-        <FooterBanner urlHandle={urlHandle} />
+      <Container >
+      <NavBanner />
+        <Login />
+        {/*  
+      <Main queryUrl={url} />
+    */}
+    <FooterBanner urlHandle={urlHandle} /> 
       </Container>
     </>
   );
