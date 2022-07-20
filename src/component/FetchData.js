@@ -5,15 +5,11 @@ import OneCard from "./OneCard";
 function FetchData({ queryUrl }) {
   const [data, setData] = useState(null);
   const [url, setUrl] = useState("https://api.magicthegathering.io/v1/cards");
-  // const [url, setUrl] = useState("https://api.magicthegathering.io/v1/cards");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-  //     setUrl(queryUrl);
-  // console.log("url: ", url);
-
       setIsLoading(true);
       try {
         // const result = await fetch(queryUrl ? queryUrl : url);

@@ -4,31 +4,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import {
   Box,
-  Divider,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-    
   AppBar,
-Toolbar,
-Typography,
-IconButton,
-Switch,
-FormControlLabel,
-FormGroup,
-MenuItem,
-Menu
+  Toolbar,
+  Typography,
+  IconButton,
+  MenuItem,
+  Menu,
 } from "@mui/material";
-
 
 export default function NavBanner() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,19 +34,19 @@ export default function NavBanner() {
         flexGrow: 1,
         position: "fixed",
         top: 0,
-        left:0,
+        left: 0,
         width: "100%",
       }}
       gutterBottom
     >
-      <AppBar position="static" sx={{margin: 'auto', maxWidth: "420px" }}>
+      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px" }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, }}
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>

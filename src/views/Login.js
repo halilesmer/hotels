@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 import { Container } from '@mui/system';
 import React from 'react'
+// import CreateAcntBtn from '../component/CreateAcntBtn';
 import LoginForm from '../component/LoginForm'
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
         Login
       </Typography>
 
-      <LoginForm />
+          <LoginForm />
     </Container>
   );
 }

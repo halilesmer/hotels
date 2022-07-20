@@ -1,13 +1,9 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // import IconButton from "@mui/material/IconButton";
 import {
   Box,
-  Paper,
-  Fab,
   IconButton,
   AppBar,
   CssBaseline,
@@ -23,10 +19,6 @@ import SearchInput from './SearchInput';
 
 export default function FooterBanner({urlHandle}) {
 
-// React.useEffect(() => {
-//     console.log("url: ", url);
-
-// }, [url])
 
   return (
     <React.Fragment>
