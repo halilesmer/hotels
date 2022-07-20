@@ -16,9 +16,9 @@ function App() {
     <>
       <Container >
       <NavBanner />
-        <Login />
-        {/*  
       <Main queryUrl={url} />
+      {/*  
+      <Login /> 
     */}
     <FooterBanner urlHandle={urlHandle} /> 
       </Container>

@@ -28,7 +28,9 @@ const SearchInput = ({ urlHandle }) => {
       component="form"
       onSubmit={(e) => {
         //   setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
-        urlHandle(`https://api.magicthegathering.io/v1/cards?name=${query}`);
+        urlHandle(
+          `https://api.magicthegathering.io/v1/cards?name=${query}&pageSize=20`
+        );
         e.preventDefault();
         //  e.target.reset();
         setQuery("");
