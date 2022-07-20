@@ -46,7 +46,7 @@ function FetchData({ queryUrl }) {
         >
           {data &&
             data.map((card) => {
-              return card.imageUrl && <OneCard key={card.id} card={card} />;
+              return (card.imageUrl && card.name === card.name) &&  <OneCard key={card.id} card={card} />;
             })}
         </Grid>
         {isError && <div>Something went wrong ...</div>}

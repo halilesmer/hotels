@@ -14,18 +14,18 @@ import {
   Divider,
 } from "@mui/material";
 
-
 const SearchInput = ({ urlHandle }) => {
   const [query, setQuery] = React.useState("");
-//   const [url, setUrl] = React.useState(
-//     "https://api.magicthegathering.io/v1/cards"
-//   );
-//   const [isError, setIsError] = React.useState("");
+  //   const [url, setUrl] = React.useState(
+  //     "https://api.magicthegathering.io/v1/cards"
+  //   );
+  //   const [isError, setIsError] = React.useState("");
 
   console.log("query: ", query);
 
   return (
-    <form
+    <Box
+      component="form"
       onSubmit={(e) => {
         //   setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
         urlHandle(`https://api.magicthegathering.io/v1/cards?name=${query}`);
@@ -47,14 +47,13 @@ const SearchInput = ({ urlHandle }) => {
       <IconButton type="submit" color="inherit">
         <SearchIcon />
       </IconButton>
-
-      <IconButton color="inherit">
-        <MoreIcon />
-      </IconButton>
-    </form>
+    </Box>
   );
-
- 
 };
 
 export default SearchInput;
+
+/*  <IconButton color="inherit">
+        <MoreIcon />
+      </IconButton>
+       */

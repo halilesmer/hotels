@@ -45,13 +45,19 @@ export default function OneCard({ card }) {
             margin: "2px 0 2px 2px",
             borderRadius: "10px",
           }}
-         
         />
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", }}>
           <CardContent sx={{ padding: "2px 0 0 2px" }}>
-            <Typography variant="h6" component="div" align="center">
+            <Typography
+              noWrap
+              variant="h6"
+              component="h6"
+              align="center"
+              style={{ width: "99%", paddingRight: '3%'}}
+            >
               {card.name}
             </Typography>
+
             <Divider />
 
             <Typography
@@ -64,21 +70,32 @@ export default function OneCard({ card }) {
             </Typography>
           </CardContent>
         </Box>
-        <Box
+      </Card>
+    </>
+  );
+}
+
+/* 
+            <Button size="small">Share</Button>
+
+              <Box
           sx={{
             display: "flex",
+            width: "70px",
             alignItems: "center",
             pl: 1,
             pb: 1,
             padding: "unset",
           }}
         >
-          <CardActions sx={{ flexDirection: "column" }}>
-            <Button size="small">Share</Button>
+          <CardActions
+            sx={{
+              flexDirection: "column",
+              width: "inherit",
+              padding: "inherit",
+            }}
+          >
             <Button size="small">More</Button>
           </CardActions>
         </Box>
-      </Card>
-    </>
-  );
-}
+ */
