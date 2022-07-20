@@ -11,11 +11,13 @@ function FetchData({ queryUrl }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      queryUrl && setUrl(queryUrl);
+  //     setUrl(queryUrl);
+  // console.log("url: ", url);
+
       setIsLoading(true);
       try {
         // const result = await fetch(queryUrl ? queryUrl : url);
-        const result = await fetch(url);
+        const result = await fetch(queryUrl ? queryUrl : url );
         const data = await result.json();
         setData(data.cards);
       } catch (error) {
@@ -27,7 +29,6 @@ function FetchData({ queryUrl }) {
 
     fetchData();
   }, [queryUrl]);
-  console.log("url: ", url);
   console.log("queryUrl: ", queryUrl);
   console.log("data: ", data);
 
@@ -45,7 +46,7 @@ function FetchData({ queryUrl }) {
         >
           {data &&
             data.map((card) => {
-              return <OneCard key={card.id} card={card} />;
+              return card.imageUrl && <OneCard key={card.id} card={card} />;
             })}
         </Grid>
         {isError && <div>Something went wrong ...</div>}

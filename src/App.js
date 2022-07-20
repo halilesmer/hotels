@@ -11,7 +11,6 @@ function App() {
   function urlHandle(e) {
     setUrl(e);
   }
-  // console.log("urlApp.js: ", url);
 
   return (
     <>
