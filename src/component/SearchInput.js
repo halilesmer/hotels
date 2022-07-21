@@ -14,7 +14,7 @@ import {
   Divider,
 } from "@mui/material";
 
-const SearchInput = ({ urlHandle }) => {
+const SearchInput = ({ urlHandle, page}) => {
   const [query, setQuery] = React.useState("");
   //   const [url, setUrl] = React.useState(
   //     "https://api.magicthegathering.io/v1/cards"
@@ -29,7 +29,7 @@ const SearchInput = ({ urlHandle }) => {
       onSubmit={(e) => {
         //   setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
         urlHandle(
-          `https://api.magicthegathering.io/v1/cards?name=${query}&pageSize=20`
+          query
         );
         e.preventDefault();
         //  e.target.reset();

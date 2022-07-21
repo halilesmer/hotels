@@ -7,8 +7,8 @@ import LoginForm from '../component/LoginForm'
 const Login = () => {
   return (
       <Container
-          className='loginCon'
-          component="div" align="center" style={{  marginTop: '10rem' }}>
+          id='loginCon'
+          component="div" align="center" style={{  marginTop: '5rem' }}>
       <Typography
         align="center"
         variant="h3"

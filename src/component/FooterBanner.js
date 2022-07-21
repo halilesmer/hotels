@@ -11,15 +11,10 @@ import {
   Typography,
   InputBase,
   Divider,
-
 } from "@mui/material";
-import SearchInput from './SearchInput';
+import SearchInput from "./SearchInput";
 
-
-
-export default function FooterBanner({urlHandle}) {
-
-
+export default function FooterBanner({ urlHandle, page }) {
   return (
     <React.Fragment>
       <footer
@@ -56,8 +51,6 @@ export default function FooterBanner({urlHandle}) {
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
             <SearchInput urlHandle={urlHandle} />
-
-
           </Toolbar>
         </AppBar>
       </footer>

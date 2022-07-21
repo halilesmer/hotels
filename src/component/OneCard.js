@@ -9,7 +9,6 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import euro from "../assests/download.png";
 
 export default function OneCard({ card }) {
   // const test =card && card.map(item => item.artist)
