@@ -33,23 +33,12 @@ function FetchData({ queryUrl }) {
 
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          lg={4}
-          xl={3}
-          style={{ margin: "4rem auto 4rem auto" }}
-        >
+  
           {data &&
             data.map((card) => {
               return (card.imageUrl && card.name === card.name) &&  <OneCard key={card.id} card={card} />;
             })}
-        </Grid>
-        {isError && <div>Something went wrong ...</div>}
-      </Grid>
+     
     </>
   );
 }

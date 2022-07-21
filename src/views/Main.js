@@ -1,12 +1,13 @@
 import React from "react";
+import Cards from "../component/Cards";
 // import Grid from "@mui/material/Grid";
-import FetchData from "../component/FetchData";
+
 
 
 const Main = ({queryUrl}) => {
   return (
     <>
-      <FetchData queryUrl={queryUrl} />
+      <Cards queryUrl={queryUrl} />
     </>
   );
 };
