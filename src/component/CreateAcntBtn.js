@@ -9,7 +9,7 @@ const CreateAcntBtn = () => {
     <Button
       variant="bold"
       size="medium"
-      startIcon={<Icon><PersonAddAlt1Icon/></Icon>}
+      startIcon={<Icon><PersonAddAlt1Icon sx={{width:'20px'}} /></Icon>}
       sx={{ fontWeight: "bold", border: `4px solid black`, color: "#228b22" }}
     >
       Create Account
