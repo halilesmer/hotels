@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
+import {CircularProgress, Grid, Spinner} from "@mui/material";
 import OneCard from "./OneCard";
 import PaginationCon from "./PaginationCon";
 
@@ -44,6 +44,7 @@ function Cards({ queryUrl, handlePage, pageNum }) {
 
   return (
     <>
+      {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={2}>
         <Grid
           item

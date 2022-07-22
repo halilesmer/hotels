@@ -27,6 +27,7 @@ import {
   TableContainer,
   TableHead,
   Table,
+  CircularProgress,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -101,6 +102,7 @@ export default function Details() {
 
   return (
     <>
+      {isLoading && <CircularProgress color="inherit" />}
 
       {filteredData &&
         filteredData.map(card =>{
