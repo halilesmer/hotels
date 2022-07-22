@@ -21,7 +21,6 @@ const SearchInput = ({ urlHandle, page}) => {
   //   );
   //   const [isError, setIsError] = React.useState("");
 
-  console.log("query: ", query);
 
   return (
     <Box

@@ -20,7 +20,7 @@ export default function OneCard({ card }) {
 
   return (
     <>
-      <Link to={`/cards/details/hallo`}>
+      <Link to={`/cards/details/${card && card.name}`}>
         <Card
           elevation={14}
           sx={{

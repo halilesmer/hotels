@@ -26,7 +26,6 @@ React.useEffect(() => {
   
 },[searchQuery, page])
 
-console.log("page: ", page);
   return (
     <>
       <Container>

@@ -21,7 +21,6 @@ function Cards({ queryUrl, handlePage, pageNum }) {
         const result = await fetch(queryUrl ? queryUrl : url);
         const data = await result.json();
         setData(data.cards);
-        console.log("data .length: ", data.cards.length);
       } catch (error) {
         setIsError(true);
         console.log("error: ", error);
@@ -38,9 +37,9 @@ function Cards({ queryUrl, handlePage, pageNum }) {
   //   setUrl(page);
   // };
 
-  console.log("queryUrl: ", queryUrl);
-  console.log("data: ", data);
-  console.log("data length: ", data?.length);
+  // console.log("queryUrl: ", queryUrl);
+  // console.log("data: ", data);
+  // console.log("data length: ", data?.length);
 
 
   return (
@@ -58,8 +57,7 @@ function Cards({ queryUrl, handlePage, pageNum }) {
           {data &&
             data.map((card) => {
               return (
-                card.imageUrl &&
-                card.name === card.name && <OneCard key={card.id} card={card} />
+                card.imageUrl && <OneCard key={card.id} card={card} />
               );
             })}
         </Grid>
