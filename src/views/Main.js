@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Cards from "../component/Cards";
 import Home from "./Home";
 import Login from "./Login";
+import Details from "../component/Details";
 // import Grid from "@mui/material/Grid";
 
 const Main = ({ queryUrl, handlePage, pageNum }) => {
@@ -25,6 +26,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
             />
           }
         />
+        <Route path="cards/details/:title" element={<Details />} />
         <Route path="login" element={<Login />} />
       </Routes>
     </Typography>
