@@ -32,7 +32,7 @@ const Home = () => {
           margin: "2rem auto",
         }}
         >
-        <Link to='/cards'>
+        <Link style={{ textDecoration: 'none' }} to='/cards'>
           To the Cards
           </Link>
         </Button>

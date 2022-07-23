@@ -11,6 +11,7 @@ import {
   MenuItem,
   Menu,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function NavBanner() {
   const [auth, setAuth] = React.useState(true);
@@ -55,7 +56,7 @@ export default function NavBanner() {
             component="div"
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
-            Magic The Gathering
+            <Link style={{textDecoration: 'none'}} to='/'>Magic The Gathering</Link>
           </Typography>
           {auth && (
             <div>
@@ -84,8 +85,9 @@ export default function NavBanner() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <Link to='login'> <MenuItem onClick={handleClose}>Login</MenuItem></Link>
+                <Link to='register'> <MenuItem onClick={handleClose}>Register</MenuItem></Link>
+                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
           )}

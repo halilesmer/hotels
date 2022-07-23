@@ -5,9 +5,12 @@ import Cards from "../component/Cards";
 import Home from "./Home";
 import Login from "./Login";
 import Details from "../component/Details";
+import Register from "../component/Register";
 // import Grid from "@mui/material/Grid";
 
 const Main = ({ queryUrl, handlePage, pageNum }) => {
+  const text = 'Create an Account';
+
   return (
     <Typography
       component="main"
@@ -27,7 +30,8 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
           }
         />
         <Route path="cards/details/:title" element={<Details />} />
-        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register createAcntBtnTxt='Send Form' />} />
+        <Route path="login" element={<Login createAcntBtnTxt='Create an Account' />} />
       </Routes>
     </Typography>
   );

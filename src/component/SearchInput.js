@@ -36,7 +36,7 @@ const SearchInput = ({ urlHandle, page}) => {
       }}
     >
       <InputBase
-        sx={{ ml: 1, flex: 1 }}
+        sx={{ ml: 1, flex: 1,color:'white' }}
         placeholder="Search for cards"
         inputProps={{ "aria-label": "search cards" }}
         type="search"

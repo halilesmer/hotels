@@ -4,7 +4,8 @@ import React from 'react'
 // import CreateAcntBtn from '../component/CreateAcntBtn';
 import LoginForm from '../component/LoginForm'
 
-const Login = () => {
+const Login = ({ createAcntBtnTxt }) => {
+
   return (
       <Container
           id='loginCon'
@@ -18,7 +19,7 @@ const Login = () => {
         Login
       </Typography>
 
-          <LoginForm />
+      <LoginForm createAcntBtnTxt={createAcntBtnTxt}/>
     </Container>
   );
 }
