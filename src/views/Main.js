@@ -9,7 +9,6 @@ import Register from "../component/Register";
 // import Grid from "@mui/material/Grid";
 
 const Main = ({ queryUrl, handlePage, pageNum }) => {
-  const text = 'Create an Account';
 
   return (
     <Typography

@@ -1,17 +1,9 @@
 import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
-  Paper,
-  Fab,
   IconButton,
-  AppBar,
-  CssBaseline,
-  Toolbar,
-  Typography,
   InputBase,
-  Divider,
 } from "@mui/material";
 
 const SearchInput = ({ urlHandle, page}) => {

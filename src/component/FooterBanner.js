@@ -13,8 +13,16 @@ import {
   Divider,
 } from "@mui/material";
 import SearchInput from "./SearchInput";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function FooterBanner({ urlHandle, page }) {
+  const navigate = useNavigate();
+  const url = useLocation();
+  console.log("url: ", url.pathname);
+  
+  const handleBackClick=()=> {
+ return   url.pathname === '/' ? null : navigate(-1)
+  }
   return (
     <React.Fragment>
       <footer
@@ -42,15 +50,16 @@ export default function FooterBanner({ urlHandle, page }) {
           }}
         >
           <Toolbar>
-            <IconButton color="inherit" aria-label="open drawer">
+           {url.pathname !== '/' && <IconButton color="inherit" aria-label="open drawer"
+            onClick={handleBackClick}>
               <ArrowBackIosIcon />
-            </IconButton>
+            </IconButton>}
 
             <Box sx={{ flexGrow: 1 }} />
 
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-            <SearchInput urlHandle={urlHandle} />
+           {url.pathname === '/cards' && <SearchInput urlHandle={urlHandle} />}
           </Toolbar>
         </AppBar>
       </footer>
