@@ -23,7 +23,6 @@ const SearchInput = ({ urlHandle, page}) => {
           query
         );
         e.preventDefault();
-        //  e.target.reset();
         setQuery("");
       }}
     >

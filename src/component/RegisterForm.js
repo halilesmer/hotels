@@ -1,11 +1,15 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import CreateAcntBtn from "./Buttons/CreateAcntBtn";
 
-const RegisterForm = ({ createAcntBtnTxt, test }) => {
-    console.log("test: ", test);
+export const PostIntro = ({ children }) => {
+    return <div className="post__intro">{children}</div>;
+};
+
+const RegisterForm = ({ children, createAcntBtnTxt,  }) => {
+
+
     return (
         <>
             <Box
@@ -26,7 +30,8 @@ const RegisterForm = ({ createAcntBtnTxt, test }) => {
                 <TextField id="register-email" label="Email" variant="filled" size="small" type='email' required />
                 <TextField id="register-pw" label="Passwort" variant="filled" size="small" type='password' required />
 
-                <CreateAcntBtn createAcntBtnTxt={createAcntBtnTxt} />
+                {/* <CreateAcntBtn createAcntBtnTxt={createAcntBtnTxt} /> */}
+                {children}
             </Box>
 
             {/* <Box className="create-account-btn-con" mt={3}>

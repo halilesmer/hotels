@@ -1,10 +1,15 @@
 import { Typography } from '@mui/material'
 import { Container } from '@mui/system';
-import React from 'react'
+import React, { Children } from 'react'
+import { useLocation } from 'react-router-dom';
 // import CreateAcntBtn from '../component/CreateAcntBtn';
-import RegisterForm from '../component/RegisterForm'
+import RegisterForm from './RegisterForm'
+import CreateAcntBtn from './Buttons/CreateAcntBtn';
+
 
 const Register = ({ createAcntBtnTxt }) => {
+    const url = useLocation();
+
     return (
         <Container
             id='registerCon'
@@ -18,7 +23,10 @@ const Register = ({ createAcntBtnTxt }) => {
                 Register
             </Typography>
 
-            <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} />
+            {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}
+            <RegisterForm test='test' createAcntBtnTxt={'hallo'}>
+                <CreateAcntBtn createAcntBtnTxt='Send Form' />
+            </RegisterForm>
         </Container>
     );
 }

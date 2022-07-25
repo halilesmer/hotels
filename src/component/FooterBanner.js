@@ -8,8 +8,7 @@ import {
   AppBar,
   CssBaseline,
   Toolbar,
-  Typography,
-  InputBase,
+ 
   Divider,
 } from "@mui/material";
 import SearchInput from "./SearchInput";
@@ -18,7 +17,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function FooterBanner({ urlHandle, page }) {
   const navigate = useNavigate();
   const url = useLocation();
-  console.log("url: ", url.pathname);
   
   const handleBackClick=()=> {
  return   url.pathname === '/' ? null : navigate(-1)
