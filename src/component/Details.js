@@ -15,52 +15,44 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   CardHeader,
   IconButton,
-  Collapse,
   Paper,
-  TableCell,
-  TableBody,
-  TableRow,
-  TableContainer,
-  TableHead,
-  Table,
   CircularProgress,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 
 
 
 export default function Details() {
-  const [expanded, setExpanded] = React.useState(false);
+  // const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  // const handleChange = (panel) => (event, isExpanded) => {
+  //   setExpanded(isExpanded ? panel : false);
+  // };
 
 
   const { title } = useParams();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
 
   const [data, setData] = React.useState(null);
-  const [page, setPage] = React.useState(1);
+  // const [page, setPage] = React.useState(1);
   // const [url, setUrl] = useState(
   //   `https://api.magicthegathering.io/v1/cards/`
   // );
