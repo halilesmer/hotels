@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import {CircularProgress, Grid, Spinner} from "@mui/material";
 import OneCard from "./OneCard";
 import PaginationCon from "./PaginationCon";
+import {useContext} from 'react';
+import {AppContext} from './context/AppContext.js';
 
-function Cards({ queryUrl, handlePage, pageNum }) {
+// { queryUrl, handlePage, pageNum }
+function Cards() {
   const [data, setData] = useState(null);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  const app = useContext(AppContext);
+  console.log("app: ", app);
   const [url, setUrl] = useState(
-    `https://api.magicthegathering.io/v1/cards/?page=${page}`
-  );
+    `https://api.magicthegathering.io/v1/cards/?page=${app.page}`
+    );
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -18,18 +23,20 @@ function Cards({ queryUrl, handlePage, pageNum }) {
       setIsLoading(true);
       try {
         // const result = await fetch(queryUrl ? queryUrl : url);
-        const result = await fetch(queryUrl ? queryUrl : url);
+        const result = await fetch(app.queryUrl ? app.queryUrl : url);
         const data = await result.json();
         setData(data.cards);
       } catch (error) {
         setIsError(true);
         console.log("error: ", error);
+      }finally{
+        setIsError(false)
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     fetchData();
-  }, [queryUrl, page, url]);
+  }, [app.queryUrl, app.page, url]);
 
   // const handleChange = (page) => {
   //   console.log("page: ", page);
@@ -41,7 +48,7 @@ function Cards({ queryUrl, handlePage, pageNum }) {
   // console.log("data: ", data);
   // console.log("data length: ", data?.length);
 
-
+console.log('isError', isError)
   return (
     <>
       {isLoading && <CircularProgress color="inherit" />}
@@ -65,11 +72,12 @@ function Cards({ queryUrl, handlePage, pageNum }) {
       </Grid>
 
       <PaginationCon
-       pageNum={pageNum}
-        handlePage={handlePage}
+       pageNum={app.page}
+        handlePage={app.handlePage}
         data={data}
         // searchQuery={searchQuery}
       />
+      {isError && <div className="error-con" style={{margin: 'auto'}}> 'Something went wrong'</div>}
     </>
   );
 }
