@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { CircularProgress, Grid, } from "@mui/material";
+
+import { AppContext } from './context/appContext.js';
 import OneCard from "./OneCard";
 import PaginationCon from "./PaginationCon";
+import React from "react";
 import { useContext } from 'react';
-import { AppContext } from './context/AppContext.js';
 
 function Cards() {
   // const [data, setData] = useState(null);

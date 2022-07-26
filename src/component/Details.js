@@ -1,27 +1,28 @@
 import * as React from "react";
-// import { styled } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import {
-  Card,
   Avatar,
-  Divider,
+  Card,
   CardActions,
   CardContent,
-  CardMedia,
-  Typography,
   CardHeader,
+  CardMedia,
+  CircularProgress,
+  Divider,
   IconButton,
   Paper,
-  CircularProgress,
+  Typography,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { useContext } from 'react';
-import { AppContext } from './context/AppContext.js';
 
+import { AppContext } from './context/appContext.js';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ShareIcon from "@mui/icons-material/Share";
+// import { styled } from "@mui/material/styles";
+import { red } from "@mui/material/colors";
+import { useContext } from 'react';
+import { useParams } from "react-router-dom";
 
 export default function Details() {
   const { title } = useParams();
@@ -54,8 +55,9 @@ export default function Details() {
         filteredData.map(card =>{
           return (
         <Card
+        
         className="details-con"
-        style={{height: 'auto', margin:'auto'}}
+       
          key={card.id} sx={{ maxWidth: 345 }}>
           <CardHeader
             avatar={
@@ -72,8 +74,9 @@ export default function Details() {
             subheader={card?.type}
           />
           <CardMedia
+                style={{ height: 'auto', margin: 'auto' }}
             component="img"
-            height="194"
+            // height="194"
             image={card.imageUrl}
             alt="Paella dish"
           />
