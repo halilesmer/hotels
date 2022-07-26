@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import CreateAcntBtn from "./Buttons/CreateAcntBtn";
 
 const LoginForm = ({ createAcntBtnTxt }) => {
-  console.log("createAcntBtnTxt: ", createAcntBtnTxt);
   return (
     <>
       <Box

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import {CircularProgress, Grid, Spinner} from "@mui/material";
+import { CircularProgress, Grid, } from "@mui/material";
 import OneCard from "./OneCard";
 import PaginationCon from "./PaginationCon";
-import {useContext} from 'react';
-import {AppContext} from './context/AppContext.js';
+import { useContext } from 'react';
+import { AppContext } from './context/AppContext.js';
 
 // { queryUrl, handlePage, pageNum }
 function Cards() {
   const [data, setData] = useState(null);
   // const [page, setPage] = useState(1);
   const app = useContext(AppContext);
-  console.log("app: ", app);
-  const [url, setUrl] = useState(
-    `https://api.magicthegathering.io/v1/cards/?page=${app.page}`
-    );
+  const { pageNumb, url} = app;
+
+  const [firstUrl, setFirstUrl] = useState(
+    `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
+  );
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -22,33 +23,28 @@ function Cards() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // const result = await fetch(queryUrl ? queryUrl : url);
-        const result = await fetch(app.queryUrl ? app.queryUrl : url);
+        // const result = await fetch(queryUrl ? queryUrl : firstUrl);
+        const result = await fetch(url ? url : firstUrl);
+        console.log("url: ", url);
+
+
         const data = await result.json();
         setData(data.cards);
+        console.log("data.cards: ", data.cards);
       } catch (error) {
         setIsError(true);
         console.log("error: ", error);
-      }finally{
+      } finally {
         setIsError(false)
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [app.queryUrl, app.page, url]);
+  }, [url, pageNumb, firstUrl]);
 
-  // const handleChange = (page) => {
-  //   console.log("page: ", page);
-  //   // setPage(page);
-  //   setUrl(page);
-  // };
 
-  // console.log("queryUrl: ", queryUrl);
-  // console.log("data: ", data);
-  // console.log("data length: ", data?.length);
 
-console.log('isError', isError)
   return (
     <>
       {isLoading && <CircularProgress color="inherit" />}
@@ -72,12 +68,12 @@ console.log('isError', isError)
       </Grid>
 
       <PaginationCon
-       pageNum={app.page}
-        handlePage={app.handlePage}
+        //  pageNum={page}
+        //   handlePage={handlePage}
         data={data}
-        // searchQuery={searchQuery}
+      // searchQuery={searchQuery}
       />
-      {isError && <div className="error-con" style={{margin: 'auto'}}> 'Something went wrong'</div>}
+      {isError && <div className="error-con" style={{ margin: 'auto' }}> 'Something went wrong'</div>}
     </>
   );
 }

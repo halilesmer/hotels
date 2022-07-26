@@ -1,36 +1,43 @@
 import React, { createContext } from "react";
 
 const AppContext = createContext();
-console.log("AppContext: ", AppContext);
 
 function AppProvider(props) {
     const baseUrlCards = "https://api.magicthegathering.io/v1/cards";
     const [url, setUrl] = React.useState("");
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [page, setPage] = React.useState(1);
-
+    const [pageNumb, setPageNumb] = React.useState(1);
+    
     function handlePage(e) {
-        setPage(e)
+        console.log("e: ", e);
+        setPageNumb(e)
     }
     function urlHandle(e) {
         setSearchQuery(e)
     }
     React.useEffect(() => {
-        setUrl(`${baseUrlCards}?name=${searchQuery}&page=${page}&pageSize=20`);
+        // setUrl(`${baseUrlCards}?name=${searchQuery}&Numb=${pageNumb}&pageSize=20`);
+        setUrl(`${baseUrlCards}?name=${searchQuery}&page=${pageNumb}&pageSize=20`);
 
-    }, [searchQuery, page])
-
+        
+    }, [searchQuery, pageNumb])
+    
     const value = {
         baseUrlCards,
         url,
         setUrl,
         searchQuery,
         setSearchQuery,
-        page,
-        setPage,
-
+        pageNumb,
+        setPageNumb,
+        handlePage,
+        urlHandle
+        
     }
-
+    
+    console.log("pageNumb: ", pageNumb);
+    // console.log("searchQuery: ", searchQuery);
+    // console.log("url: ", url);
     return (
         <AppContext.Provider value={value}>
             {props.children}

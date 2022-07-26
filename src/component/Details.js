@@ -87,9 +87,9 @@ export default function Details() {
       (card.imageUrl && card.name.toLowerCase().trim().replace(/\s+/g, ' ') === title.toLowerCase().trim().replace(/\s+/g, ' '))
     )
   })
-  console.log("data: ", data);
-  console.log("filteredData: ", filteredData);
-  console.log("title: ", title);
+  // console.log("data: ", data);
+  // console.log("filteredData: ", filteredData);
+  // console.log("title: ", title);
 
 
   return (
