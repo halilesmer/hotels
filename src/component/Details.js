@@ -26,30 +26,14 @@ import { AppContext } from './context/AppContext.js';
 export default function Details() {
   const { title } = useParams();
 
-  const [data, setData] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isError, setIsError] = React.useState(false);
+  // const [data, setData] = React.useState(null);
+  // const [isLoading, setIsLoading] = React.useState(false);
+  // const [isError, setIsError] = React.useState(false);
+  const app = useContext(AppContext);
+  const { data, isLoading, isError }= app;
 
-  const url = `https://api.magicthegathering.io/v1/cards/`;
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        // const result = await fetch(queryUrl ? queryUrl : url);
-        const result = await fetch(url);
-        const data = await result.json();
-        setData(data.cards);
-      } catch (error) {
-        setIsError(true);
-        console.log("error: ", error);
-      }
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, [title]);
-
+  // const url = `https://api.magicthegathering.io/v1/cards/`;
 
 
   const filteredData = data && data.filter((card) => {
@@ -126,7 +110,7 @@ export default function Details() {
           )
         })
       }
-
+      {isError && <div className="error-con" style={{ margin: 'auto' }}> 'Something went wrong'</div>}
 
     </>
 
