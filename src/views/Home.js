@@ -1,9 +1,20 @@
 import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { AppContext } from '../component/context/appContext.js';
+import { Link, } from "react-router-dom";
 import imageMagicGathering from "../assests/magic-gathering.webp";
+import { useContext } from 'react';
 
 const Home = () => {
+  const { pageNumb } = useContext(AppContext);
+  console.log("pageNumb-Home ", pageNumb);
+  // const { pagination } = useParams();
+  // console.log("pagination: ", pagination);
+  
+  // const [page, setPage] = useState(pageNumb);
+  // useEffect(()=>setPage(pageNumb),[pageNumb])
+
   return (
     <Typography
       component="div"
@@ -32,7 +43,8 @@ const Home = () => {
           margin: "2rem auto",
         }}
         >
-        <Link style={{ textDecoration: 'none' }} to='/cards'>
+        <Link style={{ textDecoration: 'none' }} to={`/cards/${pageNumb}`}>
+
           To the Cards
           </Link>
         </Button>

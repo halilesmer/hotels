@@ -1,11 +1,12 @@
-import { Typography } from "@mui/material";
-import React from "react";
 import { Route, Routes } from "react-router-dom";
+
 import Cards from "../component/Cards";
+import Details from "../component/Details";
 import Home from "./Home";
 import Login from "./Login";
-import Details from "../component/Details";
+import React from "react";
 import Register from "../component/RegisterPage";
+import { Typography } from "@mui/material";
 // import Grid from "@mui/material/Grid";
 
 const Main = ({ queryUrl, handlePage, pageNum }) => {
@@ -19,7 +20,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="cards"
+          path="cards/:pagination"
           element={
             <Cards
               queryUrl={queryUrl}

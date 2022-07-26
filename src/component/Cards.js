@@ -5,13 +5,15 @@ import OneCard from "./OneCard";
 import PaginationCon from "./PaginationCon";
 import React from "react";
 import { useContext } from 'react';
+import { useParams } from "react-router-dom";
 
 function Cards() {
   // const [data, setData] = useState(null);
   // const [page, setPage] = useState(1);
   const app = useContext(AppContext);
   const {  isLoading, data, isError} = app;
-
+  // const { pagination } = useParams();
+  // console.log("pagination: ", pagination);
 
   return (
     <>

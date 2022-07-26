@@ -26,6 +26,7 @@ import { useParams } from "react-router-dom";
 
 export default function Details() {
   const { title } = useParams();
+  console.log("title: ", title);
 
   // const [data, setData] = React.useState(null);
   // const [isLoading, setIsLoading] = React.useState(false);
