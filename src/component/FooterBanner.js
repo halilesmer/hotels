@@ -14,7 +14,7 @@ import {
 import SearchInput from "./SearchInput";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function FooterBanner({ urlHandle, page }) {
+export default function FooterBanner() {
   const navigate = useNavigate();
   const url = useLocation();
   
@@ -57,7 +57,7 @@ export default function FooterBanner({ urlHandle, page }) {
 
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-           {url.pathname === '/cards' && <SearchInput urlHandle={urlHandle} />}
+           {url.pathname === '/cards' && <SearchInput />}
           </Toolbar>
         </AppBar>
       </footer>

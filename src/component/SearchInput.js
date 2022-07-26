@@ -8,35 +8,34 @@ import {
 import { useContext } from "react";
 import { AppContext } from "./context/AppContext";
 
-const SearchInput = ({ urlHandle, page}) => {
-  // const [query, setQuery] = React.useState("");
-  //   const [url, setUrl] = React.useState(
-  //     "https://api.magicthegathering.io/v1/cards"
-  //   );
-  //   const [isError, setIsError] = React.useState("");
-const app = useContext(AppContext);
-  const { searchQuery, setSearchQuery } = app;
+const SearchInput = () => {
 
-  // const searchDelay=(e)=>{
-  //   setInterval(()=>{
-  //     setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "))
-  //   },500)
-  // }
+  const app = useContext(AppContext);
+  const { urlHandle } = app;
+  const [searchQuery, setSearchQuery] = React.useState('')
+ 
+  const handleSubmitClick = () =>urlHandle(searchQuery);
+
+  const keyHandler = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      console.log("Ipressed enter")
+      urlHandle(
+        searchQuery
+      );
+    }
+  }
+  console.log("searchQuery: ", searchQuery);
+  const handleFocus=(event) => event.target.select();
 
   return (
+
     <Box
-      component="form"
-      onSubmit={(e) => {
-        //   setUrl(`https://api.magicthegathering.io/v1/cards?query=${query}`);
-        urlHandle(
-          searchQuery
-        );
-        e.preventDefault();
-        setSearchQuery("");
-      }}
+      component="div"
+   
     >
       <InputBase
-        sx={{ ml: 1, flex: 1,color:'white' }}
+        sx={{ ml: 1, flex: 1, color: 'white' }}
         placeholder="Search for cards"
         inputProps={{ "aria-label": "search cards" }}
         type="search"
@@ -44,8 +43,10 @@ const app = useContext(AppContext);
         onChange={(e) => {
           setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "))
         }}
+        onKeyUp={keyHandler}
+        onFocus={handleFocus}
       />
-      <IconButton type="submit" color="inherit">
+      <IconButton type="submit" color="inherit" onClick={handleSubmitClick}>
         <SearchIcon />
       </IconButton>
     </Box>
@@ -53,8 +54,3 @@ const app = useContext(AppContext);
 };
 
 export default SearchInput;
-
-/*  <IconButton color="inherit">
-        <MoreIcon />
-      </IconButton>
-       */

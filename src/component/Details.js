@@ -53,7 +53,10 @@ export default function Details() {
       {filteredData &&
         filteredData.map(card =>{
           return (
-        <Card key={card.id} sx={{ maxWidth: 345 }}>
+        <Card
+        className="details-con"
+        style={{height: 'auto', margin:'auto'}}
+         key={card.id} sx={{ maxWidth: 345 }}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

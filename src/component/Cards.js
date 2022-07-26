@@ -9,7 +9,7 @@ function Cards() {
   // const [data, setData] = useState(null);
   // const [page, setPage] = useState(1);
   const app = useContext(AppContext);
-  const { pageNumb, url, isLoading, data, isError} = app;
+  const {  isLoading, data, isError} = app;
 
 
   return (

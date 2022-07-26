@@ -17,6 +17,7 @@ export default function PaginationCon({ data, }) {
         showLastButton
         sx={{ margin: "auto" }}
         onChange={(e, pageNumb) => handlePage(pageNumb)}
+        page={pageNumb}
       />
     </Stack>
   );
