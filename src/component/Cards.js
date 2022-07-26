@@ -60,6 +60,8 @@ function Cards() {
         >
           {data &&
             data.map((card) => {
+              console.log("card.id: ", card.id);
+
               return (
                 card.imageUrl && <OneCard key={card.id} card={card} />
               );

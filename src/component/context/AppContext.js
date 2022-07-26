@@ -1,12 +1,12 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 const AppContext = createContext();
 
 function AppProvider(props) {
     const baseUrlCards = "https://api.magicthegathering.io/v1/cards";
-    const [url, setUrl] = React.useState("");
-    const [searchQuery, setSearchQuery] = React.useState('');
-    const [pageNumb, setPageNumb] = React.useState(1);
+    const [url, setUrl] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
+    const [pageNumb, setPageNumb] = useState(1);
     
     function handlePage(e) {
         console.log("e: ", e);
