@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const AppContext = createContext();
 
@@ -7,7 +7,11 @@ function AppProvider(props) {
     const [url, setUrl] = useState("");
     const [searchQuery, setSearchQuery] = useState('');
     const [pageNumb, setPageNumb] = useState(1);
-    
+    const [data, setData] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+
     function handlePage(e) {
         console.log("e: ", e);
         setPageNumb(e)
@@ -15,13 +19,51 @@ function AppProvider(props) {
     function urlHandle(e) {
         setSearchQuery(e)
     }
-    React.useEffect(() => {
+    useEffect(() => {
         // setUrl(`${baseUrlCards}?name=${searchQuery}&Numb=${pageNumb}&pageSize=20`);
         setUrl(`${baseUrlCards}?name=${searchQuery}&page=${pageNumb}&pageSize=20`);
-
-        
     }, [searchQuery, pageNumb])
     
+
+
+
+
+    const [firstUrl, setFirstUrl] = useState(
+        `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
+    );
+
+    
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                // const result = await fetch(queryUrl ? queryUrl : firstUrl);
+                const result = await fetch(url ? url : firstUrl);
+                console.log("url: ", url);
+
+
+                const data = await result.json();
+                setData(data.cards);
+                console.log("data.cards: ", data.cards);
+            } catch (error) {
+                setIsError(true);
+                console.log("error: ", error);
+            } finally {
+                setIsError(false)
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [url, pageNumb, firstUrl]);
+
+
+
+
+
+
+
     const value = {
         baseUrlCards,
         url,
@@ -31,8 +73,11 @@ function AppProvider(props) {
         pageNumb,
         setPageNumb,
         handlePage,
-        urlHandle
-        
+        urlHandle,
+        isLoading,
+        data,
+        setData,
+        isError,        
     }
     
     console.log("pageNumb: ", pageNumb);

@@ -7,41 +7,42 @@ import { AppContext } from './context/AppContext.js';
 
 // { queryUrl, handlePage, pageNum }
 function Cards() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
   // const [page, setPage] = useState(1);
   const app = useContext(AppContext);
-  const { pageNumb, url} = app;
+  const { pageNumb, url, isLoading, data,
+  isError} = app;
 
-  const [firstUrl, setFirstUrl] = useState(
-    `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
-  );
+  // const [firstUrl, setFirstUrl] = useState(
+  //   `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
+  // );
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        // const result = await fetch(queryUrl ? queryUrl : firstUrl);
-        const result = await fetch(url ? url : firstUrl);
-        console.log("url: ", url);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       // const result = await fetch(queryUrl ? queryUrl : firstUrl);
+  //       const result = await fetch(url ? url : firstUrl);
+  //       console.log("url: ", url);
 
 
-        const data = await result.json();
-        setData(data.cards);
-        console.log("data.cards: ", data.cards);
-      } catch (error) {
-        setIsError(true);
-        console.log("error: ", error);
-      } finally {
-        setIsError(false)
-        setIsLoading(false);
-      }
-    };
+  //       const data = await result.json();
+  //       setData(data.cards);
+  //       console.log("data.cards: ", data.cards);
+  //     } catch (error) {
+  //       setIsError(true);
+  //       console.log("error: ", error);
+  //     } finally {
+  //       setIsError(false)
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, [url, pageNumb, firstUrl]);
+  //   fetchData();
+  // }, [url, pageNumb, firstUrl]);
 
 
 
@@ -60,8 +61,6 @@ function Cards() {
         >
           {data &&
             data.map((card) => {
-              console.log("card.id: ", card.id);
-
               return (
                 card.imageUrl && <OneCard key={card.id} card={card} />
               );
