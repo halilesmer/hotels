@@ -1,5 +1,4 @@
 import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
 
 import { AppContext } from '../component/context/appContext.js';
 import { Link, } from "react-router-dom";

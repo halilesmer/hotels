@@ -25,7 +25,7 @@ function AppProvider(props) {
     }, [searchQuery, pageNumb])
     
 
-    const [firstUrl, setFirstUrl] = useState(
+    const [firstUrl,] = useState(
         `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
     );
 

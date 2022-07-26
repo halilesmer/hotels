@@ -1,26 +1,30 @@
 import * as React from "react";
 
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // import IconButton from "@mui/material/IconButton";
 import {
-  Box,
-  IconButton,
   AppBar,
+  Box,
   CssBaseline,
-  Toolbar,
- 
   Divider,
+  IconButton,
+  Toolbar,
 } from "@mui/material";
-import SearchInput from "./SearchInput";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import SearchInput from "./SearchInput";
 
 export default function FooterBanner() {
   const navigate = useNavigate();
   const url = useLocation();
-  
+  // const { setPageNumb } = useContext(AppContext);
+
   const handleBackClick=()=> {
  return   url.pathname === '/' ? null : navigate(-1)
-  }
+}
+console.log("url.pathname: ", url.pathname);
+
+
   return (
     <React.Fragment>
       <footer
