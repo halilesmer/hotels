@@ -11,13 +11,15 @@ import {
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { AppContext } from "./context/appContext";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SearchInput from "./SearchInput";
+import { useContext } from "react";
 
 export default function FooterBanner() {
   const navigate = useNavigate();
   const url = useLocation();
-  // const { setPageNumb } = useContext(AppContext);
+  const { pageNumb, } = useContext(AppContext);
 
   const handleBackClick=()=> {
  return   url.pathname === '/' ? null : navigate(-1)
@@ -61,7 +63,7 @@ console.log("url.pathname: ", url.pathname);
 
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-           {url.pathname === '/cards' && <SearchInput />}
+           {url.pathname === `/cards/${pageNumb}` && <SearchInput />}
           </Toolbar>
         </AppBar>
       </footer>

@@ -7,32 +7,31 @@ import React from "react";
 import { useContext } from 'react';
 
 function Cards() {
-  // const [data, setData] = useState(null);
-  // const [page, setPage] = useState(1);
+
   const { isLoading, data, isError } = useContext(AppContext);
-  // const { pagination } = useParams();
-  // console.log("pagination: ", pagination);
+ 
 
   return (
     <>
       {isLoading && <CircularProgress color="inherit" />}
-      <Grid container spacing={2}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          lg={4}
-          xl={3}
-          style={{ margin: "0 auto 4rem auto" }}
-        >
-          {data &&
-            data.map((card) => {
-              return (
-                card.imageUrl && <OneCard key={card.id} card={card} />
-              );
-            })}
-        </Grid>
+      <Grid container spacing={1}>
+        {data &&
+          data.map((card) => {
+            return (
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                xl={3}
+
+              // style={{ margin: "0 auto 4rem auto" }}
+              >
+                {card.imageUrl && <OneCard key={card.id} card={card} />}
+              </Grid>
+            );
+          })}
       </Grid>
 
       <PaginationCon

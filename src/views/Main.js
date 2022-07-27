@@ -1,3 +1,4 @@
+import { Grid, Typography } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 
 import Cards from "../component/Cards";
@@ -6,12 +7,13 @@ import Home from "./Home";
 import Login from "./Login";
 import React from "react";
 import Register from "../component/RegisterPage";
-import { Typography } from "@mui/material";
+
 // import Grid from "@mui/material/Grid";
 
 const Main = ({ queryUrl, handlePage, pageNum }) => {
 
   return (
+    
     <Typography
       component="main"
       id="mainCon"
@@ -29,6 +31,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
             />
           }
         />
+    
         <Route path="cards/details/:title" element={<Details />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login createAcntBtnTxt='Create an Account' />} />
