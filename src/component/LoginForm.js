@@ -1,8 +1,8 @@
 import * as React from "react";
+
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import CreateAcntBtn from "./Buttons/CreateAcntBtn";
+import TextField from "@mui/material/TextField";
 
 const LoginForm = ({ createAcntBtnTxt }) => {
   return (
@@ -26,9 +26,7 @@ const LoginForm = ({ createAcntBtnTxt }) => {
           Login
         </Button>
       </Box>
-      <Box className="create-account-btn-con" mt={3}>
-        <CreateAcntBtn createAcntBtnTxt={createAcntBtnTxt}/>
-      </Box>
+   
     </>
   );
 };

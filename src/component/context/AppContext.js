@@ -8,7 +8,6 @@ function AppProvider(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [pageNumb, setPageNumb] = useState(1);
   const [data, setData] = useState(null);
-  const [user, setUser] = useState(0);
   
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

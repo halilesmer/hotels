@@ -1,34 +1,54 @@
-import React, { Children } from 'react'
+import { Box, Divider, Typography } from "@mui/material";
 
-import { Container } from '@mui/system';
-import CreateAcntBtn from './Buttons/CreateAcntBtn';
-// import CreateAcntBtn from '../component/CreateAcntBtn';
-import RegisterForm from './RegisterForm'
-import { Typography } from '@mui/material'
-import { useLocation } from 'react-router-dom';
+import { Container } from "@mui/system";
+import { Link } from "react-router-dom";
+import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
+import React from "react";
+// import LoginRegisterBtn from '../component/LoginRegisterBtn';
+import RegisterForm from "./RegisterForm";
 
-const Register = ({ createAcntBtnTxt }) => {
-    const url = useLocation();
+// import { useLocation } from 'react-router-dom';
 
-    return (
-        <Container
-            id='registerCon'
-            component="div" align="center" style={{ marginTop: '5rem' }}>
-            <Typography
-                align="center"
-                variant="h3"
-                component="h1"
-                style={{ margin: "auto", display: "inline" }}
-            >
-                Register
-            </Typography>
+const Register = () => {
+  // const url = useLocation();
 
-            {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}
-            <RegisterForm test='test' >
-                <CreateAcntBtn createAcntBtnTxt='Send Form' />
-            </RegisterForm>
-        </Container>
-    );
-}
+  return (
+    <Container
+      id="registerCon"
+      component="div"
+      align="center"
+      style={{ marginTop: "5rem" }}
+    >
+      <Typography
+        align="center"
+        variant="h3"
+        component="h1"
+        style={{ margin: "auto", display: "inline" }}
+      >
+        Register
+      </Typography>
 
-export default Register
+      {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}
+      <RegisterForm test="test">
+        <LoginRegisterBtn createAcntBtnTxt="Send Form" color='black' />
+      </RegisterForm>
+      <Divider />
+      <Box marginTop={1}>
+        <Typography
+          align="center"
+          color='green'
+          // variant="h3"
+          // component="h1"
+          style={{ margin: "auto", display: "inline" }}
+        >
+          You already have an Account?
+        </Typography>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <LoginRegisterBtn color='green' createAcntBtnTxt='Login' />
+        </Link>
+      </Box>
+    </Container>
+  );
+};
+
+export default Register;

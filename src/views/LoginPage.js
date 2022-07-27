@@ -1,16 +1,21 @@
-import { Container } from '@mui/system';
-// import CreateAcntBtn from '../component/CreateAcntBtn';
-import LoginForm from '../component/LoginForm'
-import { Typography } from '@mui/material'
+import { Box, Divider, Typography } from "@mui/material";
+
+import { Container } from "@mui/system";
+import { Link } from "react-router-dom";
+// import LoginRegisterBtn from '../component/LoginRegisterBtn';
+import LoginForm from "../component/LoginForm";
+import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
 
 const LoginPage = ({ createAcntBtnTxt }) => {
-// const {user, setUser} = useContext(AppContext);
-
+  // const {user, setUser} = useContext(AppContext);
 
   return (
-      <Container
-          id='loginCon'
-          component="div" align="center" style={{  marginTop: '5rem' }}>
+    <Container
+      id="loginCon"
+      component="div"
+      align="center"
+      style={{ marginTop: "5rem" }}
+    >
       <Typography
         align="center"
         variant="h3"
@@ -20,9 +25,23 @@ const LoginPage = ({ createAcntBtnTxt }) => {
         Login
       </Typography>
 
-      <LoginForm createAcntBtnTxt={createAcntBtnTxt}/>
+      <LoginForm createAcntBtnTxt={createAcntBtnTxt} />
+
+<Box marginY={2}>
+<Divider/>
+
+</Box>
+      <Box className="create-account-btn-con" mt={3}>
+        <Typography>Don't Have an Account?</Typography>
+        <Link to="/register" style={{ textDecoration: "none" }}>
+          <LoginRegisterBtn
+            color="deepskyblue"
+            createAcntBtnTxt={createAcntBtnTxt}
+          />
+        </Link>
+      </Box>
     </Container>
   );
-}
+};
 
-export default LoginPage
+export default LoginPage;
