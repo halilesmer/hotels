@@ -99,7 +99,7 @@ export default function OneCard({ card }) {
                   marginTop={0.5}
                 >
                   Toughness:
-                  <span style={{ marginLeft: "1rem" }}>{card.toughness}</span>
+                  <span style={{ marginLeft: "1rem" }}>{card.toughness ? card.toughness : 'no toughness'}</span>
                 </Typography>
               </Box>
             </CardContent>
