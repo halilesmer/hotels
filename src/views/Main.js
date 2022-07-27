@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Cards from "../component/Cards";
 import Details from "../component/Details";
 import Home from "./Home";
-import Login from "./Login";
+import LoginPage from "./LoginPage";
 import React from "react";
 import Register from "../component/RegisterPage";
 
@@ -32,7 +32,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
     
         <Route path="cards/details/:title" element={<Details />} />
         <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login createAcntBtnTxt='Create an Account' />} />
+        <Route path="login" element={<LoginPage createAcntBtnTxt='Create an Account' />} />
       </Routes>
     </main>
   );

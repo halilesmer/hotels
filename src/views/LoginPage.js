@@ -1,10 +1,11 @@
-import { Typography } from '@mui/material'
 import { Container } from '@mui/system';
-import React from 'react'
 // import CreateAcntBtn from '../component/CreateAcntBtn';
 import LoginForm from '../component/LoginForm'
+import { Typography } from '@mui/material'
 
-const Login = ({ createAcntBtnTxt }) => {
+const LoginPage = ({ createAcntBtnTxt }) => {
+// const {user, setUser} = useContext(AppContext);
+
 
   return (
       <Container
@@ -24,4 +25,4 @@ const Login = ({ createAcntBtnTxt }) => {
   );
 }
 
-export default Login
+export default LoginPage

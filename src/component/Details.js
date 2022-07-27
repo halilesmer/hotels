@@ -28,8 +28,8 @@ import { useParams } from "react-router-dom";
 export default function Details() {
   const { title } = useParams();
 
-  const app = useContext(AppContext);
-  const { data, isLoading, isError } = app;
+  const { data, isLoading, isError } = useContext(AppContext);
+
 
   // const url = `https://api.magicthegathering.io/v1/cards/`;
 

@@ -12,8 +12,7 @@ import { useContext } from "react";
 
 const SearchInput = () => {
 
-  const app = useContext(AppContext);
-  const { urlHandle } = app;
+  const { urlHandle } = useContext(AppContext);
   const [searchQuery, setSearchQuery] = React.useState('')
  
   const handleSubmitClick = () =>urlHandle(searchQuery);

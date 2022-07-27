@@ -12,13 +12,15 @@ import {
 } from "@mui/material";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { AppContext } from '../component/context/appContext.js';
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import zIndex from "@mui/material/styles/zIndex";
+import { useContext } from 'react'
 
 export default function NavBanner() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { user, setUser } = useContext(AppContext);
 
   // const handleChange = (event) => {
   //   setAuth(event.target.checked);
@@ -91,7 +93,7 @@ export default function NavBanner() {
                 <Link
                   style={{ textDecoration: 'none' }}
                   to='login'> <MenuItem
-                    onClick={handleClose}>Login</MenuItem></Link>
+                    onClick={handleClose}>{!user && 'Login'}</MenuItem></Link>
                 <Divider />
                 <Link style={{ textDecoration: 'none' }}
                   to='register'> <MenuItem onClick={handleClose}>Register</MenuItem></Link>

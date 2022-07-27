@@ -22,7 +22,7 @@ export default function FooterBanner() {
   const { pageNumb, } = useContext(AppContext);
 
   const handleBackClick=()=> {
- return   url.pathname === '/' ? null : navigate(-1)
+ return   url.pathname === '/' ? null : navigate(-1,{replace: true})
 }
 
 
