@@ -1,4 +1,4 @@
-import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
+import { Button, CardActionArea, CardMedia, } from "@mui/material";
 
 import { AppContext } from '../component/context/appContext.js';
 import { Link, } from "react-router-dom";
@@ -7,7 +7,6 @@ import { useContext } from 'react';
 
 const Home = () => {
   const { pageNumb } = useContext(AppContext);
-  console.log("pageNumb-Home ", pageNumb);
   // const { pagination } = useParams();
   // console.log("pagination: ", pagination);
   
@@ -15,8 +14,7 @@ const Home = () => {
   // useEffect(()=>setPage(pageNumb),[pageNumb])
 
   return (
-    <Typography
-      component="div"
+    <div
       id="homeCon"
       style={{ display: "flex", flexDirection: "column" }}
     >
@@ -48,7 +46,7 @@ const Home = () => {
           </Link>
         </Button>
       
-    </Typography>
+    </div>
   );
 };
 

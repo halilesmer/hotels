@@ -13,7 +13,6 @@ function AppProvider(props) {
     const [isError, setIsError] = useState(false);
  
     function handlePage(e) {
-        console.log("e: ", e);
         setPageNumb(e)
     }
     function urlHandle(e) {
@@ -75,7 +74,7 @@ function AppProvider(props) {
         isError,        
     }
     
-    console.log("pageNumb: ", pageNumb);
+    // console.log("pageNumb: ", pageNumb);
     // console.log("searchQuery: ", searchQuery);
     // console.log("url: ", url);
     return (

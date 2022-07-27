@@ -1,18 +1,20 @@
 import * as React from "react";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MenuIcon from "@mui/icons-material/Menu";
 
 import {
-  Box,
   AppBar,
+  Box,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
-  IconButton,
-  MenuItem,
-  Menu,
-  Divider,
 } from "@mui/material";
+
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import zIndex from "@mui/material/styles/zIndex";
 
 export default function NavBanner() {
   const [auth, setAuth] = React.useState(true);
@@ -41,7 +43,7 @@ export default function NavBanner() {
       }}
       gutterBottom
     >
-      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px" }}>
+      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px", zIndex:'1'}}>
         <Toolbar>
           <IconButton
             size="large"

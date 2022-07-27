@@ -1,4 +1,3 @@
-import { Grid, Typography } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 
 import Cards from "../component/Cards";
@@ -14,8 +13,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
 
   return (
     
-    <Typography
-      component="main"
+    <main
       id="mainCon"
       style={{ paddingTop: "4rem", paddingBottom: "4rem" }}
     >
@@ -36,7 +34,7 @@ const Main = ({ queryUrl, handlePage, pageNum }) => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login createAcntBtnTxt='Create an Account' />} />
       </Routes>
-    </Typography>
+    </main>
   );
 };
 

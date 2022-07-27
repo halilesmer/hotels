@@ -19,6 +19,7 @@ function Cards() {
           data.map((card) => {
             return (
               <Grid
+              key={card.id}
                 item
                 xs={12}
                 sm={12}

@@ -27,7 +27,6 @@ const SearchInput = () => {
       );
     }
   }
-  console.log("searchQuery: ", searchQuery);
   const handleFocus=(event) => event.target.select();
 
   return (

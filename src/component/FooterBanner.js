@@ -24,7 +24,6 @@ export default function FooterBanner() {
   const handleBackClick=()=> {
  return   url.pathname === '/' ? null : navigate(-1)
 }
-console.log("url.pathname: ", url.pathname);
 
 
   return (

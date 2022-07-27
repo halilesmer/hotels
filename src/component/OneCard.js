@@ -1,12 +1,15 @@
 import * as React from "react";
+
 import {
-  Card,
   Box,
-  Divider,
+  Card,
   CardContent,
   CardMedia,
+  Divider,
+  Rating,
   Typography,
 } from "@mui/material";
+
 import { Link } from "react-router-dom";
 
 export default function OneCard({ card }) {
@@ -38,28 +41,36 @@ export default function OneCard({ card }) {
               borderRadius: "10px",
             }}
           />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <CardContent sx={{ padding: "2px 0 0 2px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column",width:'100%' }}>
+            <CardContent sx={{ padding: "2px 0 0 2px",  }} className='card-content'>
               <Typography
                 noWrap
                 variant="h6"
                 component="h6"
                 align="center"
-                style={{ width: "99%", paddingRight: "3%" }}
+                style={{ width: "99%", paddingRight: "3%", fontSize:'medium' }}
               >
                 {card.name}
               </Typography>
 
               <Divider />
 
-              <Typography
+              {/* <Typography
                 variant="body2"
                 color="text.secondary"
                 //   noWrap
                 sx={{ overflow: "auto", height: "63px" }}
               >
-                {card?.flavor ? card.flavor : "no description"}
-              </Typography>
+                {card?.power? card.power : "no description"}
+              </Typography> */}
+              <Box className="">
+                <Typography variant="body2" sx={{display:'flex', alignItems:'center'}} marginTop={0.5}>
+                Power:
+                 <Rating name="read-only" value={Number.parseInt(card.power,10)} readOnly precision={0.5} size={"small"} sx={{ marginLeft:'1rem'}}
+                 />
+                </Typography>
+  <Typography variant="body2" sx={{display:'flex', alignItems:'center', }} marginTop={0.5}>Mana Cost: <span style={{marginLeft:'1rem'}}>{card.manaCost}</span></Typography>
+              </Box>
             </CardContent>
           </Box>
         </Card>
