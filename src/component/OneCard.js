@@ -21,7 +21,10 @@ export default function OneCard({ card }) {
 
   return (
     <>
-      <Link style={{textDecoration: 'none'}} to={`/cards/details/${card && card.name}`}>
+      <Link
+        style={{ textDecoration: "none" }}
+        to={`/cards/details/${card && card.name}`}
+      >
         <Card
           elevation={14}
           sx={{
@@ -41,14 +44,17 @@ export default function OneCard({ card }) {
               borderRadius: "10px",
             }}
           />
-          <Box sx={{ display: "flex", flexDirection: "column",width:'100%' }}>
-            <CardContent sx={{ padding: "2px 0 0 2px",  }} className='card-content'>
+          <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            <CardContent
+              sx={{ padding: "2px 0 0 2px" }}
+              className="card-content"
+            >
               <Typography
                 noWrap
                 variant="h6"
                 component="h6"
                 align="center"
-                style={{ width: "99%", paddingRight: "3%", fontSize:'medium' }}
+                style={{ width: "99%", paddingRight: "3%", fontSize: "medium" }}
               >
                 {card.name}
               </Typography>
@@ -64,12 +70,37 @@ export default function OneCard({ card }) {
                 {card?.power? card.power : "no description"}
               </Typography> */}
               <Box className="">
-                <Typography variant="body2" sx={{display:'flex', alignItems:'center'}} marginTop={0.5}>
-                Power:
-                 <Rating name="read-only" value={Number.parseInt(card.power,10)} readOnly precision={0.5} size={"small"} sx={{ marginLeft:'1rem'}}
-                 />
+                <Typography
+                  variant="body2"
+                  sx={{ display: "flex", alignItems: "center" }}
+                  marginTop={0.5}
+                >
+                  Power:
+                  <Rating
+                    name="read-only"
+                    value={Number.parseInt(card.power, 10)}
+                    readOnly
+                    precision={0.5}
+                    size={"small"}
+                    sx={{ marginLeft: "1rem" }}
+                  />
                 </Typography>
-  <Typography variant="body2" sx={{display:'flex', alignItems:'center', }} marginTop={0.5}>Mana Cost: <span style={{marginLeft:'1rem'}}>{card.manaCost}</span></Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ display: "flex", alignItems: "center" }}
+                  marginTop={0.5}
+                >
+                  Mana Cost:{" "}
+                  <span style={{ marginLeft: "1rem" }}>{card.manaCost}</span>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ alignItems: "center" }}
+                  marginTop={0.5}
+                >
+                  Toughness:
+                  <span style={{ marginLeft: "1rem" }}>{card.toughness}</span>
+                </Typography>
               </Box>
             </CardContent>
           </Box>
@@ -79,27 +110,25 @@ export default function OneCard({ card }) {
   );
 }
 
+//     <Button size="small">Share</Button>
 
-        //     <Button size="small">Share</Button>
-
-        //       <Box
-        //   sx={{
-        //     display: "flex",
-        //     width: "70px",
-        //     alignItems: "center",
-        //     pl: 1,
-        //     pb: 1,
-        //     padding: "unset",
-        //   }}
-        // >
-        //   <CardActions
-        //     sx={{
-        //       flexDirection: "column",
-        //       width: "inherit",
-        //       padding: "inherit",
-        //     }}
-        //   >
-        //     <Button size="small">More</Button>
-        //   </CardActions>
-        // </Box>
-
+//       <Box
+//   sx={{
+//     display: "flex",
+//     width: "70px",
+//     alignItems: "center",
+//     pl: 1,
+//     pb: 1,
+//     padding: "unset",
+//   }}
+// >
+//   <CardActions
+//     sx={{
+//       flexDirection: "column",
+//       width: "inherit",
+//       padding: "inherit",
+//     }}
+//   >
+//     <Button size="small">More</Button>
+//   </CardActions>
+// </Box>
