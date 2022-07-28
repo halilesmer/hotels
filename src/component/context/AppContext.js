@@ -1,14 +1,17 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+
+import { AuthContext } from "./authContext.js";
 
 const AppContext = createContext();
 
 function AppProvider(props) {
+  const { user } = useContext(AuthContext);
   const baseUrlCards = "https://api.magicthegathering.io/v1/cards";
   const [url, setUrl] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [pageNumb, setPageNumb] = useState(1);
   const [data, setData] = useState(null);
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -27,13 +30,16 @@ function AppProvider(props) {
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   );
 
-  useEffect(() => {
+   useEffect(() => {
+    
     const fetchData = async () => {
       setIsLoading(true);
-      try {
+    if(user){
+
+try {
         // const result = await fetch(queryUrl ? queryUrl : firstUrl);
-        const result = await fetch(url ? url : firstUrl);
-        console.log("url: ", url);
+        const result =  (await fetch(url ? url : firstUrl));
+        // console.log("url: ", url);
         const data = await result.json();
         setData(data.cards);
         console.log("data.cards: ", data.cards);
@@ -44,10 +50,14 @@ function AppProvider(props) {
         setIsError(false);
         setIsLoading(false);
       }
+
+    }
+
+
     };
 
     fetchData();
-  }, [url, firstUrl]);
+  }, [url, firstUrl,user]);
 
   const value = {
     baseUrlCards,
@@ -68,6 +78,8 @@ function AppProvider(props) {
   // console.log("pageNumb: ", pageNumb);
   // console.log("searchQuery: ", searchQuery);
   // console.log("url: ", url);
+  // console.log("AuthContext: ", AuthContext);
+  // console.log("user: ", user);
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );

@@ -22,27 +22,23 @@ export default function NavBanner() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useContext(AuthContext);
   const pathname = useLocation();
-
+  
   const logout = (e) => {
     console.log("user: ", user);
     handleClose();
     setUser(null);
   };
-  // const { user, setUser } = useContext(AuthContext);
-
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
-
+  
+  
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  console.log("user: ", user);
+  
+  console.log("user- NavBanner: ", user);
   return (
     <Box
       sx={{

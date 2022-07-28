@@ -11,7 +11,7 @@ const AuthProvider = (props) => {
   };
   
   
-  console.log("user.length: ", user && user.length);
+
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
   );
