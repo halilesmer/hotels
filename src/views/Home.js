@@ -1,23 +1,25 @@
-import { Button, CardActionArea, CardMedia, } from "@mui/material";
+import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
 
-import { AppContext } from '../component/context/appContext.js';
-import { Link, } from "react-router-dom";
+import { AppContext } from "../component/context/appContext.js";
+import { AuthContext } from "../component/context/authContext.js";
+import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
+import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn.js";
 import imageMagicGathering from "../assests/magic-gathering.webp";
-import { useContext } from 'react';
+import { useContext } from "react";
 
 const Home = () => {
   const { pageNumb } = useContext(AppContext);
+  const { user } = useContext(AuthContext);
+  
   // const { pagination } = useParams();
   // console.log("pagination: ", pagination);
-  
+
   // const [page, setPage] = useState(pageNumb);
   // useEffect(()=>setPage(pageNumb),[pageNumb])
 
   return (
-    <div
-      id="homeCon"
-      style={{ display: "flex", flexDirection: "column" }}
-    >
+    <Box id="homeCon" style={{ display: "flex", flexDirection: "column" }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -29,24 +31,46 @@ const Home = () => {
           style={{ maxWidth: "100%", height: "auto" }}
         />
       </CardActionArea>
-      <Button
-      size="large"
-      variant="contained"
-      style={{ marginTop: "2rem auto" }}
-      sx={{
-          fontWeight: "bold",
-          color: "#d8e0e7",
-          borderRadius: "30%",
-          margin: "2rem auto",
-        }}
+      {user ? (
+        <Button
+          size="large"
+          variant="contained"
+          style={{ marginTop: "2rem auto" }}
+          sx={{
+            fontWeight: "bold",
+            color: "#d8e0e7",
+            borderRadius: "30%",
+            margin: "2rem auto",
+          }}
         >
-        <Link style={{ textDecoration: 'none' }} to={`/cards/${pageNumb}`}>
-
-          To the Cards
+          <Link style={{ textDecoration: "none" }} to={`/cards/${pageNumb}`}>
+            To the Cards
           </Link>
         </Button>
-      
-    </div>
+      ) : (
+        <>
+          <Box mt={3} style={{ textAlign: "center" }}>
+            <Typography align="center">
+              To navigate to the cards, please login first.
+            </Typography>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <LoginRegisterBtn color="green" text="Login" />
+            </Link>
+          </Box>
+
+          <Box
+            className="create-account-btn-con"
+            mt={3}
+            style={{ textAlign: "center" }}
+          >
+            <Typography>Don't Have an Account?</Typography>
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <LoginRegisterBtn color="deepskyblue" text="Register" />
+            </Link>
+          </Box>
+        </>
+      )}
+    </Box>
   );
 };
 

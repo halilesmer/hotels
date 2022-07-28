@@ -17,7 +17,8 @@ const Register = () => {
       id="registerCon"
       component="div"
       align="center"
-      style={{ marginTop: "5rem" }}
+
+      sx={{ marginTop: "2rem" }}
     >
       <Typography
         align="center"
@@ -30,7 +31,7 @@ const Register = () => {
 
       {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}
       <RegisterForm test="test">
-        <LoginRegisterBtn createAcntBtnTxt="Send Form" color='black' />
+        <LoginRegisterBtn text="Send Form" color='black' />
       </RegisterForm>
       <Divider />
       <Box marginTop={1}>
@@ -44,7 +45,7 @@ const Register = () => {
           You already have an Account?
         </Typography>
         <Link to="/login" style={{ textDecoration: "none" }}>
-          <LoginRegisterBtn color='green' createAcntBtnTxt='Login' />
+          <LoginRegisterBtn color='green' text='Login' />
         </Link>
       </Box>
     </Container>

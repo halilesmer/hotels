@@ -3,7 +3,7 @@ import { Icon } from '@mui/material';
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import React from 'react'
 
-const LoginRegisterBtn = ({createAcntBtnTxt, color='green'}) => {
+const LoginRegisterBtn = ({text, color='green'}) => {
 
   return (
     <Button
@@ -12,7 +12,7 @@ const LoginRegisterBtn = ({createAcntBtnTxt, color='green'}) => {
       startIcon={<Icon><PersonAddAlt1Icon sx={{width:'20px'}} /></Icon>}
       sx={{ fontWeight: "bold", border: `4px solid black`, color: {color},}}
     >
-      {createAcntBtnTxt}
+      {text}
     </Button>
   );
 }

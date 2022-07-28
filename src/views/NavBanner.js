@@ -10,17 +10,25 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AppContext } from '../component/context/appContext.js';
-import { Link } from "react-router-dom";
+import { AuthContext } from "../component/context/authContext.js";
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useContext } from 'react'
+import { useContext } from "react";
 
 export default function NavBanner() {
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { user, setUser } = useContext(AppContext);
+  const { user, setUser } = useContext(AuthContext);
+  const pathname = useLocation();
+
+  const logout = (e) => {
+    console.log("user: ", user);
+    handleClose();
+    setUser(null);
+  };
+  // const { user, setUser } = useContext(AuthContext);
 
   // const handleChange = (event) => {
   //   setAuth(event.target.checked);
@@ -34,6 +42,7 @@ export default function NavBanner() {
     setAnchorEl(null);
   };
 
+  console.log("user: ", user);
   return (
     <Box
       sx={{
@@ -41,11 +50,12 @@ export default function NavBanner() {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100%", zIndex: '1'
+        width: "100%",
+        zIndex: "1",
       }}
       gutterBottom
     >
-      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px", }}>
+      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -61,45 +71,86 @@ export default function NavBanner() {
             component="div"
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
-            <Link style={{ textDecoration: 'none' }} to='/'>Magic The Gathering</Link>
+            <Link style={{ textDecoration: "none" }} to="/">
+              Magic The Gathering
+            </Link>
           </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  to='login'> <MenuItem
-                    onClick={handleClose}>{!user && 'Login'}</MenuItem></Link>
-                <Divider />
-                <Link style={{ textDecoration: 'none' }}
-                  to='register'> <MenuItem onClick={handleClose}>Register</MenuItem></Link>
-                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-              </Menu>
-            </div>
+
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {/* ----------------- login  --------------------- */}
+              {!user && pathname.pathname !== "/login" && (
+                <Link style={{ textDecoration: "none" }} to="login">
+                  <MenuItem onClick={handleClose}>Login</MenuItem>
+                </Link>
+              )}
+              {!user && pathname.pathname !== "/login" && <Divider />}
+
+              {/* ----------------- register  --------------------- */}
+
+              {!user && (
+                <Link style={{ textDecoration: "none" }} to="register">
+                  <MenuItem onClick={handleClose}>Register</MenuItem>
+                </Link>
+              )}
+              
+              {/* ----------------- Profile  --------------------- */}
+              <Link style={{ textDecoration: "none" }} to="profile">
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              </Link>
+
+              {/* ----------------- logout  --------------------- */}
+
+              {user ? (
+                <Box
+                  sx={{
+                    textAlign: "center",
+                  }}
+                >
+                  <LogoutIcon />
+                </Box>
+              ) : (
+                ""
+              )}
+            </Menu>
+          </div>
+
+          {user ? (
+            <Box
+              sx={{
+                textAlign: "center",
+                display: "inline-flex",
+              }}
+              onClick={logout}
+            >
+              <LogoutIcon fontSize="small" />
+            </Box>
+          ) : (
+            ""
           )}
         </Toolbar>
       </AppBar>
