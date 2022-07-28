@@ -102,7 +102,7 @@ export default function NavBanner() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {/* ----------------- login  --------------------- */}
+              {/* ----------------- login Page Link  --------------------- */}
               {!user && pathname.pathname !== "/login" && (
                 <Link style={{ textDecoration: "none" }} to="login">
                   <MenuItem onClick={handleClose}>Login</MenuItem>
@@ -110,20 +110,25 @@ export default function NavBanner() {
               )}
               {!user && pathname.pathname !== "/login" && <Divider />}
 
-              {/* ----------------- register  --------------------- */}
+              {/* ----------------- register Page Link  --------------------- */}
 
               {!user && (
                 <Link style={{ textDecoration: "none" }} to="register">
                   <MenuItem onClick={handleClose}>Register</MenuItem>
                 </Link>
               )}
-              
-              {/* ----------------- Profile  --------------------- */}
+
+              {/* ----------------- Profile Page Link  --------------------- */}
               <Link style={{ textDecoration: "none" }} to="profile">
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
               </Link>
 
-              {/* ----------------- logout  --------------------- */}
+              {/* ----------------- Favorit  Page Link  --------------------- */}
+             {user && <Link style={{ textDecoration: "none" }} to="favorit-cards">
+                <MenuItem onClick={handleClose}>Favorit Cards</MenuItem>
+              </Link>}
+
+              {/* ----------------- logout  Button--------------------- */}
 
               {user ? (
                 <Box
@@ -139,6 +144,7 @@ export default function NavBanner() {
             </Menu>
           </div>
 
+          {/* ----------------- logout  Icon--------------------- */}
           {user ? (
             <Box
               sx={{

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Cards from "../component/Cards";
 import Details from "../component/Details";
+import FavoritCards from "../component/FavoritCards";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
 import ProfilePage from "../component/ProfilePage";
@@ -30,6 +31,7 @@ const Main = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<LoginPage text="Create an Account" />} />
         <Route path="profile" element={<ProfilePage />} />
+        <Route path="favorit-cards" element={<FavoritCards />} />
       </Routes>
     </main>
   );
