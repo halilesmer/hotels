@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {
   Avatar,
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -14,21 +15,31 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AppContext } from "./context/appContext.js";
+import { AppContext } from "../component/context/appContext.js";
 import { Box } from "@mui/system";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ShareIcon from "@mui/icons-material/Share";
+import { grey } from "@mui/material/colors";
 // import { styled } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { yellow } from "@mui/material/colors";
 
 export default function Details() {
   const { title } = useParams();
 
-  const { data, isLoading, isError } = useContext(AppContext);
+  const {
+    data,
+    isLoading,
+    isError,
+    cardsId,
+    setCardsId,
+    handleAddCardClick,
+    handleDeleteCardClick,
+  } = useContext(AppContext);
 
 
   // const url = `https://api.magicthegathering.io/v1/cards/`;
@@ -85,10 +96,17 @@ export default function Details() {
                 disableSpacing
               >
                 <Typography component="div">
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                  <IconButton
+                    aria-label="add to favorites"
+                    sx={{ background: grey[500] }}
+                    onClick={(e) => handleAddCardClick(card.id)}
+                  >
+                    <FavoriteIcon sx={{ color: yellow[500] }} />
                   </IconButton>
-                  <IconButton aria-label="share">
+                  <Button onClick={(e) => handleDeleteCardClick(card.id)}>
+                    Delete
+                  </Button>
+                  <IconButton aria-label="share" sx={{ background: grey[500] }}>
                     <ShareIcon />
                   </IconButton>
                 </Typography>

@@ -13,6 +13,7 @@ function AppProvider(props) {
   const [data, setData] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
 
   function handlePage(e) {
@@ -30,34 +31,63 @@ function AppProvider(props) {
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   );
 
-   useEffect(() => {
-    
+  useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-    if(user){
-
-try {
-        // const result = await fetch(queryUrl ? queryUrl : firstUrl);
-        const result =  (await fetch(url ? url : firstUrl));
-        // console.log("url: ", url);
-        const data = await result.json();
-        setData(data.cards);
-        console.log("data.cards: ", data.cards);
-      } catch (error) {
-        setIsError(true);
-        console.log("error: ", error);
-      } finally {
-        setIsError(false);
-        setIsLoading(false);
+      if (user) {
+        try {
+          // const result = await fetch(queryUrl ? queryUrl : firstUrl);
+          const result = await fetch(url ? url : firstUrl);
+          // console.log("url: ", url);
+          const data = await result.json();
+          setData(data.cards);
+          console.log("data.cards: ", data.cards);
+        } catch (error) {
+          setIsError(true);
+          console.log("error: ", error);
+        } finally {
+          setIsError(false);
+          setIsLoading(false);
+        }
       }
-
-    }
-
-
     };
-
     fetchData();
-  }, [url, firstUrl,user]);
+  }, [url, firstUrl, user]);
+
+  function handleAddCardClick(newId) {
+    // check if newId is available
+    // if not available, add
+    // if available delete it
+    setCardsId([...cardsId, newId]);
+
+    //  cardsId.length < 1 && setCardsId([newId])
+
+    //  cardsId.length > 1 && cardsId.map(crdID => {
+    //   return crdID !== newId && setCardsId([...cardsId, newId])
+    //  })
+
+    // const filteredCards =
+    //   cardsId.length > 0 &&
+    //   cardsId.filter((cardId) => {
+    //     return setCardsId([...cardsId, cardId !== id]);
+    //   });
+
+    //   const filteredCards = cardsId.length > 0 && cardsId.filter((cardId) => {
+    // return id !== cardId;
+    // });
+
+  
+
+    console.log("e: ", newId);
+  }
+
+  function handleDeleteCardClick(newId) {
+    const filtered=  cardsId.filter((cardId) => {
+      return cardId !== newId
+    });
+
+     return setCardsId(filtered);
+  }
 
   const value = {
     baseUrlCards,
@@ -73,6 +103,10 @@ try {
     data,
     setData,
     isError,
+    cardsId,
+    setCardsId,
+    handleAddCardClick,
+    handleDeleteCardClick,
   };
 
   // console.log("pageNumb: ", pageNumb);
@@ -80,6 +114,9 @@ try {
   // console.log("url: ", url);
   // console.log("AuthContext: ", AuthContext);
   // console.log("user: ", user);
+  console.log("cardsId: ", cardsId);
+  console.log("cardsId.length: ", cardsId.length);
+
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );

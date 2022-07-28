@@ -8,7 +8,7 @@ import LoginForm from "../component/LoginForm";
 import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
 import { useContext } from "react";
 
-const LoginPage = ({ text }) => {
+const LoginPage = () => {
   // const {user, setUser} = useContext(AppContext);
 
 

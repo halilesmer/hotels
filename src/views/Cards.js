@@ -1,8 +1,8 @@
 import { CircularProgress, Grid, } from "@mui/material";
 
-import { AppContext } from './context/appContext.js';
-import OneCard from "./OneCard";
-import PaginationCon from "./PaginationCon";
+import { AppContext } from '../component/context/appContext.js';
+import OneCard from "../component/OneCard";
+import PaginationCon from "../component/PaginationCon";
 import React from "react";
 import { useContext } from 'react';
 

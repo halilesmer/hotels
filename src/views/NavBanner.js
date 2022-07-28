@@ -24,7 +24,6 @@ export default function NavBanner() {
   const pathname = useLocation();
   
   const logout = (e) => {
-    console.log("user: ", user);
     handleClose();
     setUser(null);
   };
@@ -38,7 +37,6 @@ export default function NavBanner() {
     setAnchorEl(null);
   };
   
-  console.log("user- NavBanner: ", user);
   return (
     <Box
       sx={{
@@ -120,8 +118,8 @@ export default function NavBanner() {
               </Link>
 
               {/* ----------------- Favorit  Page Link  --------------------- */}
-             {user && <Link style={{ textDecoration: "none" }} to="favorit-cards">
-                <MenuItem onClick={handleClose}>Favorit Cards</MenuItem>
+             {user && <Link style={{ textDecoration: "none" }} to="mycards">
+                <MenuItem onClick={handleClose}>My Cards</MenuItem>
               </Link>}
 
               {/* ----------------- logout  Button--------------------- */}
