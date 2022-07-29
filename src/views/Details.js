@@ -95,7 +95,7 @@ export default function Details() {
                 style={{ justifyContent: "space-between" }}
                 disableSpacing
               >
-                <Typography component="div">
+                <div>
                   <IconButton
                     aria-label="add to favorites"
                     sx={{ background: grey[500] }}
@@ -109,7 +109,7 @@ export default function Details() {
                   <IconButton aria-label="share" sx={{ background: grey[500] }}>
                     <ShareIcon />
                   </IconButton>
-                </Typography>
+                </div>
               </CardActions>
               <Divider />
 

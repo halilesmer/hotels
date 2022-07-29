@@ -6,25 +6,31 @@ import {
   CardContent,
   CardMedia,
   Divider,
+  IconButton,
   Rating,
   Typography,
 } from "@mui/material";
 
+import { AppContext } from "../component/context/appContext.js";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
+import { grey } from "@mui/material/colors";
+import { useContext } from "react";
+import { yellow } from "@mui/material/colors";
 
 export default function OneCard({ card }) {
-  // const test =card && card.map(item => item.artist)
-  // console.log("test: ", card);
-  // const styleCard = {
-  //   maxWidth: "importa",
-  // };
-
+ const {
+   data,
+   isLoading,
+   isError,
+   cardsId,
+   setCardsId,
+   handleAddCardClick,
+   handleDeleteCardClick,
+ } = useContext(AppContext);
   return (
     <>
-      <Link
-        style={{ textDecoration: "none" }}
-        to={`/cards/details/${card && card.name}`}
-      >
+   
         <Card
           elevation={14}
           sx={{
@@ -34,6 +40,11 @@ export default function OneCard({ card }) {
             margin: "1rem auto 1rem auto",
           }}
         >
+           <Link
+        style={{ textDecoration: "none" }}
+        to={`/cards/details/${card && card.name}`}
+      >
+
           <CardMedia
             component="img"
             alt="green iguana"
@@ -44,20 +55,35 @@ export default function OneCard({ card }) {
               borderRadius: "10px",
             }}
           />
+      </Link>
           <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <CardContent
               sx={{ padding: "2px 0 0 2px" }}
               className="card-content"
             >
-              <Typography
-                noWrap
-                variant="h6"
-                component="h6"
-                align="center"
-                style={{ width: "99%", paddingRight: "3%", fontSize: "medium" }}
-              >
-                {card.name}
-              </Typography>
+            {/* ------------------ Card header -------------------------- */}
+              <div className="one-card-header-area" 
+              style={{display: 'flex', width: '100%', alignItems: 'center'}}>
+                <Typography
+                  noWrap
+                  variant="h6"
+                  component="h6"
+                  align="center"
+                  style={{ width: "99%", fontSize: "small" }}
+                >
+                  {card.name}
+                </Typography>
+
+                <IconButton
+                  aria-label="add to favorites"
+                  sx={{ background: grey[500],width:'18px', height:'18px',
+                  margin:'0 0.5rem' }}
+                  size='small'
+                  onClick={(e) => handleAddCardClick(card.id)}
+                >
+                  <FavoriteIcon fontSize='18px' sx={{ color: yellow[500] }} />
+                </IconButton>
+              </div>
 
               <Divider />
 
@@ -69,7 +95,11 @@ export default function OneCard({ card }) {
               >
                 {card?.power? card.power : "no description"}
               </Typography> */}
-              <Box className="">
+                 <Link
+        style={{ textDecoration: "none" }}
+        to={`/cards/details/${card && card.name}`}
+      >
+              <Box className="" >
                 <Typography
                   variant="body2"
                   sx={{ display: "flex", alignItems: "center" }}
@@ -99,13 +129,15 @@ export default function OneCard({ card }) {
                   marginTop={0.5}
                 >
                   Toughness:
-                  <span style={{ marginLeft: "1rem" }}>{card.toughness ? card.toughness : 'no toughness'}</span>
+                  <span style={{ marginLeft: "1rem" }}>
+                    {card.toughness ? card.toughness : "no toughness"}
+                  </span>
                 </Typography>
               </Box>
+      </Link>
             </CardContent>
           </Box>
         </Card>
-      </Link>
     </>
   );
 }
