@@ -49,7 +49,7 @@ export default function NavBanner() {
       }}
       gutterBottom
     >
-      <AppBar position="static" sx={{ margin: "auto", maxWidth: "420px" }}>
+      <AppBar position="static" sx={{ margin: "auto", }}>
         <Toolbar>
           <IconButton
             size="large"

@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, } from "@mui/material";
+import { CircularProgress, Grid, Typography, } from "@mui/material";
 
 import { AppContext } from '../component/context/appContext.js';
 import OneCard from "../component/OneCard";
@@ -15,22 +15,27 @@ function Cards() {
     <>
       {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={1}>
+        <Typography variant="h4" component="h4" style={{margin:'auto'}}>
+          Cards
+        </Typography>
         {data &&
           data.map((card) => {
             return (
-              <Grid
-              key={card.id}
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                xl={3}
+              card.imageUrl && (
+                <Grid
+                  key={card.id}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  xl={3}
 
-              // style={{ margin: "0 auto 4rem auto" }}
-              >
-                {card.imageUrl && <OneCard key={card.id} card={card} />}
-              </Grid>
+                  // style={{ margin: "0 auto 4rem auto" }}
+                >
+                  <OneCard key={card.id} card={card} />
+                </Grid>
+              )
             );
           })}
       </Grid>
@@ -39,9 +44,14 @@ function Cards() {
         //  pageNum={page}
         //   handlePage={handlePage}
         data={data}
-      // searchQuery={searchQuery}
+        // searchQuery={searchQuery}
       />
-      {isError && <div className="error-con" style={{ margin: 'auto' }}> 'Something went wrong'</div>}
+      {isError && (
+        <div className="error-con" style={{ margin: "auto" }}>
+          {" "}
+          'Something went wrong'
+        </div>
+      )}
     </>
   );
 }

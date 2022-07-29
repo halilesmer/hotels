@@ -8,22 +8,20 @@ import Main from "./views/Main";
 import NavBanner from "./views/NavBanner";
 
 function App() {
- 
-
   return (
     <>
+      <NavBanner />
       <Container>
-        <NavBanner />
         <Main
-          // queryUrl={url}
-          // urlHandle={urlHandle}
-          // handlePage={handlePage}
-          // pageNum={page}
+        // queryUrl={url}
+        // urlHandle={urlHandle}
+        // handlePage={handlePage}
+        // pageNum={page}
         />
         {/*
          */}
-        <FooterBanner  />
       </Container>
+      <FooterBanner />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/system";
-import { Button, CircularProgress, Grid } from "@mui/material";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 
 import { AppContext } from "../component/context/appContext.js";
@@ -15,8 +15,10 @@ const MyCardsPage = () => {
   console.log("cardsId: ", cardsId);
   return (
 
-      <Box> 
-             <Button onClick={() => setCardsId("")}>Delete All Cards</Button>
+      <Box > 
+        <Typography variant="h4" component="h4" align="center" style={{margin:'auto'}}>My Cards</Typography>
+
+             <Button onClick={() => setCardsId([])}>Delete All Cards</Button>
 
       {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={1}>

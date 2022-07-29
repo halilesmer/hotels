@@ -48,7 +48,7 @@ export default function FooterBanner() {
             left: "unset",
             right: "unset",
             bottom: 0,
-            maxWidth: 420,
+            // maxWidth: 420,
             width: "100%",
           }}
         >
