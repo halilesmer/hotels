@@ -4,7 +4,7 @@ import Cards from "./Cards";
 import Details from "./Details";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
-import MyCards from "./MyCards";
+import MyCardsPage from "./MyCardsPage";
 import ProfilePage from "../component/ProfilePage";
 import ProtectedRoute from "../component/ProtectedRoute";
 import React from "react";
@@ -31,7 +31,7 @@ const Main = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<LoginPage text="Create an Account" />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="mycards" element={<MyCards />} />
+        <Route path="mycards" element={<MyCardsPage />} />
       </Routes>
     </main>
   );

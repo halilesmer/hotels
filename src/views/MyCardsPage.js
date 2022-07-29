@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../component/context/appContext.js";
 import OneCard from "../component/OneCard.js";
 
-const MyCards = () => {
+const MyCardsPage = () => {
 
  
   const { isLoading, data, isError, cardsId, setCardsId, handleDeleteCardClick, handleAddCardClick,  } =
@@ -55,7 +55,7 @@ return (
   );
 };
 
-export default MyCards;
+export default MyCardsPage;
 
 
 /*  <Grid
