@@ -55,10 +55,35 @@ function AppProvider(props) {
   }, [url, firstUrl, user]);
 
   function handleAddCardClick(newId) {
-    // check if newId is available
+    // check if newId is available in cardsId
     // if not available, add
     // if available delete it
-    setCardsId([...cardsId, newId]);
+
+    // cardsId.length < 1 && setCardsId([...cardsId, newId]);
+    // setCardsId([...cardsId, newId]);
+
+    // cardsId.length > 0 &&
+    //   cardsId.map((crdId) => {
+    //    setCardsId(cardsId !== newId);
+
+    //   });
+      
+      if (cardsId.length < 1){
+        console.log("adding card first time");
+        setCardsId([...cardsId, newId]);
+      }else {
+
+        if(cardsId.includes(newId)){
+          console.log("removing card");
+          setCardsId(cardsId.filter(cardId => cardId !== newId))
+        }else{
+          console.log("adding card");
+          setCardsId([...cardsId, newId]);
+        }
+        
+      }
+        
+
 
     //  cardsId.length < 1 && setCardsId([newId])
 
