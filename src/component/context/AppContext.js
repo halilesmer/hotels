@@ -16,7 +16,7 @@ function AppProvider(props) {
   const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
   const [favoritCards, setFavoritCards] = useState([]);
-  const [firstUrl, setFirstUrl] = useState(
+  const [firstUrl, ] = useState(
     /* ------------ used just for first time if the page loaded ----------  */
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   );
