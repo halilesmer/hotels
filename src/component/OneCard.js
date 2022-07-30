@@ -26,6 +26,7 @@ export default function OneCard({ card, cardId }) {
   React.useEffect(() => {
     /* ------- set color for fav button ----------- */
     cardsId.includes(card.id) ? setColor(true) : setColor(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
   const styles = {
     favBtn: {

@@ -93,6 +93,7 @@ function AppProvider(props) {
     console.log("saveFavCards :>> ", saveFavCards);
 
     setFavoritCards(saveFavCards);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
 
   const value = {

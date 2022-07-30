@@ -16,7 +16,6 @@ const Home = () => {
   // console.log("pagination: ", pagination);
 
   // const [page, setPage] = useState(pageNumb);
-  // useEffect(()=>setPage(pageNumb),[pageNumb])
 
   return (
     <Box id="homeCon" style={{ display: "flex", flexDirection: "column" }}>
