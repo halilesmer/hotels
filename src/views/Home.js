@@ -1,10 +1,10 @@
 import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext.js";
-import { AuthContext } from "../component/context/authContext.js";
+import { AppContext } from "../component/context/appContext";
+import { AuthContext } from "../component/context/authContext";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
-import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn.js";
+import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
 import imageMagicGathering from "../assests/magic-gathering.webp";
 import { useContext } from "react";
 

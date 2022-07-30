@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext.js";
+import { AppContext } from "../component/context/appContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";

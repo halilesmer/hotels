@@ -1,9 +1,9 @@
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useContext, } from "react";
 
-import { AppContext } from "../component/context/appContext.js";
+import { AppContext } from "../component/context/appContext";
 import { Box } from "@mui/system";
-import OneCard from "../component/OneCard.js";
+import OneCard from "../component/OneCard";
 
 const MyCardsPage = () => {
   const {

@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext.js";
+import { AppContext } from "../component/context/appContext";
 import { Box } from "@mui/system";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

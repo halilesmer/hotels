@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 
-import { AuthContext } from "../component/context/authContext.js";
+import { AuthContext } from "../component/context/authContext";
 import { Link } from "react-router-dom";
-import LoginRegisterBtn from "./Buttons/LoginRegisterBtn.js";
+import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 import React from "react";
 import { useContext } from "react";
 

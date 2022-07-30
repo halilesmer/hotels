@@ -1,12 +1,10 @@
 import { Box, Divider, Typography } from "@mui/material";
 
-import { AuthContext } from "../component/context/authContext.js";
 import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import LoginForm from "../component/LoginForm";
 import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
-import { useContext } from "react";
 
 const LoginPage = () => {
   // const {user, setUser} = useContext(AppContext);

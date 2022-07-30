@@ -13,7 +13,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AuthContext } from "../component/context/authContext.js";
+import { AuthContext } from "../component/context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext } from "react";
