@@ -10,21 +10,23 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AuthContext } from "../component/context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useContext } from "react";
+import { useContext, } from "react";
 
 export default function NavBanner() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useContext(AuthContext);
   const pathname = useLocation();
-  
+  const navigate = useNavigate();
+
   const logout = (e) => {
     handleClose();
+    navigate('/');
     setUser(null);
   };
   
@@ -49,7 +51,7 @@ export default function NavBanner() {
       }}
       gutterBottom
     >
-      <AppBar position="static" sx={{ margin: "auto", }}>
+      <AppBar position="static" sx={{ margin: "auto" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -118,9 +120,11 @@ export default function NavBanner() {
               </Link>
 
               {/* ----------------- Favorit  Page Link  --------------------- */}
-             {user && <Link style={{ textDecoration: "none" }} to="mycards">
-                <MenuItem onClick={handleClose}>My Cards</MenuItem>
-              </Link>}
+              {user && (
+                <Link style={{ textDecoration: "none" }} to="mycards">
+                  <MenuItem onClick={handleClose}>My Cards</MenuItem>
+                </Link>
+              )}
 
               {/* ----------------- logout  Button--------------------- */}
 
@@ -129,6 +133,7 @@ export default function NavBanner() {
                   sx={{
                     textAlign: "center",
                   }}
+                  onClick={logout}
                 >
                   <LogoutIcon />
                 </Box>
