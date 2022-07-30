@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 
 import { AppContext } from "../component/context/appContext.js";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -28,8 +29,8 @@ export default function OneCard({ card, cardId }) {
   }, [cardsId]);
   const styles = {
     favBtn: {
-      background: color ? "green" : "white",
-      color: color ? "#3bff7b" : "black",
+      background: "white",
+      color: color ? "hwb(56deg 16% 66%)" : "white",
       width: "18px",
       height: "18px",
       margin: "0 0.5rem",
@@ -88,7 +89,14 @@ export default function OneCard({ card, cardId }) {
                 size="small"
                 onClick={(e) => handleAddCardClick(card.id)}
               >
-                <FavoriteIcon fontSize="18px" />
+                {/* ---------- changes icons/ color depending  on selected favorit card */}
+                {color && <FavoriteIcon fontSize="18px" />}
+                {!color && (
+                  <FavoriteBorderIcon
+                    fontSize="18px"
+                    sx={{ color: "#bdb76b", background: "white" }}
+                  />
+                )}
               </IconButton>
             </div>
 
