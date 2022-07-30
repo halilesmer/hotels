@@ -33,7 +33,7 @@ function Cards() {
 
                   // style={{ margin: "0 auto 4rem auto" }}
                 >
-                  <OneCard key={card.id} card={card} />
+                  <OneCard cardId={card.id}  card={card} />
                 </Grid>
               )
             );
@@ -41,10 +41,7 @@ function Cards() {
       </Grid>
 
       <PaginationCon
-        //  pageNum={page}
-        //   handlePage={handlePage}
         data={data}
-        // searchQuery={searchQuery}
       />
       {isError && (
         <div className="error-con" style={{ margin: "auto" }}>

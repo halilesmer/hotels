@@ -35,14 +35,9 @@ export default function Details() {
     data,
     isLoading,
     isError,
-    cardsId,
-    setCardsId,
     handleAddCardClick,
     handleDeleteCardClick,
   } = useContext(AppContext);
-
-
-  // const url = `https://api.magicthegathering.io/v1/cards/`;
 
   const filteredData =
     data &&

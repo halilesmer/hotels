@@ -15,23 +15,28 @@ function AppProvider(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
-
-  function handlePage(e) {
-    setPageNumb(e);
-  }
-  function urlHandle(e) {
-    setSearchQuery(e);
-  }
-  useEffect(() => {
-    // setUrl(`${baseUrlCards}?name=${searchQuery}&Numb=${pageNumb}&pageSize=20`);
-    setUrl(`${baseUrlCards}?name=${searchQuery}&page=${pageNumb}&pageSize=20`);
-  }, [searchQuery, pageNumb]);
-
+  const [favoritCards, setFavoritCards] = useState([]);
   const [firstUrl, setFirstUrl] = useState(
+    /* ------------ used just for first time if the page loaded ----------  */
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   );
 
+  function handlePage(e) {
+    /* -------- setting pagination number for pagination */
+    setPageNumb(e);
+  }
+  function urlHandle(e) {
+    /* --------- setting search word ----------- */
+    setSearchQuery(e);
+  }
   useEffect(() => {
+    /* ----------  setting URL for fetching API data -------------- */
+    setUrl(`${baseUrlCards}?name=${searchQuery}&page=${pageNumb}&pageSize=20`);
+  }, [searchQuery, pageNumb]);
+
+  useEffect(() => {
+    /* ----------   fetching API data -------------- */
+
     const fetchData = async () => {
       setIsLoading(true);
       if (user) {
@@ -55,64 +60,40 @@ function AppProvider(props) {
   }, [url, firstUrl, user]);
 
   function handleAddCardClick(newId) {
-    // check if newId is available in cardsId
-    // if not available, add
-    // if available delete it
-
-    // cardsId.length < 1 && setCardsId([...cardsId, newId]);
-    // setCardsId([...cardsId, newId]);
-
-    // cardsId.length > 0 &&
-    //   cardsId.map((crdId) => {
-    //    setCardsId(cardsId !== newId);
-
-    //   });
-      
-      if (cardsId.length < 1){
-        console.log("adding card first time");
+    /* ------------- adding favorit cards ------------  */
+    console.log("newId: ", newId);
+    if (cardsId.length < 1) {
+      setCardsId([...cardsId, newId]);
+      /* ------------- adding card first time ------------  */
+      data &&
+        data.forEach((card) => newId === card.id && setFavoritCards(card));
+    } else {
+      if (cardsId.includes(newId)) {
+        /* ------------- removing card ------------  */
+        setCardsId(cardsId.filter((cardId) => cardId !== newId));
+      } else {
+        /* ------------- adding card  ------------  */
+        console.log("adding card");
         setCardsId([...cardsId, newId]);
-      }else {
-
-        if(cardsId.includes(newId)){
-          console.log("removing card");
-          setCardsId(cardsId.filter(cardId => cardId !== newId))
-        }else{
-          console.log("adding card");
-          setCardsId([...cardsId, newId]);
-        }
-        
       }
-        
-
-
-    //  cardsId.length < 1 && setCardsId([newId])
-
-    //  cardsId.length > 1 && cardsId.map(crdID => {
-    //   return crdID !== newId && setCardsId([...cardsId, newId])
-    //  })
-
-    // const filteredCards =
-    //   cardsId.length > 0 &&
-    //   cardsId.filter((cardId) => {
-    //     return setCardsId([...cardsId, cardId !== id]);
-    //   });
-
-    //   const filteredCards = cardsId.length > 0 && cardsId.filter((cardId) => {
-    // return id !== cardId;
-    // });
-
-  
-
-    console.log("e: ", newId);
+    }
+    console.log("newId: ", newId);
   }
 
-  function handleDeleteCardClick(newId) {
-    const filtered=  cardsId.filter((cardId) => {
-      return cardId !== newId
-    });
+  useEffect(() => {
+    /* -------------- store favorit cards in state (favoritCards)--------------*/
+    let saveFavCards = [];
+    data &&
+      data.map((card) => {
+        return cardsId.map((crdId) => {
+          return crdId === card.id && saveFavCards.push(card);
+        });
+      });
 
-     return setCardsId(filtered);
-  }
+    console.log("saveFavCards :>> ", saveFavCards);
+
+    setFavoritCards(saveFavCards);
+  }, [cardsId]);
 
   const value = {
     baseUrlCards,
@@ -131,16 +112,16 @@ function AppProvider(props) {
     cardsId,
     setCardsId,
     handleAddCardClick,
-    handleDeleteCardClick,
+    favoritCards,
   };
 
   // console.log("pageNumb: ", pageNumb);
   // console.log("searchQuery: ", searchQuery);
   // console.log("url: ", url);
   // console.log("AuthContext: ", AuthContext);
-  // console.log("user: ", user);
-  console.log("cardsId: ", cardsId);
-  console.log("cardsId.length: ", cardsId.length);
+  // console.log("data: ", data);
+  // console.log("favoritCards: ", favoritCards);
+  // console.log("cardId: ", cardsId);
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
