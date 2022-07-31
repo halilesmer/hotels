@@ -14,8 +14,16 @@ function Cards() {
   return (
     <>
       {isLoading && <CircularProgress color="inherit" />}
-      <Grid container spacing={1}>
-        <Typography variant="h4" component="h4" style={{margin:'auto'}}>
+      <Grid container spacing={3}>
+        <Typography
+          variant="h4"
+          component="h4"
+          style={{
+            width: "100%",
+            textAlign: "center",
+            margin: "1.5rem 0px 0 0",
+          }}
+        >
           Cards
         </Typography>
         {data &&
@@ -29,20 +37,19 @@ function Cards() {
                   sm={12}
                   md={6}
                   lg={4}
-                  xl={3}
+                  xl={4}
+                  style={{ paddingTop: "0" }}
 
                   // style={{ margin: "0 auto 4rem auto" }}
                 >
-                  <OneCard cardId={card.id}  card={card} />
+                  <OneCard cardId={card.id} card={card} />
                 </Grid>
               )
             );
           })}
       </Grid>
 
-      <PaginationCon
-        data={data}
-      />
+      <PaginationCon data={data} />
       {isError && (
         <div className="error-con" style={{ margin: "auto" }}>
           {" "}
