@@ -51,7 +51,7 @@ function AppProvider(props) {
           setIsError(true);
           console.log("error: ", error);
         } finally {
-          setIsError(false);
+          // setIsError(false);
           setIsLoading(false);
         }
       }
@@ -61,7 +61,6 @@ function AppProvider(props) {
 
   function handleAddCardClick(newId) {
     /* ------------- adding favorit cards ------------  */
-    console.log("newId: ", newId);
     if (cardsId.length < 1) {
       setCardsId([...cardsId, newId]);
       /* ------------- adding card first time ------------  */
@@ -73,11 +72,9 @@ function AppProvider(props) {
         setCardsId(cardsId.filter((cardId) => cardId !== newId));
       } else {
         /* ------------- adding card  ------------  */
-        console.log("adding card");
         setCardsId([...cardsId, newId]);
       }
     }
-    console.log("newId: ", newId);
   }
 
   useEffect(() => {
@@ -89,8 +86,6 @@ function AppProvider(props) {
           return crdId === card.id && saveFavCards.push(card);
         });
       });
-
-    console.log("saveFavCards :>> ", saveFavCards);
 
     setFavoritCards(saveFavCards);
     // eslint-disable-next-line react-hooks/exhaustive-deps

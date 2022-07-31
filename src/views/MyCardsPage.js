@@ -1,16 +1,14 @@
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
-import React, { useContext, } from "react";
+import React, { useContext } from "react";
 
 import { AppContext } from "../component/context/appContext";
 import { Box } from "@mui/system";
+import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
 
 const MyCardsPage = () => {
-  const {
-    isLoading,
-    setCardsId,
-    favoritCards,
-  } = useContext(AppContext);
+  const { isLoading, setCardsId, favoritCards, isError } =
+    useContext(AppContext);
 
   return (
     <Box>
@@ -23,10 +21,11 @@ const MyCardsPage = () => {
         My Cards
       </Typography>
 
-      <Button onClick={() => setCardsId([])}>Delete All Cards</Button>
-
-      {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={1}>
+        {isLoading && <CircularProgress color="inherit" />}
+        {isError && <ErrorPage />}
+
+        <Button onClick={() => setCardsId([])}>Delete All Cards</Button>
         {favoritCards &&
           favoritCards.map((card) => {
             return (

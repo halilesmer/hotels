@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 
 import { AppContext } from "../component/context/appContext";
+import ErrorPage from "./ErrorPage";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
@@ -154,12 +155,7 @@ export default function OneCard({ card, cardId }) {
           </CardContent>
         </Box>
       </Card>
-      {isError && (
-        <div className="error-con" style={{ margin: "auto" }}>
-          {" "}
-          'Something went wrong'
-        </div>
-      )}
+     
     </>
   );
 }

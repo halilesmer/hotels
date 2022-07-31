@@ -17,6 +17,7 @@ import {
 
 import { AppContext } from "../component/context/appContext";
 import { Box } from "@mui/system";
+import ErrorPage from "../component/ErrorPage";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -134,11 +135,7 @@ export default function Details() {
             </Card>
           );
         })}
-      {isError && (
-        <div className="error-con" style={{ margin: "auto" }}>
-          'Something went wrong'
-        </div>
-      )}
+      {isError && <ErrorPage/>}
     </>
   );
 }

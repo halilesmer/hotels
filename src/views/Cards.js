@@ -1,6 +1,7 @@
 import { CircularProgress, Grid, Typography, } from "@mui/material";
 
 import { AppContext } from '../component/context/appContext';
+import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
 import PaginationCon from "../component/PaginationCon";
 import React from "react";
@@ -13,6 +14,7 @@ function Cards() {
 
   return (
     <>
+      {isError && <ErrorPage />}
       {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={3}>
         <Typography
@@ -50,12 +52,6 @@ function Cards() {
       </Grid>
 
       <PaginationCon data={data} />
-      {isError && (
-        <div className="error-con" style={{ margin: "auto" }}>
-          {" "}
-          'Something went wrong'
-        </div>
-      )}
     </>
   );
 }

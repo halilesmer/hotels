@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Cards from "./Cards";
 import Details from "./Details";
+import ErrorPage from "../component/ErrorPage";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
 import MyCardsPage from "./MyCardsPage";
@@ -32,6 +33,7 @@ const Main = () => {
         <Route path="login" element={<LoginPage text="Create an Account" />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="mycards" element={<MyCardsPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </main>
   );
