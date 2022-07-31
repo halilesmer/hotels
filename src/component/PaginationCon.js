@@ -23,12 +23,12 @@ React.useEffect(()=>{
     <Stack spacing={2} mb={2} mt={2}>
       <Pagination
         size="small"
-        count={data?.length < 20 ? pageNumb : 100}
+        count={data?.length < 20 ? Number.parseInt(pageNumb) : 100}
         showFirstButton
         showLastButton
         sx={{ margin: "auto" }}
         onChange={(e, pageNumb) => handlePage(pageNumb)}
-        page={Number.parseInt(pagination,10)}
+        page={Number.parseInt(pagination, 10)}
         renderItem={(item) => (
           <PaginationItem
             component={Link}

@@ -1,16 +1,14 @@
-import { CircularProgress, Grid, Typography, } from "@mui/material";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 
-import { AppContext } from '../component/context/appContext';
+import { AppContext } from "../component/context/appContext";
 import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
 import PaginationCon from "../component/PaginationCon";
 import React from "react";
-import { useContext } from 'react';
+import { useContext } from "react";
 
 function Cards() {
-
   const { isLoading, data, isError } = useContext(AppContext);
- 
 
   return (
     <>
@@ -52,10 +50,13 @@ function Cards() {
       </Grid>
 
       <PaginationCon data={data} />
+      {data && data.length < 1 && (
+        <Typography mt={12} align='center' className="searchResultAlert">
+          "I'm sorry. I was not able to find a match."
+        </Typography>
+      )}
     </>
   );
 }
 
 export default Cards;
-
-

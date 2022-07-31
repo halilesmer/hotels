@@ -20,7 +20,6 @@ const SearchInput = () => {
   const keyHandler = (e) => {
     e.preventDefault();
     if (e.key === "Enter") {
-      console.log("Ipressed enter")
       urlHandle(
         searchQuery
       );
@@ -29,19 +28,15 @@ const SearchInput = () => {
   const handleFocus=(event) => event.target.select();
 
   return (
-
-    <Box
-      component="div"
-   
-    >
+    <Box component="div">
       <InputBase
-        sx={{ ml: 1, flex: 1, color: 'white' }}
+        sx={{ ml: 1, flex: 1, color: "white" }}
         placeholder="Search for cards"
         inputProps={{ "aria-label": "search cards" }}
         type="search"
         value={searchQuery}
         onChange={(e) => {
-          setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "))
+          setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "));
         }}
         onKeyUp={keyHandler}
         onFocus={handleFocus}

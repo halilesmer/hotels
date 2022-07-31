@@ -12,8 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext";
-import ErrorPage from "./ErrorPage";
+import { AppContext } from "./context/appContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
@@ -21,7 +20,7 @@ import { useContext } from "react";
 
 export default function OneCard({ card, cardId }) {
   const [color, setColor] = React.useState("green");
-  const { isLoading, isError, cardsId, handleAddCardClick } =
+  const { isLoading, cardsId, handleAddCardClick } =
     useContext(AppContext);
 
   React.useEffect(() => {
