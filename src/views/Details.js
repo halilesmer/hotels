@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext";
+import { AppContext } from "../context/appContext";
 import { Box } from "@mui/system";
 import ErrorPage from "../component/ErrorPage";
 import FavoriteIcon from "@mui/icons-material/Favorite";

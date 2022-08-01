@@ -6,7 +6,7 @@ import {
   InputBase,
 } from "@mui/material";
 
-import { AppContext } from "./context/appContext";
+import { AppContext } from "../context/appContext";
 import SearchIcon from "@mui/icons-material/Search";
 import { useContext } from "react";
 

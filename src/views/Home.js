@@ -1,7 +1,7 @@
 import { Button, CardActionArea, CardMedia, Typography } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext";
-import { AuthContext } from "../component/context/authContext";
+import { AppContext } from "../context/appContext";
+import { AuthContext } from "../context/authContext";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";

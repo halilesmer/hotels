@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { AppContext } from "./context/appContext";
+import { AppContext } from "../context/appContext";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SearchInput from "./SearchInput";
 import { useContext } from "react";

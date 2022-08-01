@@ -1,6 +1,6 @@
 import { CircularProgress, Grid, Typography } from "@mui/material";
 
-import { AppContext } from "../component/context/appContext";
+import { AppContext } from "../context/appContext";
 import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
 import PaginationCon from "../component/PaginationCon";

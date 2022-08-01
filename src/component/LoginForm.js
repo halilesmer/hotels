@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { AuthContext } from "../component/context/authContext";
+import { AuthContext } from "../context/authContext";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

@@ -1,7 +1,7 @@
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
 
-import { AppContext } from "../component/context/appContext";
+import { AppContext } from "../context/appContext";
 import { Box } from "@mui/system";
 import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
