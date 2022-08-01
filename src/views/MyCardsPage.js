@@ -12,20 +12,29 @@ const MyCardsPage = () => {
 
   return (
     <Box>
-      <Typography
-        variant="h4"
-        component="h4"
-        align="center"
-        style={{ margin: "auto" }}
-      >
-        My Cards
-      </Typography>
+      <Box component="div" className="cards-header-con" sx={{textAlign:'center'}}>
+        <Typography
+          variant="h4"
+          component="h4"
+          align="center"
+          style={{ margin: "auto", width: "100%", }}
+        >
+          My Cards
+        </Typography>
 
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => setCardsId([])}
+          style={{ width: "12rem", }}
+        >
+          Delete All Cards
+        </Button>
+      </Box>
       <Grid container spacing={1}>
         {isLoading && <CircularProgress color="inherit" />}
         {isError && <ErrorPage />}
 
-        <Button onClick={() => setCardsId([])}>Delete All Cards</Button>
         {favoritCards &&
           favoritCards.map((card) => {
             return (

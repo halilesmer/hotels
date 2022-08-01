@@ -8,7 +8,7 @@ const ProtectedRoute = ({children}) => {
     const isAuth = useIsAuthenticated();
     
   return (
-    <div>{isAuth ? children : <Navigate to="/" replace={true} />}</div>
+    <div className="protected-route">{isAuth ? children : <Navigate to="/" replace={true} />}</div>
   );
 }
 

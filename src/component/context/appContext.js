@@ -16,7 +16,7 @@ function AppProvider(props) {
   const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
   const [favoritCards, setFavoritCards] = useState([]);
-  const [firstUrl, ] = useState(
+  const [firstUrl, setFirstUrl] = useState(
     /* ------------ used just for first time if the page loaded ----------  */
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   );
@@ -36,27 +36,38 @@ function AppProvider(props) {
 
   useEffect(() => {
     /* ----------   fetching API data -------------- */
+    let didCancel = false;
 
     const fetchData = async () => {
+      setIsError(false);
       setIsLoading(true);
       if (user) {
         try {
           // const result = await fetch(queryUrl ? queryUrl : firstUrl);
-          const result = await fetch(url ? url : firstUrl);
-          // console.log("url: ", url);
-          const data = await result.json();
-          setData(data.cards);
-          console.log("data.cards: ", data.cards);
+          if (!didCancel) {
+            const result = await fetch(url ? url : firstUrl);
+            // console.log("url: ", url);
+            const data = await result.json();
+            setData(data.cards);
+            console.log("data.cards: ", data.cards);
+          }
         } catch (error) {
-          setIsError(true);
-          console.log("error: ", error);
+          if (!didCancel) {
+            setIsError(true);
+            console.log("error: ", error);
+          }
         } finally {
-          // setIsError(false);
-          setIsLoading(false);
+          if (!didCancel) {
+            setIsLoading(false);
+          }
         }
       }
     };
     fetchData();
+    /* Abort data fetching when component unmounted */
+    return () => {
+      didCancel = true;
+    };
   }, [url, firstUrl, user]);
 
   function handleAddCardClick(newId) {
