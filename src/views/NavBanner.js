@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {
   AppBar,
+  Badge,
   Box,
   Divider,
   IconButton,
@@ -13,15 +14,18 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { auth } from "../config/config";
 import { signOut } from "firebase/auth";
+import styled from "@emotion/styled";
 import { useContext } from "react";
 
 export default function NavBanner() {
-  // const { setIsLoading } = useContext(AppContext);
+  const { favoritCards } = useContext(AppContext);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useContext(AuthContext);
   const pathname = useLocation();
@@ -51,6 +55,7 @@ export default function NavBanner() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
 
   return (
     <Box
@@ -135,7 +140,26 @@ export default function NavBanner() {
               {/* ----------------- Favorit  Page Link  --------------------- */}
               {user && (
                 <Link style={{ textDecoration: "none" }} to="mycards">
-                  <MenuItem onClick={handleClose}>My Cards</MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    My Cards
+                    <Badge
+                      style={{
+                        marginLeft: "16px",
+                      }}
+                      sx={{
+                        "& .MuiBadge-badge": {
+                          fontSize: 9,
+                          height: 15,
+                          minWidth: 15,
+                        },
+                      }}
+                      badgeContent={
+                        favoritCards.length > 0 ? favoritCards.length : "0"
+                      }
+
+                      color="primary"
+                    ></Badge>
+                  </MenuItem>
                 </Link>
               )}
 
