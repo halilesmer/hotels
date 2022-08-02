@@ -1,8 +1,10 @@
-import React,{useContext, useState, } from "react";
+import React,{useContext, useEffect, useRef, useState, } from "react";
 import { TextField, Box,  } from "@mui/material";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/appContext";
+
 
 const LoginForm = ({
   handleEmailChange,
@@ -11,6 +13,10 @@ const LoginForm = ({
   password,
   handleSubmitLoginClick,
 }) => {
+
+const { pwInputFocus, onBlur} = useContext(AppContext);
+
+
 
   // const keyHandler = (e) => {
   //   e.preventDefault();
@@ -39,7 +45,10 @@ const LoginForm = ({
           type="email"
           value={email}
           onChange={handleEmailChange}
+          // onChange={focusInput}
           required
+          onFocus={pwInputFocus}
+          onBlur={onBlur}
         />
         <TextField
           id="login-pw"
@@ -50,6 +59,8 @@ const LoginForm = ({
           value={password}
           onChange={handlePasswordChange}
           required
+          onFocus={pwInputFocus}
+          onBlur={onBlur}
           // onKeyUp={keyHandler}
         />
       </Box>

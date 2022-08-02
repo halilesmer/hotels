@@ -1,31 +1,42 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Alert, Box, Divider, Stack, Typography } from "@mui/material";
 
 import { Container } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import LoginForm from "../component/LoginForm";
 import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/authContext";
 import { auth } from "../config/config";
+import { AppContext } from "../context/appContext";
+import AuthErrorPage from "../component/AuthErrorAlert";
 
 const LoginPage = () => {
-  // const {user, setUser} = useContext(AppContext);
+  const { focused } = useContext(AppContext);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const { login } = useContext(AuthContext);
+  const { login, pwError, setPwError } = useContext(AuthContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
+
   const handleSubmitLoginClick = (e) => {
     // console.log("email: ", e);
     login(email, password);
-
   };
 
-  console.log("password: ", password);
-  console.log("email: ", email);
+  /* ---- closes alert for password error ------ */
+  const handleClose = () => {
+    setPwError(false);
+  };
+  
+  useEffect(() => {
+    handleClose();
+  }, [focused, ]);
+
+  
   return (
     <Container
       id="loginCon"
@@ -41,6 +52,13 @@ const LoginPage = () => {
       >
         Login
       </Typography>
+      {/* --------- Password alert -------- */}
+      {pwError && (
+        <AuthErrorPage
+          handleclose={handleClose}
+          alertTxt="Authentication failed. Please check your email or password."
+        />
+      )}
 
       <LoginForm
         handleEmailChange={handleEmailChange}
@@ -49,7 +67,6 @@ const LoginPage = () => {
         password={password}
         handleSubmitLoginClick={handleSubmitLoginClick}
       />
-
       <Box marginY={2}>
         <Divider />
       </Box>

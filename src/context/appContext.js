@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import { AuthContext } from "./authContext";
 
@@ -16,6 +16,10 @@ function AppProvider(props) {
   const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
   const [favoritCards, setFavoritCards] = useState([]);
+  /* ----- Passwort Input element for LoginForm ----- */
+  const [focused, setFocused] = useState(false);
+  const [blur, setBlur] = useState(false);
+
   const [firstUrl, setFirstUrl] = useState(
     /* ------------ used just for first time if the page loaded ----------  */
     `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
@@ -102,6 +106,10 @@ function AppProvider(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
 
+  /* ----- Passwort onfocus for LoginForm ----- */
+  const pwInputFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
+
   const value = {
     baseUrlCards,
     url,
@@ -120,6 +128,9 @@ function AppProvider(props) {
     setCardsId,
     handleAddCardClick,
     favoritCards,
+    pwInputFocus,
+    onBlur,
+    focused,
   };
 
   // console.log("pageNumb: ", pageNumb);

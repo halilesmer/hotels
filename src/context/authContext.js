@@ -12,6 +12,7 @@ const AuthContext = createContext();
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [pwError, setPwError] = useState(false);
   const redirect = useNavigate();
 
   const register = async (email, password) => {
@@ -49,7 +50,9 @@ const AuthProvider = (props) => {
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("Login User errorMessage: ", errorMessage, errorCode);
+      setPwError(true)
+      console.log("errorCode: ", errorCode);
+      console.log("Login User errorMessage: ", errorMessage, );
       // ..
     }
   };
@@ -75,6 +78,9 @@ const AuthProvider = (props) => {
     login,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    pwError,
+    setPwError,
+    
   };
 
   return (
