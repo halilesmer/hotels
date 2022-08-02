@@ -6,11 +6,13 @@ import {
 } from "firebase/auth";
 import { auth } from "../config/config";
 import { async } from "@firebase/util";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
+  const redirect = useNavigate();
 
   const register = async (email, password) => {
     console.log(email, password);
@@ -41,6 +43,8 @@ const AuthProvider = (props) => {
       );
       //  const user = userCredential.user;
       setUser(userCredential.user);
+    redirect("/cards/1");
+
     } catch (error) {
       setUser(null);
       const errorCode = error.code;

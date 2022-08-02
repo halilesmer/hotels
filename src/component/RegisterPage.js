@@ -16,16 +16,17 @@ const RegisterPage = () => {
   // const [firstName, setFirstName] = React.useState("");
   // const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [password, setPasswort] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const redirect = useNavigate();
   const { register, } = useContext(AuthContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPasswort(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleSubmitRegisterClick = (e) => {
     register(email, password);
     redirect("/cards/1");
   };
+  console.log("password: ", password);
   console.log("email: ", email);
 
   return (

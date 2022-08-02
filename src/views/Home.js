@@ -11,6 +11,7 @@ import { useContext } from "react";
 const Home = () => {
   const { pageNumb } = useContext(AppContext);
   const { user } = useContext(AuthContext);
+  console.log("user: ", user);
 
   // const { pagination } = useParams();
   // console.log("pagination: ", pagination);
@@ -33,7 +34,12 @@ const Home = () => {
 
       {user ? (
         <>
-          <Typography variant="p" component='p'>Welcome {user.name}</Typography>
+          <Box mt={3}>
+            <Typography align="center" variant="p" component="p">
+              Welcome <strong>{user.email}</strong>
+            </Typography>
+          </Box>
+
           <Button
             size="large"
             variant="contained"

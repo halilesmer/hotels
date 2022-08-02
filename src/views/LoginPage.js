@@ -13,21 +13,19 @@ const LoginPage = () => {
   // const {user, setUser} = useContext(AppContext);
 
   const [email, setEmail] = React.useState("");
-  const [password, setPasswort] = React.useState("");
-  const redirect = useNavigate();
+  const [password, setPassword] = React.useState("");
   const { login } = useContext(AuthContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPasswort(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleSubmitLoginClick = (e) => {
     // console.log("email: ", e);
     login(email, password);
-    
-    redirect("/cards/1");
+
   };
+
   console.log("password: ", password);
   console.log("email: ", email);
-
   return (
     <Container
       id="loginCon"

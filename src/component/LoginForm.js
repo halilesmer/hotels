@@ -1,9 +1,8 @@
-import * as React from "react";
-
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import React,{useContext, useState, } from "react";
+import { TextField, Box,  } from "@mui/material";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
+import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({
   handleEmailChange,
@@ -13,10 +12,12 @@ const LoginForm = ({
   handleSubmitLoginClick,
 }) => {
 
- 
-
- 
-
+  // const keyHandler = (e) => {
+  //   e.preventDefault();
+  //   if (e.key === "Enter") {
+  //     handleSubmitLoginClick();
+  //   }
+  // };
   return (
     <>
       <Box
@@ -37,7 +38,7 @@ const LoginForm = ({
           size="small"
           type="email"
           value={email}
-          onClick={handleEmailChange}
+          onChange={handleEmailChange}
           required
         />
         <TextField
@@ -47,8 +48,9 @@ const LoginForm = ({
           size="small"
           type="password"
           value={password}
-          onClick={handlePasswordChange}
+          onChange={handlePasswordChange}
           required
+          // onKeyUp={keyHandler}
         />
       </Box>
       <Box className="login-btn-con">
