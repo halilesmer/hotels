@@ -1,8 +1,6 @@
 import React,{useContext, useEffect, useRef, useState, } from "react";
 import { TextField, Box,  } from "@mui/material";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
-import { AuthContext } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/appContext";
 
 

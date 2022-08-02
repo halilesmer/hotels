@@ -1,5 +1,5 @@
 import { Box, Divider, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../context/authContext";
 import { Container } from "@mui/system";
@@ -8,6 +8,8 @@ import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import RegisterForm from "./RegisterForm";
 import { auth } from "../config/config";
+import AuthErrorAlert from "./AuthErrorAlert";
+import { AppContext } from "../context/appContext";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -17,17 +19,39 @@ const RegisterPage = () => {
   // const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPwValid, setIsPwValid] = useState(false);
   const redirect = useNavigate();
-  const { register, } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
+  const { focused } = useContext(AppContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
   const handleSubmitRegisterClick = (e) => {
-    register(email, password);
-    redirect("/cards/1");
+    let re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!re.test(email)) {
+      // invalid email, maybe show an error to the user.
+      console.log("not valid email");
+      setIsEmailValid(true);
+    } else if (password.length < 6) {
+      setIsPwValid(true);
+      console.log("valid email");
+    } else {
+      register(email, password);
+      redirect("/cards/1");
+    }
   };
-  console.log("password: ", password);
-  console.log("email: ", email);
+  const handleClose = () => {
+    setIsEmailValid(false);
+    setIsPwValid(false);
+  };
+
+  useEffect(() => {
+    handleClose();
+  }, [focused]);
 
   return (
     <Container
@@ -44,7 +68,19 @@ const RegisterPage = () => {
       >
         Register
       </Typography>
-
+      {/* ---------- alert -------------- */}
+      {isEmailValid && (
+        <AuthErrorAlert
+          handleclose={handleClose}
+          alertTxt="Your email address is invalid. Please enter a valid address."
+        />
+      )}
+      {isPwValid && (
+        <AuthErrorAlert
+          handleclose={handleClose}
+          alertTxt="Your password must be at least 6 characters."
+        />
+      )}
       {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}
       <RegisterForm
         handleEmailChange={handleEmailChange}

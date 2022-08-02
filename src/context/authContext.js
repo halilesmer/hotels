@@ -15,6 +15,7 @@ const AuthProvider = (props) => {
   const [pwError, setPwError] = useState(false);
   const redirect = useNavigate();
 
+  /* --------- register --------------- */
   const register = async (email, password) => {
     console.log(email, password);
     try {
@@ -34,6 +35,7 @@ const AuthProvider = (props) => {
     }
   };
 
+  /* --------- login --------------- */
   const login = async (email, password) => {
     console.log(email, password);
     try {
@@ -44,15 +46,14 @@ const AuthProvider = (props) => {
       );
       //  const user = userCredential.user;
       setUser(userCredential.user);
-    redirect("/cards/1");
-
+      redirect("/");
     } catch (error) {
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      setPwError(true)
+      setPwError(true);
       console.log("errorCode: ", errorCode);
-      console.log("Login User errorMessage: ", errorMessage, );
+      console.log("Login User errorMessage: ", errorMessage);
       // ..
     }
   };
@@ -69,6 +70,8 @@ const AuthProvider = (props) => {
       }
     });
   };
+
+  /* ---------- check if user is logged in ----------- */
   useEffect(() => checkIfUserLoggedIn, []);
 
   const value = {
@@ -80,7 +83,6 @@ const AuthProvider = (props) => {
     signInWithEmailAndPassword,
     pwError,
     setPwError,
-    
   };
 
   return (

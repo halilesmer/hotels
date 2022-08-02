@@ -12,11 +12,11 @@ import { AppContext } from "../context/appContext";
 import AuthErrorPage from "../component/AuthErrorAlert";
 
 const LoginPage = () => {
-  const { focused } = useContext(AppContext);
-
+  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { login, pwError, setPwError } = useContext(AuthContext);
+  const { focused } = useContext(AppContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -34,7 +34,7 @@ const LoginPage = () => {
   
   useEffect(() => {
     handleClose();
-  }, [focused, ]);
+  }, [focused]);
 
   
   return (

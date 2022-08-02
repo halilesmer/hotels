@@ -3,6 +3,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 import TextField from "@mui/material/TextField";
+import { AppContext } from "../context/appContext";
 
 export const PostIntro = ({ children }) => {
     return <div className="post__intro">{children}</div>;
@@ -16,6 +17,8 @@ const RegisterForm = ({
   password,
   handleSubmitRegisterClick,
 }) => {
+  const { pwInputFocus, onBlur } = React.useContext(AppContext);
+
   return (
     <>
       <Box
@@ -41,6 +44,8 @@ const RegisterForm = ({
           value={email}
           onChange={handleEmailChange}
           required
+          onFocus={pwInputFocus}
+          onBlur={onBlur}
         />
         <TextField
           id="register-pw"
@@ -51,16 +56,18 @@ const RegisterForm = ({
           value={password}
           onChange={handlePasswordChange}
           required
+          onFocus={pwInputFocus}
+          onBlur={onBlur}
         />
 
         {/* <LoginRegisterBtn createAcntBtnTxt={createAcntBtnTxt} /> */}
         {/* {children} */}
+        <LoginRegisterBtn
+          onClick={handleSubmitRegisterClick}
+          text="Send Form"
+          color="black"
+        />
       </Box>
-      <LoginRegisterBtn
-        onClick={handleSubmitRegisterClick}
-        text="Send Form"
-        color="black"
-      />
       {/* <Box className="create-account-btn-con" mt={3}>
             </Box> */}
     </>
