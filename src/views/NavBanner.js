@@ -13,44 +13,46 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useContext, } from "react";
-import { signOut } from "firebase/auth";
 import { auth } from "../config/config";
+import { signOut } from "firebase/auth";
+import { useContext } from "react";
 
 export default function NavBanner() {
+  // const { setIsLoading } = useContext(AppContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useContext(AuthContext);
   const pathname = useLocation();
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   const logout = (e) => {
+    // setIsLoading(true);
     handleClose();
     signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      setUser(null);
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+        navigateTo("/");
+        // setIsLoading(false);
       })
       .catch((error) => {
         // An error happened.
         console.log("sign out error: ", error);
       });
 
-
-    navigate('/');
   };
-  
-  
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   return (
     <Box
       sx={{
@@ -144,10 +146,11 @@ export default function NavBanner() {
                 <Box
                   sx={{
                     textAlign: "center",
+                    cursor: "pointer",
                   }}
                   onClick={logout}
                 >
-                  <LogoutIcon />
+                  <LogoutIcon  />
                 </Box>
               ) : (
                 ""
@@ -161,6 +164,7 @@ export default function NavBanner() {
               sx={{
                 textAlign: "center",
                 display: "inline-flex",
+                cursor: "pointer",
               }}
               onClick={logout}
             >

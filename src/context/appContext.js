@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { AuthContext } from "./authContext";
 
@@ -42,10 +47,10 @@ function AppProvider(props) {
     /* ----------   fetching API data -------------- */
     let didCancel = false;
 
+    if (user) {
     const fetchData = async () => {
       setIsError(false);
       setIsLoading(true);
-      if (user) {
         try {
           // const result = await fetch(queryUrl ? queryUrl : firstUrl);
           if (!didCancel) {
@@ -66,8 +71,8 @@ function AppProvider(props) {
           }
         }
       }
+      fetchData();
     };
-    fetchData();
     /* Abort data fetching when component unmounted */
     return () => {
       didCancel = true;
@@ -112,12 +117,10 @@ function AppProvider(props) {
 
   const value = {
     baseUrlCards,
-    url,
-    setUrl,
-    searchQuery,
-    setSearchQuery,
+    focused,
+    handleAddCardClick,
+
     pageNumb,
-    setPageNumb,
     handlePage,
     urlHandle,
     isLoading,
@@ -126,11 +129,15 @@ function AppProvider(props) {
     isError,
     cardsId,
     setCardsId,
-    handleAddCardClick,
+    setIsLoading,
+    setPageNumb,
+    setUrl,
+    searchQuery,
+    setSearchQuery,
     favoritCards,
     pwInputFocus,
     onBlur,
-    focused,
+    url,
   };
 
   // console.log("pageNumb: ", pageNumb);
@@ -140,6 +147,7 @@ function AppProvider(props) {
   // console.log("data: ", data);
   // console.log("favoritCards: ", favoritCards);
   // console.log("cardId: ", cardsId);
+  console.log("isLoading: ", isLoading);
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

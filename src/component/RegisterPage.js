@@ -1,15 +1,15 @@
 import { Box, Divider, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 
+import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
+import AuthErrorAlert from "./AuthErrorAlert";
 import { Container } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import RegisterForm from "./RegisterForm";
 import { auth } from "../config/config";
-import AuthErrorAlert from "./AuthErrorAlert";
-import { AppContext } from "../context/appContext";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -22,13 +22,14 @@ const RegisterPage = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPwValid, setIsPwValid] = useState(false);
   const redirect = useNavigate();
-  const { register } = useContext(AuthContext);
+  const { register, emailIsInUse, setEmailIsInUse } = useContext(AuthContext);
   const { focused } = useContext(AppContext);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleSubmitRegisterClick = (e) => {
+    /* ---- Email Check ---- */
     let re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -41,12 +42,13 @@ const RegisterPage = () => {
       console.log("valid email");
     } else {
       register(email, password);
-      redirect("/cards/1");
+      // redirect("/cards/1");
     }
   };
   const handleClose = () => {
     setIsEmailValid(false);
     setIsPwValid(false);
+    setEmailIsInUse(false);
   };
 
   useEffect(() => {
@@ -79,6 +81,12 @@ const RegisterPage = () => {
         <AuthErrorAlert
           handleclose={handleClose}
           alertTxt="Your password must be at least 6 characters."
+        />
+      )}
+      {emailIsInUse && (
+        <AuthErrorAlert
+          handleclose={handleClose}
+          alertTxt="This email is already in use. Please use another one."
         />
       )}
       {/* <RegisterForm test='test' createAcntBtnTxt={createAcntBtnTxt} /> */}

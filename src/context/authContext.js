@@ -1,9 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
+
 import { auth } from "../config/config";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +12,10 @@ const AuthContext = createContext();
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [emailError, setEmailError] = useState(false);
   const [pwError, setPwError] = useState(false);
+  const [emailIsInUse, setEmailIsInUse] = useState(false);
+  const [someError, setSomeError] = useState(false);
   const redirect = useNavigate();
 
   /* --------- register --------------- */
@@ -27,6 +31,7 @@ const AuthProvider = (props) => {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      setEmailIsInUse(true);
       console.log("Create User errorMessage: ", errorMessage, errorCode);
       // ..
     }
@@ -46,7 +51,14 @@ const AuthProvider = (props) => {
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      setPwError(true);
+      if (errorCode === "auth/wrong-password"){
+        setPwError(true);
+      }else if (errorCode === "auth/user-not-found") {
+        setEmailError(true);
+      }else{
+        setSomeError(true);
+      }
+      
       console.log("errorCode: ", errorCode);
       console.log("Login User errorMessage: ", errorMessage);
       // ..
@@ -78,6 +90,12 @@ const AuthProvider = (props) => {
     signInWithEmailAndPassword,
     pwError,
     setPwError,
+    emailIsInUse,
+    setEmailIsInUse,
+    setEmailError,
+    emailError,
+    someError,
+    setSomeError,
   };
 
   return (
