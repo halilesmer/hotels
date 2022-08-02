@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import LoginForm from "../component/LoginForm";
 import LoginRegisterBtn from "../component/Buttons/LoginRegisterBtn";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect,  } from "react";
 import { AuthContext } from "../context/authContext";
-import { auth } from "../config/config";
 import { AppContext } from "../context/appContext";
 import AuthErrorPage from "../component/AuthErrorAlert";
 
 const LoginPage = () => {
-  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { login, pwError, setPwError } = useContext(AuthContext);
@@ -21,9 +19,7 @@ const LoginPage = () => {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-
   const handleSubmitLoginClick = (e) => {
-    // console.log("email: ", e);
     login(email, password);
   };
 
@@ -31,12 +27,11 @@ const LoginPage = () => {
   const handleClose = () => {
     setPwError(false);
   };
-  
+
   useEffect(() => {
     handleClose();
   }, [focused]);
 
-  
   return (
     <Container
       id="loginCon"

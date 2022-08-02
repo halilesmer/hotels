@@ -5,7 +5,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../config/config";
-import { async } from "@firebase/util";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -17,14 +16,12 @@ const AuthProvider = (props) => {
 
   /* --------- register --------------- */
   const register = async (email, password) => {
-    console.log(email, password);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      // const user = userCredential.user;
       setUser(userCredential.user);
       console.log("userCredential: ", userCredential);
     } catch (error) {
@@ -37,14 +34,12 @@ const AuthProvider = (props) => {
 
   /* --------- login --------------- */
   const login = async (email, password) => {
-    console.log(email, password);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      //  const user = userCredential.user;
       setUser(userCredential.user);
       redirect("/");
     } catch (error) {

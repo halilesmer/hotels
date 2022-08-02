@@ -26,8 +26,6 @@ const ProfilePage = () => {
             </Typography>
           </Box>
 
-         
-
           <Box mt={3} style={{ textAlign: "center" }}>
             <Link to="/login" style={{ textDecoration: "none" }}>
               <LoginRegisterBtn color="green" text="Login" />
@@ -46,7 +44,17 @@ const ProfilePage = () => {
           </Box>
         </Box>
       ) : (
-        "Hallo"
+        <>
+          {/* ------------ Profile ----------- */}
+          <Box className="profile-con">
+            <Typography variant="h4" component="h3" align="center" m={2}>
+              Your Profile
+            </Typography>
+            <Typography>
+              Your Email: <strong> {user.email}</strong>
+            </Typography>
+          </Box>
+        </>
       )}
     </>
   );
