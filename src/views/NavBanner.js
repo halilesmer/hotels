@@ -17,6 +17,8 @@ import { AuthContext } from "../context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext, } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../config/config";
 
 export default function NavBanner() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,8 +28,18 @@ export default function NavBanner() {
 
   const logout = (e) => {
     handleClose();
+    signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      setUser(null);
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("sign out error: ", error);
+      });
+
+
     navigate('/');
-    setUser(null);
   };
   
   
@@ -109,7 +121,7 @@ export default function NavBanner() {
               {/* ----------------- register Page Link  --------------------- */}
 
               {!user && (
-                <Link style={{ textDecoration: "none" }} to="register">
+                <Link style={{ textDecoration: "none" }} to="registerpage">
                   <MenuItem onClick={handleClose}>Register</MenuItem>
                 </Link>
               )}

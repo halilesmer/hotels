@@ -40,7 +40,7 @@ const ProfilePage = () => {
             style={{ textAlign: "center" }}
           >
             <Typography>Don't Have an Account?</Typography>
-            <Link to="/register" style={{ textDecoration: "none" }}>
+            <Link to="/registerpage" style={{ textDecoration: "none" }}>
               <LoginRegisterBtn color="deepskyblue" text="Register" />
             </Link>
           </Box>

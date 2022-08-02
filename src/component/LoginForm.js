@@ -1,24 +1,21 @@
 import * as React from "react";
 
-import { AuthContext } from "../context/authContext";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 
-const LoginForm = () => {
-  const { user, setUser } = useContext(AuthContext);
-  const redirect=  useNavigate()
+const LoginForm = ({
+  handleEmailChange,
+  handlePasswordChange,
+  email,
+  password,
+  handleSubmitLoginClick,
+}) => {
 
-  const handleLoginClick = async (e) => {
-    console.log("user: ", user);
+ 
 
-   await setUser({
-      userName: "halil",
-    });
-    redirect('/cards/1')
-  };
+ 
 
   return (
     <>
@@ -31,25 +28,42 @@ const LoginForm = () => {
           width: "15rem",
         }}
         noValidate
-        autoComplete="off"
+        autoComplete="on"
       >
         <TextField
           id="login-email"
-          label="Email *"
+          label="Email"
           variant="filled"
           size="small"
+          type="email"
+          value={email}
+          onClick={handleEmailChange}
+          required
         />
         <TextField
           id="login-pw"
-          label="Passwort *"
+          label="Passwort"
           variant="filled"
           size="small"
+          type="password"
+          value={password}
+          onClick={handlePasswordChange}
+          required
         />
       </Box>
       <Box className="login-btn-con">
-        <Button variant="outlined" size="medium" onClick={handleLoginClick}>
+        <LoginRegisterBtn
+          onClick={handleSubmitLoginClick}
+          text="Log in"
+          color="black"
+        />{" "}
+        {/* <Button
+          variant="outlined"
+          size="medium"
+          onClick={handleSubmitLoginClick}
+        >
           Login
-        </Button>
+        </Button> */}
       </Box>
     </>
   );

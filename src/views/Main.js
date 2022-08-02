@@ -9,7 +9,7 @@ import MyCardsPage from "./MyCardsPage";
 import ProfilePage from "../component/ProfilePage";
 import ProtectedRoute from "../component/ProtectedRoute";
 import React from "react";
-import Register from "../component/RegisterPage";
+import RegisterPage from "../component/RegisterPage";
 
 // import Grid from "@mui/material/Grid";
 
@@ -29,8 +29,8 @@ const Main = () => {
         />
 
         <Route path="cards/details/:title" element={<Details />} />
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<LoginPage text="Create an Account" />} />
+        <Route path="registerpage" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="mycards" element={<MyCardsPage />} />
         <Route path="*" element={<ErrorPage />} />

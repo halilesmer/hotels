@@ -9,7 +9,7 @@ import NavBanner from "./views/NavBanner";
 import { app } from "./config/config";
 
 function App() {
-  console.log('app', app)
+  // console.log('app', app)
   return (
     <>
       <NavBanner />

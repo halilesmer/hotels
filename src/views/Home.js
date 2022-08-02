@@ -11,7 +11,7 @@ import { useContext } from "react";
 const Home = () => {
   const { pageNumb } = useContext(AppContext);
   const { user } = useContext(AuthContext);
-  
+
   // const { pagination } = useParams();
   // console.log("pagination: ", pagination);
 
@@ -30,22 +30,26 @@ const Home = () => {
           style={{ maxWidth: "100%", height: "auto" }}
         />
       </CardActionArea>
+
       {user ? (
-        <Button
-          size="large"
-          variant="contained"
-          style={{ marginTop: "2rem auto" }}
-          sx={{
-            fontWeight: "bold",
-            color: "#d8e0e7",
-            borderRadius: "30%",
-            margin: "2rem auto",
-          }}
-        >
-          <Link style={{ textDecoration: "none" }} to={`/cards/${pageNumb}`}>
-            To the Cards
-          </Link>
-        </Button>
+        <>
+          <Typography variant="p" component='p'>Welcome {user.name}</Typography>
+          <Button
+            size="large"
+            variant="contained"
+            style={{ marginTop: "2rem auto" }}
+            sx={{
+              fontWeight: "bold",
+              color: "#d8e0e7",
+              borderRadius: "30%",
+              margin: "2rem auto",
+            }}
+          >
+            <Link style={{ textDecoration: "none" }} to={`/cards/${pageNumb}`}>
+              To the Cards
+            </Link>
+          </Button>
+        </>
       ) : (
         <>
           <Box mt={3} style={{ textAlign: "center" }}>
@@ -63,7 +67,7 @@ const Home = () => {
             style={{ textAlign: "center" }}
           >
             <Typography>Don't Have an Account?</Typography>
-            <Link to="/register" style={{ textDecoration: "none" }}>
+            <Link to="/registerpage" style={{ textDecoration: "none" }}>
               <LoginRegisterBtn color="deepskyblue" text="Register" />
             </Link>
           </Box>
