@@ -28,11 +28,11 @@ const Main = () => {
           }
         />
 
-        <Route path="cards/details/:title" element={<Details />} />
-        <Route path="registerpage" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="mycards" element={<MyCardsPage />} />
+        <Route path="cards/details/:title/" element={<Details />} />
+        <Route path="registerpage/" element={<RegisterPage />} />
+        <Route path="login/" element={<LoginPage />} />
+        <Route path="profile/" element={<ProfilePage />} />
+        <Route path="mycards/" element={<MyCardsPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </main>

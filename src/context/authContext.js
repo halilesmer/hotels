@@ -27,7 +27,7 @@ const AuthProvider = (props) => {
         password
       );
       setUser(userCredential.user);
-      console.log("userCredential: ", userCredential);
+      redirect("profile");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -51,14 +51,14 @@ const AuthProvider = (props) => {
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === "auth/wrong-password"){
+      if (errorCode === "auth/wrong-password") {
         setPwError(true);
-      }else if (errorCode === "auth/user-not-found") {
+      } else if (errorCode === "auth/user-not-found") {
         setEmailError(true);
-      }else{
+      } else {
         setSomeError(true);
       }
-      
+
       console.log("errorCode: ", errorCode);
       console.log("Login User errorMessage: ", errorMessage);
       // ..

@@ -13,7 +13,6 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -140,6 +139,12 @@ export default function NavBanner() {
                 </Link>
               )}
 
+              {/* ----------------- Charachters  --------------------- */}
+              {user && (
+                <Link style={{ textDecoration: "none" }} to="cards/1/">
+                  <MenuItem onClick={handleClose}>Charachters</MenuItem>
+                </Link>
+              )}
               {/* ----------------- logout  Button--------------------- */}
 
               {user ? (
@@ -150,7 +155,7 @@ export default function NavBanner() {
                   }}
                   onClick={logout}
                 >
-                  <LogoutIcon  />
+                  <LogoutIcon />
                 </Box>
               ) : (
                 ""
