@@ -1,10 +1,12 @@
-import './chat.css';
+import "./chat.css";
 
-import { Button, Divider, IconButton, InputBase, Paper, TextField } from '@mui/material';
+import { IconButton, InputBase, Paper } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   onSnapshot,
   query,
@@ -12,8 +14,8 @@ import {
 
 import { AuthContext } from "../context/authContext";
 import { Box } from "@mui/system";
+import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
-import TimeAgo from "react-timeago";
 import { db } from "../config/config";
 
 const Chat = () => {
@@ -22,78 +24,68 @@ const Chat = () => {
 
   const { user } = useContext(AuthContext);
 
-
   const msgDate = (time) => {
     // return new Date(time).toLocaleDateString()
     return new Date(time * 1000).toLocaleString();
   };
   const getMessages = async () => {
-      try {
-          //   const querySnapshot = await getDocs(collection(db, "chat"));
-          //   const msgsArray = [];
-          //   querySnapshot.forEach((doc) => {
-              //     // console.log(`${doc.id} => ${doc.data()}`);
-              //     console.log("doc.data()  :>> ", doc.data());
-              //     msgsArray.push(doc.data());
-      //     setMessages(msgsArray);
-      //   });
+    try {
       const q = query(collection(db, "chat"));
       onSnapshot(q, (querySnapshot) => {
-          const msgs = [];
-          querySnapshot.forEach((doc) => {
-              msgs.push(doc.data());
-            });
-            setMessages(msgs);
+        const msgs = [];
+        querySnapshot.forEach((doc) => {
+          msgs.push(doc.data());
+        });
+        setMessages(msgs);
         console.log("messages ", msgs);
       });
     } catch (error) {
-        console.log("error: ", error);
+      console.log("error: ", error);
     }
-};
+  };
 
-useEffect(() => {
+  useEffect(() => {
     getMessages();
-}, []);
+  }, []);
 
-const handleTextChange = (e) => {
+  const handleTextChange = (e) => {
     setChatMsg(e.target.value);
   };
 
   /* ------------ send message to firebase --------- */
   const handleSendMsgClick = async (e) => {
     const newChatMsg = {
-        text: chatMsg,
-        authorEmail: user.email,
-        date: new Date(),
+      text: chatMsg,
+      authorEmail: user.email,
+      date: new Date(),
     };
     try {
-        const docRef = await addDoc(collection(db, "chat"), newChatMsg);
-        console.log("Document written with ID: ", docRef.id);
+      const docRef = await addDoc(collection(db, "chat"), newChatMsg);
+      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
-        console.error("Error adding document: ", e);
+      console.error("Error adding document: ", e);
     }
-};
+  };
 
-const handleSubmit=(e)=>{
-    console.log('e.key :>> ', e.key);
+  const handleSubmit = (e) => {
+    console.log("e.key :>> ", e.key);
     e.preventDefault();
-    //  if (e.key === "Enter" && e.key && chatMsg) {
-        //    handleSendMsgClick();
-        //    setChatMsg('')
-        //  }
-        
-       if( chatMsg.trim()) {
-    if(e.key === "Enter"){
+    if (chatMsg.trim()) {
+      if (e.key === "Enter") {
         handleSendMsgClick();
         setChatMsg("");
-
+      }
     }
-}
-}
+  };
 
-console.log("messages: ", messages);
-console.log("chatMsg: ", chatMsg);
-// console.log("db: ", db);
+  const handleDeleteMessageClick= async (e)=>{
+
+    await deleteDoc(doc(db, "cities", "DC"));
+  }
+
+  console.log("messages: ", messages);
+  console.log("chatMsg: ", chatMsg);
+  // console.log("db: ", db);
 
   return (
     <>
@@ -103,23 +95,11 @@ console.log("chatMsg: ", chatMsg);
         className="message-con"
         style={{ paddingBottom: "4rem" }}
       >
-        {/* {messages &&
-        messages.map((msg, i) => {
-          return (
-              <Box
-                className="msg-box"
-                variant="div"
-                component="div"
-                style={{ backgroundColor: "grey", color: "white" }}
-              > */}
-        {/* <p style={{ margin: "1rem 0" }}>{msg.text}</p>
-                <p style={{ margin: "1rem 0" }}>{msg.author}</p>
-                <p style={{ margin: "1rem 0" }}>{msgDate(msg.date.seconds)}</p> */}
-
         {messages &&
           messages.map((msg, i) => {
             return (
               <Box
+                key={i}
                 variant="body2"
                 component="article"
                 className="msg-container "
@@ -172,14 +152,14 @@ console.log("chatMsg: ", chatMsg);
               id="chat"
               name="chat"
               multiline
-            //   rows={2}
+              //   rows={2}
               value={chatMsg}
               onChange={handleTextChange}
               onKeyUp={handleSubmit}
               //   onKeyUp={keyHandler}
             />
             <IconButton
-            disabled={!chatMsg.trim()}
+              disabled={!chatMsg.trim()}
               type="submit"
               sx={{ p: "10px" }}
               aria-label="chat"
