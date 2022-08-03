@@ -11,13 +11,11 @@ import { useContext } from "react";
 const Home = () => {
   const { pageNumb } = useContext(AppContext);
   const { user, isLoading } = useContext(AuthContext);
-  console.log("user: ", user);
   
   // const { pagination } = useParams();
   // console.log("pagination: ", pagination);
   
   // const [page, setPage] = useState(pageNumb);
-  console.log("isLoading: ", isLoading);
 
   return (
     <>

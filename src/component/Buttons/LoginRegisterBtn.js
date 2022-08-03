@@ -3,10 +3,11 @@ import { Icon } from '@mui/material';
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import React from 'react'
 
-const LoginRegisterBtn = ({text, onClick, color='green'}) => {
+const LoginRegisterBtn = ({text, onClick, color='green',}) => {
 
   return (
     <Button
+    // type="submit"
       variant="bold"
       size="medium"
       startIcon={<Icon><PersonAddAlt1Icon sx={{width:'20px'}} /></Icon>}

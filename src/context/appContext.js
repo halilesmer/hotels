@@ -23,7 +23,7 @@ function AppProvider(props) {
   const [favoritCards, setFavoritCards] = useState([]);
   /* ----- Passwort Input element for LoginForm ----- */
   const [focused, setFocused] = useState(false);
-  const [blur, setBlur] = useState(false);
+  // const [blur, setBlur] = useState(false);
 
   const [firstUrl, setFirstUrl] = useState(
     /* ------------ used just for first time if the page loaded ----------  */
@@ -147,7 +147,7 @@ function AppProvider(props) {
   // console.log("data: ", data);
   // console.log("favoritCards: ", favoritCards);
   // console.log("cardId: ", cardsId);
-  console.log("isLoading: ", isLoading);
+  // console.log("isLoading: ", isLoading);
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

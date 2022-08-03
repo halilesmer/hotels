@@ -51,9 +51,9 @@ const AuthProvider = (props) => {
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
+      if (errorCode === "auth/wrong-password" || !password) {
         setPwError(true);
-      } else if (errorCode === "auth/user-not-found") {
+      } else if (errorCode === "auth/user-not-found" || !email) {
         setEmailError(true);
       } else {
         setSomeError(true);

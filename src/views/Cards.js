@@ -14,7 +14,7 @@ function Cards() {
     <>
       {isError && <ErrorPage />}
       {isLoading && <CircularProgress color="inherit" />}
-      <Grid container spacing={3} className='grid-container'>
+      <Grid container spacing={3} className="grid-container">
         <Typography
           variant="h4"
           component="h4"
@@ -50,7 +50,7 @@ function Cards() {
             );
           })}
       </Grid>
-      {data && data.length>0 && <PaginationCon data={data} />}
+      {data && data.length > 0 && <PaginationCon data={data} />}
 
       {data && data.length < 1 && (
         <Typography mt={12} align="center" className="searchResultAlert">

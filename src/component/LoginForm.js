@@ -1,8 +1,8 @@
-import React,{useContext, useEffect, useRef, useState, } from "react";
-import { TextField, Box,  } from "@mui/material";
-import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
-import { AppContext } from "../context/appContext";
+import { Box, TextField, } from "@mui/material";
+import React,{useContext,} from "react";
 
+import { AppContext } from "../context/appContext";
+import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 
 const LoginForm = ({
   handleEmailChange,
@@ -61,21 +61,14 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
           onBlur={onBlur}
           // onKeyUp={keyHandler}
         />
-      </Box>
-      <Box className="login-btn-con">
         <LoginRegisterBtn
+          className="login-btn"
           onClick={handleSubmitLoginClick}
           text="Log in"
           color="black"
         />{" "}
-        {/* <Button
-          variant="outlined"
-          size="medium"
-          onClick={handleSubmitLoginClick}
-        >
-          Login
-        </Button> */}
       </Box>
+    
     </>
   );
 };
