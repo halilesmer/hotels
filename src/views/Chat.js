@@ -153,6 +153,7 @@ const Chat = () => {
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
+              fullWidth
               placeholder="Write a message"
               //   inputProps={{ "aria-label": "search google maps" }}
               label="Chat"
@@ -161,7 +162,7 @@ const Chat = () => {
               id="chat"
               name="chat"
               multiline
-              rows={2}
+            //   rows={2}
               value={chatMsg}
               onChange={handleTextChange}
               onKeyUp={handleSubmit}
