@@ -1,5 +1,16 @@
-import { Box, FilledInput, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField, } from "@mui/material";
-import React,{useContext, useState,} from "react";
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  Grid,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
+import React, { useContext, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { AppContext } from "../context/appContext";
@@ -13,27 +24,24 @@ const LoginForm = ({
   password,
   handleSubmitLoginClick,
 }) => {
-const [showPassword, setShowPassword] = useState(false)
-const { pwInputFocus, onBlur,} = useContext(AppContext);
-const {  pwError, emailError } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const { pwInputFocus, onBlur } = useContext(AppContext);
+  const { pwError, emailError } = useContext(AuthContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter" && email && password) {
+      handleSubmitLoginClick();
+    }
+  };
 
- const handleSubmit = (e) => {
-   e.preventDefault();
-   if (e.key === "Enter" && email && password) {
-     handleSubmitLoginClick();
-   }
- };
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-
- 
- const handleClickShowPassword = () => {
-   setShowPassword(!showPassword)
- };
-
- const handleMouseDownPassword = (event) => {
-   event.preventDefault();
- };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <Box
@@ -47,57 +55,61 @@ const {  pwError, emailError } = useContext(AuthContext);
         noValidate
         autoComplete="on"
       >
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
-          <InputLabel htmlFor="login-email">Password</InputLabel>
-          <FilledInput
-            id="login-email"
-            name="login-email"
-            label="Email"
-            variant="filled"
-            size="small"
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            // onChange={focusInput}
-            required
-            onFocus={pwInputFocus}
-            onBlur={onBlur}
-            error={emailError}
-            onKeyUp={handleSubmit}
-          />
-        </FormControl>
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
-          <InputLabel htmlFor="login-pw">Password</InputLabel>
-          <FilledInput
-            id="login-pw"
-            name="login-pw"
-            label="Passwort"
-            variant="filled"
-            size="small"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={handlePasswordChange}
-            required
-            onFocus={pwInputFocus}
-            onBlur={onBlur}
-            error={pwError}
-            onKeyUp={handleSubmit}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
+        <Grid xs={12} sm={6} item>
+          <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
+            <InputLabel htmlFor="login-email">Password</InputLabel>
+            <FilledInput
+              id="login-email"
+              name="login-email"
+              label="Email"
+              variant="filled"
+              size="small"
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              // onChange={focusInput}
+              required
+              onFocus={pwInputFocus}
+              onBlur={onBlur}
+              error={emailError}
+              onKeyUp={handleSubmit}
+            />
+          </FormControl>
+        </Grid>
+        <Grid xs={12} sm={6} item>
+          <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
+            <InputLabel htmlFor="login-pw">Password</InputLabel>
+            <FilledInput
+              id="login-pw"
+              name="login-pw"
+              label="Passwort"
+              variant="filled"
+              size="small"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={handlePasswordChange}
+              required
+              onFocus={pwInputFocus}
+              onBlur={onBlur}
+              error={pwError}
+              onKeyUp={handleSubmit}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
 
-            // onKeyUp={keyHandler}
-          />
-        </FormControl>
+              // onKeyUp={keyHandler}
+            />
+          </FormControl>
+        </Grid>
         <LoginRegisterBtn
           className="login-btn"
           onClick={handleSubmitLoginClick}

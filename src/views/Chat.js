@@ -27,63 +27,74 @@ const Chat = () => {
     // return new Date(time).toLocaleDateString()
     return new Date(time * 1000).toLocaleString();
   };
-  console.log("db: ", db);
   const getMessages = async () => {
-    try {
-      //   const querySnapshot = await getDocs(collection(db, "chat"));
-      //   const msgsArray = [];
-      //   querySnapshot.forEach((doc) => {
-      //     // console.log(`${doc.id} => ${doc.data()}`);
-      //     console.log("doc.data()  :>> ", doc.data());
-      //     msgsArray.push(doc.data());
+      try {
+          //   const querySnapshot = await getDocs(collection(db, "chat"));
+          //   const msgsArray = [];
+          //   querySnapshot.forEach((doc) => {
+              //     // console.log(`${doc.id} => ${doc.data()}`);
+              //     console.log("doc.data()  :>> ", doc.data());
+              //     msgsArray.push(doc.data());
       //     setMessages(msgsArray);
       //   });
       const q = query(collection(db, "chat"));
       onSnapshot(q, (querySnapshot) => {
-        const msgs = [];
-        querySnapshot.forEach((doc) => {
-          msgs.push(doc.data());
-        });
-        setMessages(msgs);
+          const msgs = [];
+          querySnapshot.forEach((doc) => {
+              msgs.push(doc.data());
+            });
+            setMessages(msgs);
         console.log("messages ", msgs);
       });
     } catch (error) {
-      console.log("error: ", error);
+        console.log("error: ", error);
     }
-  };
+};
 
-  useEffect(() => {
+useEffect(() => {
     getMessages();
-  }, []);
+}, []);
 
-  const handleTextChange = (e) => {
+const handleTextChange = (e) => {
     setChatMsg(e.target.value);
   };
 
   /* ------------ send message to firebase --------- */
   const handleSendMsgClick = async (e) => {
     const newChatMsg = {
-      text: chatMsg,
-      authorEmail: user.email,
-      date: new Date(),
+        text: chatMsg,
+        authorEmail: user.email,
+        date: new Date(),
     };
     try {
-      const docRef = await addDoc(collection(db, "chat"), newChatMsg);
-      console.log("Document written with ID: ", docRef.id);
+        const docRef = await addDoc(collection(db, "chat"), newChatMsg);
+        console.log("Document written with ID: ", docRef.id);
     } catch (e) {
-      console.error("Error adding document: ", e);
+        console.error("Error adding document: ", e);
     }
-  };
+};
 
-  const handleSubmit=(e)=>{
-      e.preventDefault();
- if (e.key === "Enter" && chatMsg) {
-   handleSendMsgClick();
- }
-  }
+const handleSubmit=(e)=>{
+    console.log('e.key :>> ', e.key);
+    e.preventDefault();
+    //  if (e.key === "Enter" && e.key && chatMsg) {
+        //    handleSendMsgClick();
+        //    setChatMsg('')
+        //  }
+        
+       if( chatMsg.trim()) {
+    if(e.key === "Enter"){
+        handleSendMsgClick();
+        setChatMsg("");
 
-  console.log("messages: ", messages);
-  
+    }
+}
+}
+
+console.log("messages: ", messages);
+console.log("chatMsg: ", chatMsg);
+// console.log("db: ", db);
+
   return (
     <>
       <Box
@@ -107,7 +118,6 @@ const Chat = () => {
 
         {messages &&
           messages.map((msg, i) => {
-            console.log("msg?.date?.seconds", msgDate(msg?.date?.seconds));
             return (
               <Box
                 variant="body2"
@@ -169,6 +179,7 @@ const Chat = () => {
               //   onKeyUp={keyHandler}
             />
             <IconButton
+            disabled={!chatMsg.trim()}
               type="submit"
               sx={{ p: "10px" }}
               aria-label="chat"
