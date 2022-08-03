@@ -37,6 +37,8 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
       >
         <TextField
           id="login-email"
+          htmlFor="login-email"
+          name="login-email"
           label="Email"
           variant="filled"
           size="small"
@@ -50,6 +52,8 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
         />
         <TextField
           id="login-pw"
+          htmlFor="login-pw"
+          name="login-pw"
           label="Passwort"
           variant="filled"
           size="small"
@@ -68,7 +72,6 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
           color="black"
         />{" "}
       </Box>
-    
     </>
   );
 };

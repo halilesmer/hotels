@@ -16,6 +16,7 @@ const AuthProvider = (props) => {
   const [pwError, setPwError] = useState(false);
   const [emailIsInUse, setEmailIsInUse] = useState(false);
   const [someError, setSomeError] = useState(false);
+  const [loading, setLoading] = useState(true)
   const redirect = useNavigate();
 
   /* --------- register --------------- */
@@ -71,9 +72,11 @@ const AuthProvider = (props) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         setUser(user);
+        setLoading(false)
       } else {
         // User is signed out
         setUser(null);
+        setLoading(false)
       }
     });
   };
@@ -96,6 +99,7 @@ const AuthProvider = (props) => {
     emailError,
     someError,
     setSomeError,
+    loading
   };
 
   return (

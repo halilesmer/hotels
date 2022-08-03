@@ -118,7 +118,7 @@ export default function NavBanner() {
             >
               {/* ----------------- login Page Link  --------------------- */}
               {!user && pathname.pathname !== "/login" && (
-                <Link style={{ textDecoration: "none" }} to="login">
+                <Link style={{ textDecoration: "none" }} to="login/">
                   <MenuItem onClick={handleClose}>Login</MenuItem>
                 </Link>
               )}
@@ -127,19 +127,19 @@ export default function NavBanner() {
               {/* ----------------- register Page Link  --------------------- */}
 
               {!user && (
-                <Link style={{ textDecoration: "none" }} to="registerpage">
+                <Link style={{ textDecoration: "none" }} to="registerpage/">
                   <MenuItem onClick={handleClose}>Register</MenuItem>
                 </Link>
               )}
 
               {/* ----------------- Profile Page Link  --------------------- */}
-              <Link style={{ textDecoration: "none" }} to="profile">
+              <Link style={{ textDecoration: "none" }} to="profile/">
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
               </Link>
 
               {/* ----------------- Favorit  Page Link  --------------------- */}
               {user && (
-                <Link style={{ textDecoration: "none" }} to="mycards">
+                <Link style={{ textDecoration: "none" }} to="mycards/">
                   <MenuItem onClick={handleClose}>
                     My Cards
                     <Badge
@@ -156,7 +156,6 @@ export default function NavBanner() {
                       badgeContent={
                         favoritCards.length > 0 ? favoritCards.length : "0"
                       }
-
                       color="primary"
                     ></Badge>
                   </MenuItem>
@@ -169,8 +168,15 @@ export default function NavBanner() {
                   <MenuItem onClick={handleClose}>Charachters</MenuItem>
                 </Link>
               )}
-              {/* ----------------- logout  Button--------------------- */}
 
+              {user && (
+                <Link style={{ textDecoration: "none" }} to="chat/">
+                  <MenuItem onClick={handleClose}>Chat</MenuItem>
+                </Link>
+              )}
+
+
+              {/* ----------------- logout  Button--------------------- */}
               {user ? (
                 <Box
                   sx={{

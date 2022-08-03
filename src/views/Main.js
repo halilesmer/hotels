@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Cards from "./Cards";
+import Chat from "./Chat";
 import Details from "./Details";
 import ErrorPage from "../component/ErrorPage";
 import Home from "./Home";
@@ -27,7 +28,14 @@ const Main = () => {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path="chat/"
+          element={
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
         <Route path="cards/details/:title/" element={<Details />} />
         <Route path="registerpage/" element={<RegisterPage />} />
         <Route path="login/" element={<LoginPage />} />
