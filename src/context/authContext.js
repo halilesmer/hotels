@@ -28,7 +28,7 @@ const AuthProvider = (props) => {
         password
       );
       setUser(userCredential.user);
-      redirect("profile");
+      redirect("profile/");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

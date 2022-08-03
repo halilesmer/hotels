@@ -2,6 +2,7 @@ import { Box, TextField, } from "@mui/material";
 import React,{useContext,} from "react";
 
 import { AppContext } from "../context/appContext";
+import { AuthContext } from "../context/authContext";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 
 const LoginForm = ({
@@ -12,7 +13,16 @@ const LoginForm = ({
   handleSubmitLoginClick,
 }) => {
 
-const { pwInputFocus, onBlur} = useContext(AppContext);
+const { pwInputFocus, onBlur,} = useContext(AppContext);
+const {  pwError, emailError } = useContext(AuthContext);
+
+
+ const handleSubmit = (e) => {
+   e.preventDefault();
+   if (e.key === "Enter" && email && password) {
+     handleSubmitLoginClick();
+   }
+ };
 
 
 
@@ -49,6 +59,8 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
           required
           onFocus={pwInputFocus}
           onBlur={onBlur}
+          error={emailError}
+          onKeyUp={handleSubmit}
         />
         <TextField
           id="login-pw"
@@ -63,6 +75,9 @@ const { pwInputFocus, onBlur} = useContext(AppContext);
           required
           onFocus={pwInputFocus}
           onBlur={onBlur}
+          error={pwError}
+          onKeyUp={handleSubmit}
+
           // onKeyUp={keyHandler}
         />
         <LoginRegisterBtn

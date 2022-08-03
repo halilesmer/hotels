@@ -55,6 +55,7 @@ const RegisterPage = () => {
     handleClose();
   }, [focused]);
 
+  console.log('isEmailValid :>> ', isEmailValid);
   return (
     <Container
       id="registerCon"
@@ -96,6 +97,8 @@ const RegisterPage = () => {
         email={email}
         password={password}
         handleSubmitRegisterClick={handleSubmitRegisterClick}
+        isEmailValid={isEmailValid}
+        isPwValid={isPwValid}
       ></RegisterForm>
       <Divider style={{ margin: "1rem" }} />
       <Box marginTop={1}>

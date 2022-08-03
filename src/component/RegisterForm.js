@@ -1,9 +1,10 @@
 import * as React from "react";
 
+import { AppContext } from "../context/appContext";
+import { AuthContext } from "../context/authContext";
 import Box from "@mui/material/Box";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 import TextField from "@mui/material/TextField";
-import { AppContext } from "../context/appContext";
 
 export const PostIntro = ({ children }) => {
     return <div className="post__intro">{children}</div>;
@@ -16,9 +17,25 @@ const RegisterForm = ({
   email,
   password,
   handleSubmitRegisterClick,
+  isEmailValid,
+  isPwValid
 }) => {
   const { pwInputFocus, onBlur } = React.useContext(AppContext);
-
+  
+  const { emailIsInUse, pwError,  } = React.useContext(AuthContext);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter" && email && password) {
+      handleSubmitRegisterClick();
+    }
+  };
+  
+  
+  // console.log("isPwValid: ", isPwValid);
+  // console.log("pwError: ", pwError);
+  // console.log("emailIsInUse: ", emailIsInUse);
+  // console.log("isEmailValid: ", isEmailValid);
   return (
     <>
       <Box
@@ -46,6 +63,8 @@ const RegisterForm = ({
           required
           onFocus={pwInputFocus}
           onBlur={onBlur}
+          error={emailIsInUse || isEmailValid}
+          onKeyUp={handleSubmit}
         />
         <TextField
           id="register-pw"
@@ -58,6 +77,8 @@ const RegisterForm = ({
           required
           onFocus={pwInputFocus}
           onBlur={onBlur}
+          error={isPwValid || pwError}
+          onKeyUp={handleSubmit}
         />
 
         {/* <LoginRegisterBtn createAcntBtnTxt={createAcntBtnTxt} /> */}

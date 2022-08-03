@@ -32,7 +32,7 @@ function Cards() {
           data.map((card,i) => {
             return (
               card.imageUrl && (
-                <>
+
                   <Grid
                     key={card.id}
                     item
@@ -48,7 +48,7 @@ function Cards() {
                   >
                     <OneCard cardId={card.id} card={card} />
                   </Grid>
-                </>
+
               )
             );
           })}
