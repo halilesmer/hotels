@@ -54,7 +54,7 @@ const Home = () => {
             >
               <Link
                 style={{ textDecoration: "none" }}
-                to={`/cards/${pageNumb}`}
+                to={`/cards/1`}
               >
                 To the Cards
               </Link>

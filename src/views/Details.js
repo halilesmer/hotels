@@ -41,7 +41,7 @@ export default function Details() {
   } = useContext(AppContext);
 
   const filteredData =
-    data &&
+  data &&
     data.filter((card) => {
       return (
         card.imageUrl &&
@@ -56,7 +56,7 @@ export default function Details() {
   return (
     <>
       {isLoading && <CircularProgress color="inherit" />}
-
+      {console.log("data", data)}
       {filteredData &&
         filteredData.map((card) => {
           return (
@@ -135,7 +135,7 @@ export default function Details() {
             </Card>
           );
         })}
-      {isError && <ErrorPage/>}
+      {isError && <ErrorPage />}
     </>
   );
 }

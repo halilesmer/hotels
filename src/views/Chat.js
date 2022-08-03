@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 
+import { AuthContext } from "../context/authContext";
 import { Box } from "@mui/system";
 import { db } from "../config/config";
 
 const Chat = () => {
   const [messages, setMessages] = useState(null);
+  const [chatMsg, setChatMsg] = useState('')
 
+  const {user} = useContext(AuthContext);
   const msgDate = (time)=>{
     // return new Date(time).toLocaleDateString()
     return new Date(time * 1000).toLocaleString();
@@ -32,11 +35,16 @@ const Chat = () => {
     getMessages();
   }, []);
 
-  const [chatMsg, setChatMsg] = useState('')
 const handleTextChange=(e)=>{
 setChatMsg(e.target.value)
 }
+const handleSendMsgClick=(e)=>{
+    const newChatMsg ={
+text: chatMsg,
 
+date: new Date(),
+    }
+}
 
   console.log("messages: ", messages);
   return (
@@ -66,7 +74,7 @@ setChatMsg(e.target.value)
           onChange={handleTextChange}
         />
 
-        <button></button>
+        <button onClick={handleSendMsgClick}>Send</button>
       </Box>
     </Box>
   );

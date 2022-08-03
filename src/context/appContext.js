@@ -27,7 +27,8 @@ function AppProvider(props) {
 
   const [firstUrl, setFirstUrl] = useState(
     /* ------------ used just for first time if the page loaded ----------  */
-    `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
+    // `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
+    `https://api.magicthegathering.io/v1/cards/?page=1`
   );
 
   function handlePage(e) {

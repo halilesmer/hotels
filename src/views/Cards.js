@@ -1,14 +1,16 @@
 import { CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useId } from "react";
 
 import { AppContext } from "../context/appContext";
 import ErrorPage from "../component/ErrorPage";
 import OneCard from "../component/OneCard";
 import PaginationCon from "../component/PaginationCon";
-import React from "react";
 import { useContext } from "react";
 
 function Cards() {
   const { isLoading, data, isError } = useContext(AppContext);
+
+  
 
   return (
     <>
@@ -27,7 +29,7 @@ function Cards() {
           Cards
         </Typography>
         {data &&
-          data.map((card) => {
+          data.map((card,i) => {
             return (
               card.imageUrl && (
                 <>
@@ -40,6 +42,7 @@ function Cards() {
                     lg={4}
                     xl={4}
                     style={{ paddingTop: "0" }}
+                    
 
                     // style={{ margin: "0 auto 4rem auto" }}
                   >
