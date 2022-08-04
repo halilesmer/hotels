@@ -80,7 +80,7 @@ export default function NavBanner() {
     >
       <AppBar position="static" sx={{ margin: "auto" }}>
         <Toolbar>
-          <IconButton
+         {user && <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -89,7 +89,7 @@ export default function NavBanner() {
             onClick={handleOpenDrawerClick}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>}
           <Typography
             variant="h6"
             component="div"
@@ -147,31 +147,6 @@ export default function NavBanner() {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
               </Link>
 
-              {/* ----------------- Favorit  Page Link  --------------------- */}
-              {user && (
-                <Link style={{ textDecoration: "none" }} to="mycards/">
-                  <MenuItem onClick={handleClose}>
-                    My Cards
-                    <Badge
-                      style={{
-                        marginLeft: "16px",
-                      }}
-                      sx={{
-                        "& .MuiBadge-badge": {
-                          fontSize: 9,
-                          height: 15,
-                          minWidth: 15,
-                        },
-                      }}
-                      badgeContent={
-                        favoritCards.length > 0 ? favoritCards.length : "0"
-                      }
-                      color="primary"
-                    ></Badge>
-                  </MenuItem>
-                </Link>
-              )}
-
               {/* ----------------- Charachters  --------------------- */}
               {user && (
                 <Link style={{ textDecoration: "none" }} to="cards/1/">
@@ -185,20 +160,7 @@ export default function NavBanner() {
                 </Link>
               )}
 
-              {/* ----------------- logout  Button--------------------- */}
-              {user ? (
-                <Box
-                  sx={{
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                  onClick={logout}
-                >
-                  <LogoutIcon />
-                </Box>
-              ) : (
-                ""
-              )}
+            
             </Menu>
           </div>
 

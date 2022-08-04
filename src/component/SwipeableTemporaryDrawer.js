@@ -1,11 +1,15 @@
 import * as React from "react";
 
+import { Badge, MenuItem } from "@mui/material";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
+import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import HubIcon from "@mui/icons-material/Hub";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -13,11 +17,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MailIcon from "@mui/icons-material/Mail";
-import { MenuItem } from "@mui/material";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 
 export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
+  const { favoritCards } = React.useContext(AppContext);
 
+  const navigateTo = useNavigate();
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
@@ -29,11 +34,16 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
     //  setState({ ...state, [anchor]: open });
     setDrawerKey(open);
   };
-  //  const handleClose = () => {
-  //    setAnchorEl(null);
-  //  };
+  // const links = (link) => {
+  //   return navigateTo(link);
+  // };
+  let activeStyle = {
+    textDecoration: "underline",
+  };
+  let noActive = {
+    textDecoration: "none",
+  };
 
-  console.log("open: ", drawerKey);
   const list = (anchor) => (
     <Box
       sx={{ width: "auto" }}
@@ -41,22 +51,57 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      {/* ----------------- All Characters  Page Link  --------------------- */}
+
       <List>
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <MailIcon />
+              <HubIcon />
             </ListItemIcon>
-            <ListItemText primary="Hallo" />
+
+            <NavLink
+              to="/cards/1"
+              style={({ isActive }) => (isActive ? activeStyle : noActive)}
+            >
+              <ListItemText primary="All Charachters" />
+            </NavLink>
           </ListItemButton>
         </ListItem>
       </List>
+      {/* ----------------- My Characters  Page Link  --------------------- */}
       <List>
-        {/* {user && (
-          <Link style={{ textDecoration: "none" }} to="cards/1/">
-            <MenuItem onClick={toggleDrawer}>Charachters</MenuItem>
-          </Link>
-        )} */}
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <HubIcon />
+            </ListItemIcon>
+            <NavLink
+              to="/mycards"
+              style={({ isActive }) => (isActive ? activeStyle : noActive)}
+            >
+              <Badge
+                sx={{
+                  "& .MuiBadge-badge": {
+                    fontSize: 9,
+                    height: 18,
+                    minWidth: 18,
+                    right: -15,
+                    top: 18,
+                    // border: `2px solid ${theme.palette.background.paper}`,
+                    padding: "0 4px",
+                  },
+                }}
+                badgeContent={
+                  favoritCards.length > 0 ? favoritCards.length : "0"
+                }
+                color="primary"
+              >
+                <ListItemText primary={"My Characters"} />
+              </Badge>{" "}
+            </NavLink>
+          </ListItemButton>
+        </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton>
