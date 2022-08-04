@@ -25,6 +25,7 @@ import { useContext } from "react";
 
 export default function NavBanner() {
   const { favoritCards } = useContext(AppContext);
+  const [drawerKey, setDrawerKey] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useContext(AuthContext);
@@ -58,27 +59,13 @@ export default function NavBanner() {
 
 
   
-  const [open, setOpen] = React.useState(false);
-  // const [state, setState] = React.useState({
-    //   top: false,
-    //   // left: false,
-    //   // bottom: false,
-    //   // right: false,
-    // });
-    const toggleDrawer = (open) => (event) => {
-      if (
-        event &&
-     event.type === "keydown" &&
-     (event.key === "Tab" || event.key === "Shift")
-   ) {
-     return;
-    }
-    //  setState({ ...state, [anchor]: open });
-    setOpen(!open)
-  };
+ const handleOpenDrawerClick = (event) => {
+   setDrawerKey(!drawerKey);
+ };
+   
 
   
-  console.log("open: ", open);
+  console.log("drawerKey: ", drawerKey);
   return (
     <Box
       sx={{
@@ -99,7 +86,7 @@ export default function NavBanner() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={toggleDrawer(open)}
+            onClick={handleOpenDrawerClick}
           >
             <MenuIcon />
           </IconButton>
@@ -234,10 +221,12 @@ export default function NavBanner() {
       </AppBar>
 
       <SwipeableTemporaryDrawer
-        toggleDrawer={toggleDrawer}
+        // toggleDrawer={toggleDrawer}
         // onClose={toggleDrawer('false')}
-        onClose={()=> setOpen(false)}
-        open={open}
+        // onClose={() => setOpen(false)}
+        // open={open}
+        drawerKey={drawerKey}
+        setDrawerKey={setDrawerKey}
       />
     </Box>
   );
