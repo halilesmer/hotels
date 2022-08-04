@@ -7,8 +7,8 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
+  orderBy,
   query,
 } from "firebase/firestore";
 
@@ -40,8 +40,9 @@ const Chat = () => {
 
   const getMessages = async () => {
     try {
-      const q = query(collection(db, "chat"));
-      onSnapshot(q, (querySnapshot) => {
+      const q = query(collection(db, "chat", ), orderBy("date", 'asc'))
+
+      onSnapshot(q,  (querySnapshot) => {
         const msgs = [];
         querySnapshot.forEach((doc) => {
           console.log("doc: ", doc.data());
