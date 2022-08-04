@@ -85,7 +85,7 @@ const Chat = () => {
     };
     try {
       const docRef = await addDoc(collection(db, "chat"), newChatMsg);
-      // console.log("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", docRef.id);
       scrollToBottom();
       setChatMsg('')
     } catch (e) {

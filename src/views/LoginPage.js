@@ -45,6 +45,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     handleClose();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focused]);
 
   return (

@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
-
 import { AuthContext } from "../context/authContext";
 import Loading from "./Loading";
 import { Navigate, } from "react-router-dom";
+import { useContext, } from "react";
 
 // import { AuthContext } from "./context/authContext.js";
 

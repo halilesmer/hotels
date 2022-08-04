@@ -75,7 +75,7 @@ export default function NavBanner() {
     textDecoration: "none",
   };
 
-  console.log("drawerKey: ", drawerKey);
+  // console.log("drawerKey: ", drawerKey);
   return (
     <Box
       sx={{
@@ -205,18 +205,7 @@ export default function NavBanner() {
                 </ListItem>
               </List>
 
-              {/* ----------------- Charachters  --------------------- */}
-              {user && (
-                <Link style={{ textDecoration: "none" }} to="cards/1/">
-                  <MenuItem onClick={handleClose}>Charachters</MenuItem>
-                </Link>
-              )}
-
-              {user && (
-                <Link style={{ textDecoration: "none" }} to="chat/">
-                  <MenuItem onClick={handleClose}>Chat</MenuItem>
-                </Link>
-              )}
+             
             </Menu>
           </div>
 
