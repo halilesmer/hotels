@@ -1,26 +1,29 @@
 import * as React from "react";
 
-import { Badge, MenuItem } from "@mui/material";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
+import { Badge } from "@mui/material";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import HubIcon from "@mui/icons-material/Hub";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LogoutIcon from "@mui/icons-material/Logout";
-import MailIcon from "@mui/icons-material/Mail";
+import MessageIcon from "@mui/icons-material/Message";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import { auth } from "../config/config";
+import { signOut } from "firebase/auth";
 
 export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
   const { favoritCards } = React.useContext(AppContext);
+  const { setUser } = React.useContext(AuthContext);
 
   const navigateTo = useNavigate();
   const toggleDrawer = (open) => (event) => {
@@ -34,9 +37,22 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
     //  setState({ ...state, [anchor]: open });
     setDrawerKey(open);
   };
-  // const links = (link) => {
-  //   return navigateTo(link);
-  // };
+  const logout = (e) => {
+    // setIsLoading(true);
+    // handleClose();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+        navigateTo("/");
+        // setIsLoading(false);
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("sign out error: ", error);
+      });
+  };
+
   let activeStyle = {
     textDecoration: "underline",
   };
@@ -57,7 +73,7 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <HubIcon />
+              <FlutterDashIcon />
             </ListItemIcon>
 
             <NavLink
@@ -74,7 +90,7 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <HubIcon />
+              <BookmarkBorderIcon />
             </ListItemIcon>
             <NavLink
               to="/mycards"
@@ -102,8 +118,29 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
             </NavLink>
           </ListItemButton>
         </ListItem>
+      </List>
 
+      {/* --------- Message Icon/ Menu -------- starts */}
+      <List>
         <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MessageIcon />
+            </ListItemIcon>
+            <NavLink
+              to="chat/"
+              style={({ isActive }) => (isActive ? activeStyle : noActive)}
+            >
+              <ListItemText primary={"Chat"} />
+            </NavLink>
+          </ListItemButton>
+        </ListItem>
+      </List>
+      {/* --------- Message Icon/ Menu -------- ends */}
+
+      <Divider />
+      <List>
+        <ListItem disablePadding onClick={logout}>
           <ListItemButton>
             <ListItemIcon>
               <LogoutIcon />
@@ -112,7 +149,6 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
     </Box>
   );
 

@@ -19,7 +19,7 @@ const AuthProvider = (props) => {
   const [loading, setLoading] = useState(true)
   const redirect = useNavigate();
 
-  /* --------- register --------------- */
+  /* --------- register to firebase--------------- */
   const register = async (email, password) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -38,7 +38,7 @@ const AuthProvider = (props) => {
     }
   };
 
-  /* --------- login --------------- */
+  /* --------- login to firebase --------------- */
   const login = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -62,9 +62,9 @@ const AuthProvider = (props) => {
 
       console.log("errorCode: ", errorCode);
       console.log("Login User errorMessage: ", errorMessage);
-      // ..
     }
   };
+  
   const checkIfUserLoggedIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
