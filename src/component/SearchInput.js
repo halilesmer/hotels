@@ -19,10 +19,9 @@ const SearchInput = () => {
 
   const keyHandler = (e) => {
     e.preventDefault();
+    // if (e.key === "Enter") {
     if (e.key === "Enter") {
-      urlHandle(
-        searchQuery
-      );
+      urlHandle(searchQuery);
     }
   }
   const handleFocus=(event) => event.target.select();
@@ -38,8 +37,9 @@ const SearchInput = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "));
         }}
-        onKeyUp={keyHandler}
+        onKeyDown={keyHandler}
         onFocus={handleFocus}
+
       />
       <IconButton type="submit" color="inherit" onClick={handleSubmitClick}>
         <SearchIcon />

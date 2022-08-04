@@ -1,7 +1,7 @@
 import "./chat.css";
 
 import { IconButton, InputBase, Paper } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
@@ -23,18 +23,34 @@ const Chat = () => {
   const [chatMsg, setChatMsg] = useState("");
 
   const { user } = useContext(AuthContext);
+  /* -------- auto scrol to bottom after send messages -------- starts */
+  const bottom = useRef(null);
+  const scrollToBottom = () => {
+    bottom.current.scrollIntoView({ behavior: "smooth" });
+  };
+  /* -------- auto scrol to bottom after send messages -------- ends */
+
+  /* -------- transform date -------- starts*/
 
   const msgDate = (time) => {
     // return new Date(time).toLocaleDateString()
     return new Date(time * 1000).toLocaleString();
   };
+  /* -------- transform date -------- ends */
+
   const getMessages = async () => {
     try {
       const q = query(collection(db, "chat"));
       onSnapshot(q, (querySnapshot) => {
         const msgs = [];
         querySnapshot.forEach((doc) => {
-          msgs.push(doc.data());
+          console.log("doc: ", doc.data());
+          console.log("doc.id :>> ", doc.id);
+          const myMessage = {
+            id: doc.id,
+            data: doc.data(),
+          };
+          msgs.push(myMessage);
         });
         setMessages(msgs);
         console.log("messages ", msgs);
@@ -47,6 +63,12 @@ const Chat = () => {
   useEffect(() => {
     getMessages();
   }, []);
+
+  /* -------- listen  -------- starts*/
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleTextChange = (e) => {
     setChatMsg(e.target.value);
@@ -62,6 +84,7 @@ const Chat = () => {
     try {
       const docRef = await addDoc(collection(db, "chat"), newChatMsg);
       console.log("Document written with ID: ", docRef.id);
+      scrollToBottom();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -78,10 +101,17 @@ const Chat = () => {
     }
   };
 
-  const handleDeleteMessageClick= async (e)=>{
+  /* ------------ delete messages ------------- */
+  const handleDeleteMessageClick = async (id) => {
+    console.log("id: ", id);
+    // console.log("collection :>> ", await db.collection("chat"));
 
-    await deleteDoc(doc(db, "cities", "DC"));
-  }
+    // const docRef= await deleteDoc(doc(db, "chat", ));
+    const docRef = doc(db, "chat", id);
+    // console.log("docRef: ", doc(db,'chat'));
+    // console.log('doc.getDocument().getId() :>> ', doc.getDocument().getId());
+    deleteDoc(docRef);
+  };
 
   console.log("messages: ", messages);
   console.log("chatMsg: ", chatMsg);
@@ -104,18 +134,25 @@ const Chat = () => {
                 component="article"
                 className="msg-container "
               >
+                <IconButton
+                  className="delete-button"
+                  onClick={() => handleDeleteMessageClick(msg.id)}
+                  size="small"
+                >
+                  <DeleteIcon fontSize="10px" />
+                </IconButton>
                 <div className="msg-box">
                   {/* <img className="user-img" src="" alt='empty'/> */}
                   <div className="flr">
                     <div className="messages">
                       <p className="msg" id="msg-0">
-                        {msg.text}
+                        {msg.data.text}
                       </p>
                     </div>
                     <span className="timestamp">
-                      <span className="username">{msg?.authorEmail}</span>•
+                      <span className="username">{msg?.data.authorEmail}</span>•
                       <span className="posttime">
-                        {msgDate(msg.date.seconds)}
+                        {msgDate(msg.data.date.seconds)}
                       </span>
                     </span>
                   </div>
@@ -123,7 +160,7 @@ const Chat = () => {
               </Box>
             );
           })}
-
+        <div ref={bottom}></div>
         <Box variant="div" component="div" className="message-inputs-con">
           <Paper
             component="form"
