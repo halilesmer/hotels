@@ -25,7 +25,6 @@ React.useEffect(()=>{
         size="small"
         // count={data?.length < 20 ? Number.parseInt(pageNumb) : 100}
         count={data?.length < 20 ? +pageNumb : 100}
-        disabled
         showFirstButton
         showLastButton
         sx={{ margin: "auto" }}

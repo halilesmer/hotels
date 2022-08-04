@@ -6,12 +6,12 @@ import React from 'react'
 // import { Link, useNavigate } from 'react-router-dom';
 
 
-const ErrorPage = () => {
+const ErrorPage = ({errorMsg}) => {
     // const navigate = useNavigate();
 
   return (
     <div className="error-con" style={{ margin: "5rem auto", width:'100%' }}>
-      <Typography align="center">'Something went wrong ...'</Typography>
+      <Typography align="center">{errorMsg}</Typography>
       <Link to="/">
         <Button>Go Home</Button>
       </Link>
@@ -19,4 +19,4 @@ const ErrorPage = () => {
   );
 }
 
-export default ErrorPage
+export default ErrorPage;

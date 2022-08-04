@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/appContext";
 import { Box } from "@mui/system";
 import ErrorPage from "../component/ErrorPage";
+import Loading from "../component/Loading";
 import OneCard from "../component/OneCard";
 
 const MyCardsPage = () => {
@@ -32,7 +33,7 @@ const MyCardsPage = () => {
         </Button>
       </Box>
       <Grid container spacing={1}>
-        {isLoading && <CircularProgress color="inherit" />}
+        {isLoading && <Loading/>}
         {isError && <ErrorPage />}
 
         {favoritCards &&

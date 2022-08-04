@@ -15,6 +15,7 @@ import {
 import { AuthContext } from "../context/authContext";
 import { Box } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ErrorPage from "../component/ErrorPage";
 import SendIcon from "@mui/icons-material/Send";
 import { db } from "../config/config";
 
@@ -84,15 +85,15 @@ const Chat = () => {
     };
     try {
       const docRef = await addDoc(collection(db, "chat"), newChatMsg);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
       scrollToBottom();
+      setChatMsg('')
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
 
   const handleSubmit = (e) => {
-    console.log("e.key :>> ", e.key);
     e.preventDefault();
     if (chatMsg.trim()) {
       if (e.key === "Enter") {
@@ -104,18 +105,22 @@ const Chat = () => {
 
   /* ------------ delete messages ------------- */
   const handleDeleteMessageClick = async (id) => {
-    console.log("id: ", id);
-    // console.log("collection :>> ", await db.collection("chat"));
 
-    // const docRef= await deleteDoc(doc(db, "chat", ));
-    const docRef = doc(db, "chat", id);
-    // console.log("docRef: ", doc(db,'chat'));
-    // console.log('doc.getDocument().getId() :>> ', doc.getDocument().getId());
-    deleteDoc(docRef);
+    try {
+      const docRef = await doc(db, "chat", id);
+      deleteDoc(docRef);
+    } catch (error) {
+      console.log("error: ", error);
+      
+    }
   };
+  
 
-  console.log("messages: ", messages);
-  console.log("chatMsg: ", chatMsg);
+
+
+
+  // console.log("messages: ", messages);
+  // console.log("chatMsg: ", chatMsg);
   // console.log("db: ", db);
 
   return (
@@ -126,7 +131,7 @@ const Chat = () => {
         className="message-con"
         style={{ paddingBottom: "4rem" }}
       >
-        {messages &&
+        {messages && messages.length > 0 ? (
           messages.map((msg, i) => {
             return (
               <Box
@@ -160,7 +165,10 @@ const Chat = () => {
                 </div>
               </Box>
             );
-          })}
+          })
+        ) : (
+          <ErrorPage errorMsg="You do not have any messages" />
+        )}
         <div ref={bottom}></div>
         <Box variant="div" component="div" className="message-inputs-con">
           <Paper

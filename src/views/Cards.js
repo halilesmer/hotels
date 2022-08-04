@@ -14,7 +14,7 @@ function Cards() {
 
   return (
     <>
-      {isError && <ErrorPage />}
+      {isError && <ErrorPage errorMsg="Something went wrong ..." />}
       {isLoading && <CircularProgress color="inherit" />}
       <Grid container spacing={3} className="grid-container">
         <Typography
@@ -29,26 +29,23 @@ function Cards() {
           Cards
         </Typography>
         {data &&
-          data.map((card,i) => {
+          data.map((card, i) => {
             return (
               card.imageUrl && (
+                <Grid
+                  key={card.id}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  xl={4}
+                  style={{ paddingTop: "0" }}
 
-                  <Grid
-                    key={card.id}
-                    item
-                    xs={12}
-                    sm={12}
-                    md={6}
-                    lg={4}
-                    xl={4}
-                    style={{ paddingTop: "0" }}
-                    
-
-                    // style={{ margin: "0 auto 4rem auto" }}
-                  >
-                    <OneCard cardId={card.id} card={card} />
-                  </Grid>
-
+                  // style={{ margin: "0 auto 4rem auto" }}
+                >
+                  <OneCard cardId={card.id} card={card} />
+                </Grid>
               )
             );
           })}

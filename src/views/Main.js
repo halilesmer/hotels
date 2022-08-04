@@ -41,7 +41,12 @@ const Main = () => {
         <Route path="login/" element={<LoginPage />} />
         <Route path="profile/" element={<ProfilePage />} />
         <Route path="mycards/" element={<MyCardsPage />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route
+          path="*"
+          element={
+            <ErrorPage errorMsg="Something went wrong ..." />
+          }
+        />
       </Routes>
     </main>
   );

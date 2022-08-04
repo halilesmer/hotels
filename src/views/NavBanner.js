@@ -18,9 +18,9 @@ import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import SwipeableTemporaryDrawer from "../component/SwipeableTemporaryDrawer";
 import { auth } from "../config/config";
 import { signOut } from "firebase/auth";
-import styled from "@emotion/styled";
 import { useContext } from "react";
 
 export default function NavBanner() {
@@ -57,6 +57,28 @@ export default function NavBanner() {
   };
 
 
+  
+  const [open, setOpen] = React.useState(false);
+  // const [state, setState] = React.useState({
+    //   top: false,
+    //   // left: false,
+    //   // bottom: false,
+    //   // right: false,
+    // });
+    const toggleDrawer = (open) => (event) => {
+      if (
+        event &&
+     event.type === "keydown" &&
+     (event.key === "Tab" || event.key === "Shift")
+   ) {
+     return;
+    }
+    //  setState({ ...state, [anchor]: open });
+    setOpen(!open)
+  };
+
+  
+  console.log("open: ", open);
   return (
     <Box
       sx={{
@@ -77,6 +99,7 @@ export default function NavBanner() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={toggleDrawer(open)}
           >
             <MenuIcon />
           </IconButton>
@@ -175,7 +198,6 @@ export default function NavBanner() {
                 </Link>
               )}
 
-
               {/* ----------------- logout  Button--------------------- */}
               {user ? (
                 <Box
@@ -210,6 +232,13 @@ export default function NavBanner() {
           )}
         </Toolbar>
       </AppBar>
+
+      <SwipeableTemporaryDrawer
+        toggleDrawer={toggleDrawer}
+        // onClose={toggleDrawer('false')}
+        onClose={()=> setOpen(false)}
+        open={open}
+      />
     </Box>
   );
 }

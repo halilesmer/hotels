@@ -39,7 +39,6 @@ export default function Details() {
     isLoading,
     isError,
     handleAddCardClick,
-    handleDeleteCardClick,
     cardsId,
   } = useContext(AppContext);
 
@@ -63,6 +62,13 @@ export default function Details() {
     favBtn: {
       background: "white",
       color: color ? "hwb(56deg 16% 66%)" : "white",
+      width: "18px",
+      height: "18px",
+      margin: "0 0.5rem",
+    },
+    shareBtn: {
+      // background: "white",
+      // color: color ? "hwb(56deg 16% 66%)" : "white",
       width: "18px",
       height: "18px",
       margin: "0 0.5rem",
@@ -127,7 +133,15 @@ export default function Details() {
                       />
                     )}
                   </IconButton>
-                  <IconButton aria-label="share" sx={{ background: grey[500] }}>
+                  <IconButton
+                    aria-label="share"
+                    sx={{
+                      background: grey[500],
+                      width: "18px",
+                      height: "18px",
+                      margin: "0 0.5rem",
+                    }}
+                  >
                     <ShareIcon />
                   </IconButton>
                 </div>
@@ -160,7 +174,7 @@ export default function Details() {
             </Card>
           );
         })}
-      {isError && <ErrorPage />}
+      {isError && <ErrorPage errorMsg="Something went wrong ..." />}
     </>
   );
 }
