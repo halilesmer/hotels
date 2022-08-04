@@ -45,8 +45,8 @@ const Chat = () => {
       onSnapshot(q,  (querySnapshot) => {
         const msgs = [];
         querySnapshot.forEach((doc) => {
-          console.log("doc: ", doc.data());
-          console.log("doc.id :>> ", doc.id);
+          // console.log("doc: ", doc.data());
+          // console.log("doc.id :>> ", doc.id);
           const myMessage = {
             id: doc.id,
             data: doc.data(),
@@ -54,7 +54,7 @@ const Chat = () => {
           msgs.push(myMessage);
         });
         setMessages(msgs);
-        console.log("messages ", msgs);
+        // console.log("messages ", msgs);
       });
     } catch (error) {
       console.log("error: ", error);

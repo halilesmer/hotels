@@ -18,6 +18,7 @@ import {
 import { AppContext } from "../context/appContext";
 import { Box } from "@mui/system";
 import ErrorPage from "../component/ErrorPage";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -30,6 +31,7 @@ import { useParams } from "react-router-dom";
 import { yellow } from "@mui/material/colors";
 
 export default function Details() {
+  const [color, setColor] = React.useState("green");
   const { title } = useParams();
 
   const {
@@ -38,10 +40,11 @@ export default function Details() {
     isError,
     handleAddCardClick,
     handleDeleteCardClick,
+    cardsId,
   } = useContext(AppContext);
 
   const filteredData =
-  data &&
+    data &&
     data.filter((card) => {
       return (
         card.imageUrl &&
@@ -49,8 +52,25 @@ export default function Details() {
           title.toLowerCase().trim().replace(/\s+/g, " ")
       );
     });
+
+  /* ------- Favorit Icon Functs & styles --------- starts */
+  React.useEffect(() => {
+    /* ------- set color for fav button ----------- */
+    cardsId.includes(filteredData.id) ? setColor(true) : setColor(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cardsId]);
+  const styles = {
+    favBtn: {
+      background: "white",
+      color: color ? "hwb(56deg 16% 66%)" : "white",
+      width: "18px",
+      height: "18px",
+      margin: "0 0.5rem",
+    },
+  };
+  /* ------- Favorit Icon Functs & styles --------- starts */
   // console.log("data: ", data);
-  // console.log("filteredData: ", filteredData);
+  console.log("filteredData: ", filteredData);
   // console.log("title: ", title);
 
   return (
@@ -94,14 +114,19 @@ export default function Details() {
                 <div>
                   <IconButton
                     aria-label="add to favorites"
-                    sx={{ background: grey[500] }}
-                    onClick={(e) => handleAddCardClick(card.id)}
+                    style={styles.favBtn}
+                    size="small"
+                    onClick={(e) => handleAddCardClick(filteredData.id)}
                   >
-                    <FavoriteIcon sx={{ color: yellow[500] }} />
+                    {/* ---------- changes icons/ color depending  on selected favorit card */}
+                    {color && <FavoriteIcon fontSize="18px" />}
+                    {!color && (
+                      <FavoriteBorderIcon
+                        fontSize="18px"
+                        sx={{ color: "#bdb76b", background: "white" }}
+                      />
+                    )}
                   </IconButton>
-                  <Button onClick={(e) => handleDeleteCardClick(card.id)}>
-                    Delete
-                  </Button>
                   <IconButton aria-label="share" sx={{ background: grey[500] }}>
                     <ShareIcon />
                   </IconButton>
