@@ -113,7 +113,7 @@ function AppProvider(props) {
   }, [cardsId]);
 
   /* ----- Passwort onfocus for LoginForm ----- */
-  const pwInputFocus = () => setFocused(true);
+  const handlePwInputFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
 
   const value = {
@@ -136,7 +136,7 @@ function AppProvider(props) {
     searchQuery,
     setSearchQuery,
     favoritCards,
-    pwInputFocus,
+    handlePwInputFocus,
     onBlur,
     url,
   };

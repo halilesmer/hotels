@@ -20,7 +20,7 @@ const RegisterForm = ({
   isEmailValid,
   isPwValid
 }) => {
-  const { pwInputFocus, onBlur } = React.useContext(AppContext);
+  const { handlePwInputFocus, onBlur } = React.useContext(AppContext);
   
   const { emailIsInUse, pwError,  } = React.useContext(AuthContext);
   
@@ -61,7 +61,7 @@ const RegisterForm = ({
           value={email}
           onChange={handleEmailChange}
           required
-          onFocus={pwInputFocus}
+          onFocus={handlePwInputFocus}
           onBlur={onBlur}
           error={emailIsInUse || isEmailValid}
           onKeyUp={handleSubmit}
@@ -75,7 +75,7 @@ const RegisterForm = ({
           value={password}
           onChange={handlePasswordChange}
           required
-          onFocus={pwInputFocus}
+          onFocus={handlePwInputFocus}
           onBlur={onBlur}
           error={isPwValid || pwError}
           onKeyUp={handleSubmit}

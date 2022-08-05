@@ -4,11 +4,8 @@ import {
   FormControl,
   Grid,
   IconButton,
-  Input,
   InputAdornment,
   InputLabel,
-  OutlinedInput,
-  TextField,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -25,7 +22,7 @@ const LoginForm = ({
   handleSubmitLoginClick,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { pwInputFocus, onBlur } = useContext(AppContext);
+  const { handlePwInputFocus, onBlur } = useContext(AppContext);
   const { pwError, emailError } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
@@ -69,7 +66,7 @@ const LoginForm = ({
               onChange={handleEmailChange}
               // onChange={focusInput}
               required
-              onFocus={pwInputFocus}
+              onFocus={handlePwInputFocus}
               onBlur={onBlur}
               error={emailError}
               onKeyUp={handleSubmit}
@@ -89,7 +86,7 @@ const LoginForm = ({
               value={password}
               onChange={handlePasswordChange}
               required
-              onFocus={pwInputFocus}
+              onFocus={handlePwInputFocus}
               onBlur={onBlur}
               error={pwError}
               onKeyUp={handleSubmit}

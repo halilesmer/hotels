@@ -59,7 +59,7 @@ export default function OneCard({ card, cardId }) {
         >
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt={card?.name}
             image={card?.imageUrl}
             style={{
               width: "100px",

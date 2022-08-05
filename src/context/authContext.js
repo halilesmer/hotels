@@ -70,7 +70,7 @@ const AuthProvider = (props) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
+        // const uid = user.uid;
         setUser(user);
         setLoading(false)
       } else {
@@ -101,7 +101,7 @@ const AuthProvider = (props) => {
     setSomeError,
     loading
   };
-
+console.log('user', user)
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
   );

@@ -1,7 +1,7 @@
 import "./chat.css";
 
 import { IconButton, InputBase, Paper } from "@mui/material";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
@@ -41,9 +41,9 @@ const Chat = () => {
 
   const getMessages = async () => {
     try {
-      const q = query(collection(db, "chat", ), orderBy("date", 'asc'))
+      const q = query(collection(db, "chat"), orderBy("date", "asc"));
 
-      onSnapshot(q,  (querySnapshot) => {
+      onSnapshot(q, (querySnapshot) => {
         const msgs = [];
         querySnapshot.forEach((doc) => {
           // console.log("doc: ", doc.data());
@@ -87,7 +87,7 @@ const Chat = () => {
       const docRef = await addDoc(collection(db, "chat"), newChatMsg);
       console.log("Document written with ID: ", docRef.id);
       scrollToBottom();
-      setChatMsg('')
+      setChatMsg("");
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -105,20 +105,34 @@ const Chat = () => {
 
   /* ------------ delete messages ------------- */
   const handleDeleteMessageClick = async (id) => {
-
     try {
       const docRef = await doc(db, "chat", id);
       deleteDoc(docRef);
     } catch (error) {
       console.log("error: ", error);
-      
     }
   };
-  
+
+  /* -------  auto focus ------- */
+  // const emailInput = React.useRef(null);
+
+  // React.useEffect(() => {
+  //   if (emailInput.current) {
+  //     emailInput.current.focus();
+  //   }
+  // }, []);
 
 
+  // const emailInput = useCallback((inputElement) => {
+  //   if (inputElement) {
+  //     inputElement.focus();
+  //   }
+  // }, []);
+const emailInput = useRef(null);
 
-
+useEffect(() => {
+  emailInput?.current?.focus?.();
+}, [emailInput]);
   // console.log("messages: ", messages);
   // console.log("chatMsg: ", chatMsg);
   // console.log("db: ", db);
@@ -202,6 +216,9 @@ const Chat = () => {
               value={chatMsg}
               onChange={handleTextChange}
               onKeyUp={handleSubmit}
+              // autoFocus={emailInput}
+              // ref={emailInput}
+              ref={(element) => element?.focus?.()}
               //   onKeyUp={keyHandler}
             />
             <IconButton
