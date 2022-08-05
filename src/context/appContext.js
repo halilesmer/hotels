@@ -54,6 +54,7 @@ function AppProvider(props) {
       setIsLoading(true);
         try {
           // const result = await fetch(queryUrl ? queryUrl : firstUrl);
+          console.log('url', url)
           if (!didCancel) {
             const result = await fetch(url ? url : firstUrl);
             // console.log("url: ", url);
