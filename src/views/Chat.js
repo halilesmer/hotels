@@ -1,7 +1,13 @@
 import "./chat.css";
 
 import { IconButton, InputBase, Paper } from "@mui/material";
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   addDoc,
   collection,
@@ -122,21 +128,20 @@ const Chat = () => {
   //   }
   // }, []);
 
-
   // const emailInput = useCallback((inputElement) => {
   //   if (inputElement) {
   //     inputElement.focus();
   //   }
   // }, []);
-const emailInput = useRef(null);
+  const emailInput = useRef(null);
 
-useEffect(() => {
-  emailInput?.current?.focus?.();
-}, [emailInput]);
+  useEffect(() => {
+    emailInput?.current?.focus?.();
+  }, [emailInput]);
   // console.log("messages: ", messages);
   // console.log("chatMsg: ", chatMsg);
   // console.log("db: ", db);
-
+  console.log("user: ", user);
   return (
     <>
       <Box
@@ -147,6 +152,7 @@ useEffect(() => {
       >
         {messages && messages.length > 0 ? (
           messages.map((msg, i) => {
+            const confirmUserEmail = user?.email === msg?.data?.authorEmail;
             return (
               <Box
                 key={i}
@@ -154,14 +160,17 @@ useEffect(() => {
                 component="article"
                 className="msg-container "
               >
-                <IconButton
-                  className="delete-button"
-                  onClick={() => handleDeleteMessageClick(msg.id)}
-                  size="small"
-                >
-                  <DeleteIcon fontSize="10px" />
-                </IconButton>
-                <div className="msg-box">
+                {confirmUserEmail && (
+                  <IconButton
+                    className="delete-button"
+                    onClick={() => handleDeleteMessageClick(msg.id)}
+                    size="small"
+                  >
+                    <DeleteIcon fontSize="10px" />
+                  </IconButton>
+                )}
+
+                <div className="msg-box" style={{ backgroundColor: "#34a8ac" }}>
                   {/* <img className="user-img" src="" alt='empty'/> */}
                   <div className="flr">
                     <div className="messages">

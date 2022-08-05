@@ -66,6 +66,7 @@ const AuthProvider = (props) => {
   };
   
   const checkIfUserLoggedIn = () => {
+    console.log('user :>> ', user);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties

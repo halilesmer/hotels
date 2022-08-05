@@ -23,9 +23,12 @@ const Main = () => {
         <Route
           path="cards/:pagination"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
+            //   <Cards />
+            // </ProtectedRoute>
+            
               <Cards />
-            </ProtectedRoute>
+            
           }
         />
         <Route
