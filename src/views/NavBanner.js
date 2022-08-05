@@ -2,9 +2,7 @@ import * as React from "react";
 
 import {
   AppBar,
-  Badge,
   Box,
-  Divider,
   IconButton,
   List,
   ListItem,
@@ -12,14 +10,12 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LoginIcon from "@mui/icons-material/Login";
@@ -32,7 +28,6 @@ import { signOut } from "firebase/auth";
 import { useContext } from "react";
 
 export default function NavBanner() {
-  const { favoritCards } = useContext(AppContext);
   const [drawerKey, setDrawerKey] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
