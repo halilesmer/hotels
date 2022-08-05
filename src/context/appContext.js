@@ -60,6 +60,7 @@ function AppProvider(props) {
             // console.log("url: ", url);
             const data = await result.json();
             setData(data.cards);
+            setIsLoading(false)
             console.log("data.cards: ", data.cards);
           }
         } catch (error) {
