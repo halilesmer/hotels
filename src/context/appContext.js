@@ -26,10 +26,10 @@ function AppProvider(props) {
   // const [blur, setBlur] = useState(false);
 
   const [firstUrl, setFirstUrl] = useState(
+    `https://api.magicthegathering.io/v1/cards/?page=1`
+    );
     /* ------------ used just for first time if the page loaded ----------  */
     // `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
-    `https://api.magicthegathering.io/v1/cards/?page=1`
-  );
 
   function handlePage(e) {
     /* -------- setting pagination number for pagination */
