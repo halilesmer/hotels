@@ -1,7 +1,8 @@
+import { useContext, useEffect, useState, } from "react";
+
 import { AuthContext } from "../context/authContext";
 import Loading from "./Loading";
 import { Navigate, } from "react-router-dom";
-import { useContext, } from "react";
 
 // import { AuthContext } from "./context/authContext.js";
 
@@ -9,10 +10,21 @@ const ProtectedRoute = ({children}) => {
     // const navigate= useNavigate()
     const {loading, user} = useContext(AuthContext);
     // const isAuth = useIsAuthenticated();
-   
- console.log('loading, user :>> ', loading, user);
+   const [loader2, setLoader2] = useState(true)
+ console.log("loading, user :>> ", loader2, user);
 
+ const setLoading = () => {
+  if (!user) {
+    setLoader2(true);
+  } else {
+    setLoader2(false);
+  }
+ }
 
+ useEffect(() => {
+   setLoading()
+ }, [user])
+ 
   return (
     // <div className="protected-route">
     //   {loading ? (
@@ -25,7 +37,7 @@ const ProtectedRoute = ({children}) => {
     //   )}
     // </div>
     <div>
-      {loading ? <p>loading</p> : user ? children : <Navigate to="/"/>}
+      {loader2 ? <p>loading</p> : user ? children : <Navigate to="/"/>}
     </div>
   );
 }
