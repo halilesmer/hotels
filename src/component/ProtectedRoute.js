@@ -8,37 +8,38 @@ import { Navigate, } from "react-router-dom";
 
 const ProtectedRoute = ({children}) => {
     // const navigate= useNavigate()
-    const {loading, user} = useContext(AuthContext);
+    const {loading,setLoading, user} = useContext(AuthContext);
     // const isAuth = useIsAuthenticated();
-   const [loader2, setLoader2] = useState(true)
- console.log("loading, user :>> ", loader2, user);
+  //  const [loader2, setLoader2] = useState(true)
+ console.log("loading, user :>> ",  user);
 
- const setLoading = () => {
-  if (!user) {
-    setLoader2(true);
-  } else {
-    setLoader2(false);
-  }
- }
+//  const setLoading = () => {
+//   if (!user) {
+//     setLoader2(false);
+//   } else {
+//     setLoader2(false);
+//   }
+//  }
 
- useEffect(() => {
-   setLoading()
- }, [user])
+//  useEffect(() => {
+//    setLoading(false)
+   
+//  }, [user])
  
   return (
-    // <div className="protected-route">
-    //   {loading ? (
-    //    <Loading/>
+    <div className="protected-route">
+      {loading ? (
+       <Loading/>
        
-    //   ) : user ? (
-    //     children
-    //   ) : (
-    //     <Navigate to="/" replace={true} />
-    //   )}
-    // </div>
-    <div>
-      {loader2 ? <p>loading</p> : user ? children : <Navigate to="/"/>}
+      ) : user ? (
+        children
+      ) : (
+        <Navigate to="/" replace={true} />
+      )}
     </div>
+    // <div>
+    //   {loader2 ? <p>loading</p> : user ? children : <Navigate to="/"/>}
+    // </div>
   );
 }
 

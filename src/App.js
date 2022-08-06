@@ -9,16 +9,12 @@ import NavBanner from "./views/NavBanner";
 import { app } from "./config/config";
 
 function App() {
-  // console.log('app', app)
   return (
     <>
       <NavBanner />
       <Container>
         <Main
-        // queryUrl={url}
-        // urlHandle={urlHandle}
-        // handlePage={handlePage}
-        // pageNum={page}
+       
         />
         {/*
          */}
