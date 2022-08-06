@@ -22,7 +22,7 @@ import { signOut } from "firebase/auth";
 
 export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
   const { favoritCards } = React.useContext(AppContext);
-  const { setUser } = React.useContext(AuthContext);
+  const { setUser, setLoading } = React.useContext(AuthContext);
 
   const navigateTo = useNavigate();
   const toggleDrawer = (open) => (event) => {
@@ -37,14 +37,14 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
     setDrawerKey(open);
   };
   const logout = (e) => {
-    // setIsLoading(true);
+    setLoading(true);
     // handleClose();
     signOut(auth)
       .then(() => {
         // Sign-out successful.
         setUser(null);
         navigateTo("/");
-        // setIsLoading(false);
+        setLoading(false);
       })
       .catch((error) => {
         // An error happened.

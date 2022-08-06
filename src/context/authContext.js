@@ -16,11 +16,12 @@ const AuthProvider = (props) => {
   const [pwError, setPwError] = useState(false);
   const [emailIsInUse, setEmailIsInUse] = useState(false);
   const [someError, setSomeError] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false);
   const redirect = useNavigate();
 
   /* --------- register to firebase--------------- */
   const register = async (email, password) => {
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -40,6 +41,8 @@ const AuthProvider = (props) => {
 
   /* --------- login to firebase --------------- */
   const login = async (email, password) => {
+    setLoading(true);
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -47,6 +50,7 @@ const AuthProvider = (props) => {
         password
       );
       setUser(userCredential.user);
+      setLoading(false);
       redirect("/");
     } catch (error) {
       setUser(null);
@@ -59,25 +63,27 @@ const AuthProvider = (props) => {
       } else {
         setSomeError(true);
       }
+      setLoading(false);
 
       console.log("errorCode: ", errorCode);
       console.log("Login User errorMessage: ", errorMessage);
     }
   };
-  
+
   const checkIfUserLoggedIn = () => {
-    console.log('user :>> ', user);
+    setLoading(true);
+    console.log("user :>> ", user);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         // const uid = user.uid;
         setUser(user);
-        setLoading(false)
+        setLoading(false);
       } else {
         // User is signed out
         setUser(null);
-        setLoading(false)
+        setLoading(false);
       }
     });
   };
@@ -100,9 +106,10 @@ const AuthProvider = (props) => {
     emailError,
     someError,
     setSomeError,
-    loading
+    loading,
   };
-console.log('user', user)
+  console.log("user", user);
+  console.log('loading', loading)
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
   );
