@@ -23,12 +23,10 @@ const Main = () => {
         <Route
           path="cards/:pagination"
           element={
-            // <ProtectedRoute>
-            //   <Cards />
-            // </ProtectedRoute>
-            
+            <ProtectedRoute>
               <Cards />
-            
+            </ProtectedRoute>
+
           }
         />
         <Route
@@ -46,9 +44,7 @@ const Main = () => {
         <Route path="mycards/" element={<MyCardsPage />} />
         <Route
           path="*"
-          element={
-            <ErrorPage errorMsg="Something went wrong ..." />
-          }
+          element={<ErrorPage errorMsg="Something went wrong ..." />}
         />
       </Routes>
     </main>

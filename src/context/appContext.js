@@ -1,11 +1,7 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "./authContext";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext();
 
@@ -24,12 +20,13 @@ function AppProvider(props) {
   /* ----- Passwort Input element for LoginForm ----- */
   const [focused, setFocused] = useState(false);
   // const [blur, setBlur] = useState(false);
+  const navigateTo = useNavigate();
 
   /* ------------ used just for first time if the page loaded ----------  */
   // `https://api.magicthegathering.io/v1/cards/?page=${pageNumb}`
   const [firstUrl, setFirstUrl] = useState(
     `https://api.magicthegathering.io/v1/cards/?page=1`
-    );
+  );
 
   function handlePage(e) {
     /* -------- setting pagination number for pagination */
@@ -37,8 +34,10 @@ function AppProvider(props) {
   }
   function urlHandle(e) {
     /* --------- setting search word ----------- */
+    navigateTo("cards/1");
     setSearchQuery(e);
   }
+
   useEffect(() => {
     /* ----------  setting URL for fetching API data -------------- */
     setUrl(`${baseUrlCards}?name=${searchQuery}&page=${pageNumb}&pageSize=20`);
@@ -49,18 +48,18 @@ function AppProvider(props) {
     let didCancel = false;
 
     if (user) {
-    const fetchData = async () => {
-      setIsError(false);
-      setIsLoading(true);
+      const fetchData = async () => {
+        setIsError(false);
+        setIsLoading(true);
         try {
           // const result = await fetch(queryUrl ? queryUrl : firstUrl);
-          console.log('url', url)
+          console.log("url", url);
           if (!didCancel) {
             const result = await fetch(url ? url : firstUrl);
             // console.log("url: ", url);
             const data = await result.json();
             setData(data.cards);
-            setIsLoading(false)
+            setIsLoading(false);
             console.log("data.cards: ", data.cards);
           }
         } catch (error) {
@@ -73,9 +72,9 @@ function AppProvider(props) {
             setIsLoading(false);
           }
         }
-      }
+      };
       fetchData();
-    };
+    }
     /* Abort data fetching when component unmounted */
     return () => {
       didCancel = true;

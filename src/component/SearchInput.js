@@ -25,6 +25,7 @@ const SearchInput = () => {
     }
   }
   const handleFocus=(event) => event.target.select();
+  console.log("searchQuery: ", searchQuery);
 
   return (
     <Box component="div">
@@ -37,7 +38,7 @@ const SearchInput = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value.toLowerCase().replace(/  +/g, " "));
         }}
-        onKeyDown={keyHandler}
+        onKeyUp={keyHandler}
         onFocus={handleFocus}
 
       />
