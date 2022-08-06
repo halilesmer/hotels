@@ -58,7 +58,16 @@ function AppProvider(props) {
             const result = await fetch(url ? url : firstUrl);
             // console.log("url: ", url);
             const data = await result.json();
-            setData(data.cards);
+
+            const seen = new Set();
+            const uniqueCharacters = data.cards.filter((e) => {
+              const duplicate = seen.has(e.name);
+              seen.add(e.name);
+              return !duplicate;
+            });
+            setData(uniqueCharacters);
+
+            // setData(data.cards);
             setIsLoading(false);
             console.log("data.cards: ", data.cards);
           }
