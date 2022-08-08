@@ -16,13 +16,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MessageIcon from "@mui/icons-material/Message";
+import { MyCardsContext } from "../context/myCardsContext";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { auth } from "../config/config";
 import { signOut } from "firebase/auth";
 
 export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
-  const { favoritCards } = React.useContext(AppContext);
+  // const { favoritCards } = React.useContext(AppContext);
   const { setUser, setLoading } = React.useContext(AuthContext);
+  // const {favoritCards} = React.useContext(MyCardsContext)
 
   const navigateTo = useNavigate();
   const toggleDrawer = (open) => (event) => {
@@ -107,9 +109,12 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
                     padding: "0 4px",
                   },
                 }}
-                badgeContent={
-                  favoritCards.length > 0 ? favoritCards.length : "0"
-                }
+                //   badgeContent={
+                //     favoritCards.length > 0 ? favoritCards.length : "0"
+                //   }
+                //   color="primary"
+                // >
+                badgeContent={0}
                 color="primary"
               >
                 <ListItemText primary={"My Characters"} />

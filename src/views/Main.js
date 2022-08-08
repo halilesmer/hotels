@@ -7,6 +7,7 @@ import ErrorPage from "../component/ErrorPage";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
 import MyCardsPage from "./MyCardsPage";
+import { MyCardsProvider } from "../context/myCardsContext";
 import ProfilePage from "../component/ProfilePage";
 import ProtectedRoute from "../component/ProtectedRoute";
 import React from "react";
@@ -17,36 +18,37 @@ import RegisterPage from "../component/RegisterPage";
 const Main = () => {
   return (
     <main id="mainCon" style={{ paddingTop: "4rem", paddingBottom: "4rem" }}>
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <MyCardsProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="cards/:pagination"
+            element={
+              <ProtectedRoute>
+                <Cards />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="cards/details/:title/" element={<Details />} />
+          <Route path="mycards/" element={<MyCardsPage />} />
 
-        <Route
-          path="cards/:pagination"
-          element={
-            <ProtectedRoute>
-              <Cards />
-            </ProtectedRoute>
-
-          }
-        />
-        <Route
-          path="chat/"
-          element={
-            <ProtectedRoute>
-              <Chat />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="cards/details/:title/" element={<Details />} />
-        <Route path="registerpage/" element={<RegisterPage />} />
-        <Route path="login/" element={<LoginPage />} />
-        <Route path="profile/" element={<ProfilePage />} />
-        <Route path="mycards/" element={<MyCardsPage />} />
-        <Route
-          path="*"
-          element={<ErrorPage errorMsg="Something went wrong ..." />}
-        />
-      </Routes>
+          <Route
+            path="chat/"
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="registerpage/" element={<RegisterPage />} />
+          <Route path="login/" element={<LoginPage />} />
+          <Route path="profile/" element={<ProfilePage />} />
+          <Route
+            path="*"
+            element={<ErrorPage errorMsg="Something went wrong ..." />}
+          />
+        </Routes>
+      </MyCardsProvider>
     </main>
   );
 };

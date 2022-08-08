@@ -25,7 +25,7 @@ const SearchInput = () => {
     }
   }
   const handleFocus=(event) => event.target.select();
-  console.log("searchQuery: ", searchQuery);
+  // console.log("searchQuery: ", searchQuery);
 
   return (
     <Box component="div">

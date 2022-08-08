@@ -21,25 +21,22 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { MyCardsContext } from "../context/myCardsContext";
 import ShareIcon from "@mui/icons-material/Share";
 import { grey } from "@mui/material/colors";
 // import { styled } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { yellow } from "@mui/material/colors";
 
 export default function Details() {
-  const [color, setColor] = React.useState("green");
+  const [color, setColor] = React.useState("");
+
   const { title } = useParams();
 
-  const {
-    data,
-    isLoading,
-    isError,
-    handleAddCardClick,
-    cardsId,
-  } = useContext(AppContext);
+  const { data, isLoading, isError } = useContext(AppContext);
+  const { cardsId, handleAddCardClick, favoritCards } =
+    useContext(MyCardsContext);
 
   const filteredData =
     data &&
@@ -57,14 +54,20 @@ export default function Details() {
     cardsId.includes(filteredData.id) ? setColor(true) : setColor(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
-  const styles = {
-    favBtn: {
-      background: "white",
-      color: color ? "hwb(56deg 16% 66%)" : "white",
-      width: "18px",
-      height: "18px",
-      margin: "0 0.5rem",
-    },
+
+  console.log("favoritCards: ", favoritCards);
+  // favoritCards &&
+  //   favoritCards.map((card) => {
+  //     return filteredData.map((filtered) => {
+  //       return card.id.includes(filtered.id) && setColor(true);
+  //     });
+  //   });
+  //  favoritCards &&
+  //    favoritCards.filter((card) => {
+  //      return card.id.includes(filteredData) && setColor(true);
+  //    });
+
+  const styleDetails = {
     shareBtn: {
       // background: "white",
       // color: color ? "hwb(56deg 16% 66%)" : "white",
@@ -73,9 +76,18 @@ export default function Details() {
       margin: "0 0.5rem",
     },
   };
-  /* ------- Favorit Icon Functs & styles --------- starts */
+  const styles = {
+    favBtn: {
+      background: "white",
+      color: color ? "hwb(56deg 16% 66%)" : "white",
+      width: "18px",
+      height: "18px",
+      margin: "0 0.5rem",
+    },
+  };
+  /* ------- Favorit Icon Functs & styles --------- ends */
   // console.log("data: ", data);
-  console.log("filteredData: ", filteredData);
+  console.log("filteredData: ", filteredData && filteredData.id);
   // console.log("title: ", title);
 
   return (
@@ -121,7 +133,7 @@ export default function Details() {
                     aria-label="add to favorites"
                     style={styles.favBtn}
                     size="small"
-                    onClick={(e) => handleAddCardClick(filteredData.id)}
+                    onClick={(e) => handleAddCardClick(card.id)}
                   >
                     {/* ---------- changes icons/ color depending  on selected favorit card */}
                     {color && <FavoriteIcon fontSize="18px" />}

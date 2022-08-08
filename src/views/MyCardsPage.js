@@ -5,12 +5,14 @@ import { AppContext } from "../context/appContext";
 import { Box } from "@mui/system";
 import ErrorPage from "../component/ErrorPage";
 import Loading from "../component/Loading";
+import { MyCardsContext } from "../context/myCardsContext";
 import OneCard from "../component/OneCard";
 
 const MyCardsPage = () => {
-  const { isLoading, setCardsId, favoritCards, isError } =
+  const { isLoading, isError } =
     useContext(AppContext);
-
+const { setCardsId, favoritCards } =
+  useContext(MyCardsContext);
   return (
     <Box>
       <Box component="div" className="cards-header-con" sx={{textAlign:'center'}}>
@@ -22,7 +24,7 @@ const MyCardsPage = () => {
         >
           My Cards
         </Typography>
-
+{/* ------- Delete all cards button ----- */}
         <Button
           variant="contained"
           color="error"

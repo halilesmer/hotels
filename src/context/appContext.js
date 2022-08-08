@@ -14,9 +14,9 @@ function AppProvider(props) {
   const [data, setData] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [cardsId, setCardsId] = useState([]);
+  // const [cardsId, setCardsId] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [favoritCards, setFavoritCards] = useState([]);
+  // const [favoritCards, setFavoritCards] = useState([]);
   /* ----- Passwort Input element for LoginForm ----- */
   const [focused, setFocused] = useState(false);
   // const [blur, setBlur] = useState(false);
@@ -90,37 +90,37 @@ function AppProvider(props) {
     };
   }, [url, firstUrl, user]);
 
-  function handleAddCardClick(newId) {
-    /* ------------- adding favorit cards ------------  */
-    if (cardsId.length < 1) {
-      setCardsId([...cardsId, newId]);
-      /* ------------- adding card first time ------------  */
-      data &&
-        data.forEach((card) => newId === card.id && setFavoritCards(card));
-    } else {
-      if (cardsId.includes(newId)) {
-        /* ------------- removing card ------------  */
-        setCardsId(cardsId.filter((cardId) => cardId !== newId));
-      } else {
-        /* ------------- adding card  ------------  */
-        setCardsId([...cardsId, newId]);
-      }
-    }
-  }
+  // function handleAddCardClick(newId) {
+  //   /* ------------- adding favorit cards ------------  */
+  //   if (cardsId.length < 1) {
+  //     setCardsId([...cardsId, newId]);
+  //     /* ------------- adding card first time ------------  */
+  //     data &&
+  //       data.forEach((card) => newId === card.id && setFavoritCards(card));
+  //   } else {
+  //     if (cardsId.includes(newId)) {
+  //       /* ------------- removing card ------------  */
+  //       setCardsId(cardsId.filter((cardId) => cardId !== newId));
+  //     } else {
+  //       /* ------------- adding card  ------------  */
+  //       setCardsId([...cardsId, newId]);
+  //     }
+  //   }
+  // }
 
-  useEffect(() => {
-    /* -------------- store favorit cards in state (favoritCards)--------------*/
-    let saveFavCards = [];
-    data &&
-      data.map((card) => {
-        return cardsId.map((crdId) => {
-          return crdId === card.id && saveFavCards.push(card);
-        });
-      });
+  // useEffect(() => {
+  //   /* -------------- store favorit cards in state (favoritCards)--------------*/
+  //   let saveFavCards = [];
+  //   data &&
+  //     data.map((card) => {
+  //       return cardsId.map((crdId) => {
+  //         return crdId === card.id && saveFavCards.push(card);
+  //       });
+  //     });
 
-    setFavoritCards(saveFavCards);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardsId]);
+  //   setFavoritCards(saveFavCards);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [cardsId]);
 
   /* ----- Passwort onfocus for LoginForm ----- */
   const handlePwInputFocus = () => setFocused(true);
@@ -129,7 +129,7 @@ function AppProvider(props) {
   const value = {
     baseUrlCards,
     focused,
-    handleAddCardClick,
+    // handleAddCardClick,
 
     pageNumb,
     handlePage,
@@ -138,14 +138,14 @@ function AppProvider(props) {
     data,
     setData,
     isError,
-    cardsId,
-    setCardsId,
+    // cardsId,
+    // setCardsId,
     setIsLoading,
     setPageNumb,
     setUrl,
     searchQuery,
     setSearchQuery,
-    favoritCards,
+    // favoritCards,
     handlePwInputFocus,
     onBlur,
     url,

@@ -16,28 +16,44 @@ import { AppContext } from "../context/appContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
+import { MyCardsContext } from "../context/myCardsContext";
 import { useContext } from "react";
 
-export default function OneCard({ card, cardId }) {
-  const [color, setColor] = React.useState("green");
-  const { isLoading, cardsId, handleAddCardClick } =
+export default function OneCard({ card, }) {
+  const [color, setColor] = React.useState("");
+  const { isLoading,  } =
     useContext(AppContext);
+ const {
+   cardsId,
+   handleAddCardClick,
+  //  color,
+  //  setColor,
+ } = useContext(MyCardsContext);
 
+//  React.useEffect(()=>{
+// handleChangeColorClick(cardsId, card.id)
+//  },[cardsId])
+
+// //  console.log("cardsId: ", cardsId);
+//   const [color, setColor] = React.useState("");
+const styles = {
+  favBtn: {
+    background: "white",
+    color: color ? "hwb(56deg 16% 66%)" : "white",
+    width: "18px",
+    height: "18px",
+    margin: "0 0.5rem",
+  },
+};
   React.useEffect(() => {
     /* ------- set color for fav button ----------- */
     cardsId.includes(card.id) ? setColor(true) : setColor(false);
+ 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
-  const styles = {
-    favBtn: {
-      background: "white",
-      color: color ? "hwb(56deg 16% 66%)" : "white",
-      width: "18px",
-      height: "18px",
-      margin: "0 0.5rem",
-    },
-  };
-
+  
+  // console.log("color: ", color);
   // console.log("cardId: ", cardId);
   // console.log("card: ", card);
   return (
@@ -88,7 +104,7 @@ export default function OneCard({ card, cardId }) {
                 aria-label="add to favorites"
                 style={styles.favBtn}
                 size="small"
-                onClick={(e) => handleAddCardClick(card.id)}
+                onClick={(e) => handleAddCardClick( card.id)}
               >
                 {/* ---------- changes icons/ color depending  on selected favorit card */}
                 {color && <FavoriteIcon fontSize="18px" />}
@@ -154,7 +170,6 @@ export default function OneCard({ card, cardId }) {
           </CardContent>
         </Box>
       </Card>
-     
     </>
   );
 }
