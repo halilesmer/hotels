@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { AppContext } from "./appContext";
-import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
+import OneCard from "../component/OneCard";
 
 const MyCardsContext = createContext();
 
@@ -9,22 +10,15 @@ const MyCardsProvider = (props) => {
   // const [color, setColor] = useState(() => {
   //   return undefined;
   // });
-   const [color, setColor] = useState();
+  const [color, setColor] = React.useState("");
   const [cardsId, setCardsId] = useState([]);
+  const [cardIdendification, setCardIdendification] = useState("");
   const [favoritCards, setFavoritCards] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const { data } = useContext(AppContext);
 
-  const redirect = useNavigate();
-
   function handleAddCardClick(newId) {
-     cardsId.includes(newId) ? setColor(true) : setColor(false);
-
-
-
-
-    console.log("newId: ", newId);
     /* ------------- adding favorit cards ------------  */
     if (cardsId.length < 1) {
       setCardsId([...cardsId, newId]);
@@ -56,20 +50,54 @@ const MyCardsProvider = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
 
+  const dataForEachCards =
+    data &&
+    data.map((card, i) => {
+      return (
+        card.imageUrl && (
+          <Grid
+            key={card.id}
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            xl={4}
+            style={{ paddingTop: "0" }}
 
-  console.log("cardsId: ", cardsId);
-  console.log("color: ", color);
+            // style={{ margin: "0 auto 4rem auto" }}
+          >
+            <OneCard cardId={card.id} card={card} />
+          </Grid>
+        )
+      );
+    });
+
+  // const styles = {
+  //   favBtn: {
+  //     background: "white",
+  //     color: color ? "blue" : "white",
+  //     width: "18px",
+  //     height: "18px",
+  //     margin: "0 0.5rem",
+  //   },
+  // };
+
+  // console.log("cardsId: ", cardsId);
+  // console.log("color: ", color);
+  // console.log("cardIdendification: ", cardIdendification);
+  // console.log("dataForEachCards: ", dataForEachCards);
 
   return (
     <MyCardsContext.Provider
       value={{
-        color,
-        setColor,
         handleAddCardClick,
         cardsId,
         setCardsId,
         favoritCards,
-        // handleChangeColorClick,
+        setCardIdendification,
+        // styles,
+        dataForEachCards,
       }}
     >
       {props.children}

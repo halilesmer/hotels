@@ -19,47 +19,37 @@ import { Link } from "react-router-dom";
 import { MyCardsContext } from "../context/myCardsContext";
 import { useContext } from "react";
 
-export default function OneCard({ card, }) {
+export default function OneCard({ card }) {
+  // const [color, setColor] = React.useState("");
+  const { isLoading } = useContext(AppContext);
+  const {
+    cardsId,
+    handleAddCardClick,
+
+    styles,
+  } = useContext(MyCardsContext);
+
   const [color, setColor] = React.useState("");
-  const { isLoading,  } =
-    useContext(AppContext);
- const {
-   cardsId,
-   handleAddCardClick,
-  //  color,
-  //  setColor,
- } = useContext(MyCardsContext);
 
-//  React.useEffect(()=>{
-// handleChangeColorClick(cardsId, card.id)
-//  },[cardsId])
-
-// //  console.log("cardsId: ", cardsId);
-//   const [color, setColor] = React.useState("");
-const styles = {
-  favBtn: {
-    background: "white",
-    color: color ? "hwb(56deg 16% 66%)" : "white",
-    width: "18px",
-    height: "18px",
-    margin: "0 0.5rem",
-  },
-};
   React.useEffect(() => {
     /* ------- set color for fav button ----------- */
     cardsId.includes(card.id) ? setColor(true) : setColor(false);
- 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
-  
+
   // console.log("color: ", color);
   // console.log("cardId: ", cardId);
   // console.log("card: ", card);
   return (
     <>
-      {isLoading && <CircularProgress color="inherit" />}
-
+      {/* {isLoading && <CircularProgress color="inherit" />} */}
+      {isLoading && (
+        <CircularProgress
+          style={{ textAlign: "center", margin: "auto", display: "flex" }}
+          color="inherit"
+        />
+      )} 
       <Card
         elevation={14}
         sx={{
@@ -102,12 +92,17 @@ const styles = {
               </Typography>
               <IconButton
                 aria-label="add to favorites"
-                style={styles.favBtn}
+                // style={styles.favBtn}
                 size="small"
-                onClick={(e) => handleAddCardClick( card.id)}
+                onClick={(e) => handleAddCardClick(card.id)}
               >
                 {/* ---------- changes icons/ color depending  on selected favorit card */}
-                {color && <FavoriteIcon fontSize="18px" />}
+                {color && (
+                  <FavoriteIcon
+                    fontSize="18px"
+                    sx={{ color: "#de1d1d", background: "white" }}
+                  />
+                )}
                 {!color && (
                   <FavoriteBorderIcon
                     fontSize="18px"
@@ -119,14 +114,6 @@ const styles = {
 
             <Divider />
 
-            {/* <Typography
-                variant="body2"
-                color="text.secondary"
-                //   noWrap
-                sx={{ overflow: "auto", height: "63px" }}
-              >
-                {card?.power? card.power : "no description"}
-              </Typography> */}
             <Link
               style={{ textDecoration: "none" }}
               to={`/cards/details/${card && card.name}`}

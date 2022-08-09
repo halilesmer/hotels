@@ -1,21 +1,20 @@
 import { CircularProgress, Grid, Typography } from "@mui/material";
-import React, { useId } from "react";
 
 import { AppContext } from "../context/appContext";
 import ErrorPage from "../component/ErrorPage";
-import OneCard from "../component/OneCard";
+import { MyCardsContext } from "../context/myCardsContext";
 import PaginationCon from "../component/PaginationCon";
 import { useContext } from "react";
 
 function Cards() {
-  const { isLoading, data, isError } = useContext(AppContext);
+  const { isLoading, isError, data } = useContext(AppContext);
+  const { dataForEachCards } = useContext(MyCardsContext);
 
-  
-
+  console.log("data: ", data);
   return (
     <>
       {isError && <ErrorPage errorMsg="Something went wrong ..." />}
-      {isLoading && <CircularProgress color="inherit" />}
+     
       <Grid container spacing={3} className="grid-container">
         <Typography
           variant="h4"
@@ -28,29 +27,9 @@ function Cards() {
         >
           Cards
         </Typography>
-        {data &&
-          data.map((card, i) => {
-            return (
-              card.imageUrl && (
-                <Grid
-                  key={card.id}
-                  item
-                  xs={12}
-                  sm={12}
-                  md={6}
-                  lg={4}
-                  xl={4}
-                  style={{ paddingTop: "0" }}
-
-                  // style={{ margin: "0 auto 4rem auto" }}
-                >
-                  <OneCard cardId={card.id} card={card} />
-                </Grid>
-              )
-            );
-          })}
+        {dataForEachCards}
       </Grid>
-      {data && data.length > 0 && <PaginationCon data={data} />}
+      {<PaginationCon data={data} />}
 
       {data && data.length < 1 && (
         <Typography mt={12} align="center" className="searchResultAlert">

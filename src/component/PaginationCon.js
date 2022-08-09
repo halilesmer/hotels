@@ -8,8 +8,9 @@ import { useContext } from "react";
 
 export default function PaginationCon({ data, }) {
   const { pageNumb, setPageNumb, handlePage } = useContext(AppContext);
-const { pagination } = useParams();
-
+  const { pagination } = useParams();
+  
+  console.log("pageNumb: ", pageNumb);
 
   // const location = useLocation();
   // const query = new URLSearchParams(location.search);
@@ -24,7 +25,9 @@ React.useEffect(()=>{
       <Pagination
         size="small"
         // count={data?.length < 20 ? Number.parseInt(pageNumb) : 100}
-        count={data?.length < 20 ? +pageNumb : 100}
+        // count={data?.length < 20 ? +pageNumb : 100}
+        count={100}
+
         showFirstButton
         showLastButton
         sx={{ margin: "auto" }}
