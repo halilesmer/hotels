@@ -1,15 +1,14 @@
 import { Box, Divider, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 
 import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import AuthErrorAlert from "./AuthErrorAlert";
 import { Container } from "@mui/system";
+import { Link } from "react-router-dom";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
 // import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import RegisterForm from "./RegisterForm";
-import { auth } from "../config/config";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -21,7 +20,6 @@ const RegisterPage = () => {
   const [password, setPassword] = React.useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPwValid, setIsPwValid] = useState(false);
-  const redirect = useNavigate();
   const { register, emailIsInUse, setEmailIsInUse } = useContext(AuthContext);
   const { focused } = useContext(AppContext);
 
@@ -39,7 +37,6 @@ const RegisterPage = () => {
       setIsEmailValid(true);
     } else if (password.length < 6) {
       setIsPwValid(true);
-      console.log("valid email");
     } else {
       register(email, password);
       // redirect("/cards/1");
@@ -55,7 +52,7 @@ const RegisterPage = () => {
     handleClose();
   }, [focused]);
 
-  console.log('isEmailValid :>> ', isEmailValid);
+  console.log("isEmailValid :>> ", isEmailValid);
   return (
     <Container
       id="registerCon"
@@ -100,6 +97,7 @@ const RegisterPage = () => {
         isEmailValid={isEmailValid}
         isPwValid={isPwValid}
       ></RegisterForm>
+      
       <Divider style={{ margin: "1rem" }} />
       <Box marginTop={1}>
         <Typography

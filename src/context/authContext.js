@@ -89,7 +89,13 @@ const AuthProvider = (props) => {
   };
 
   /* ---------- check if user is logged in ----------- */
-  useEffect(() => checkIfUserLoggedIn, []);
+  useEffect(
+    () => {
+      checkIfUserLoggedIn();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const value = {
     user,

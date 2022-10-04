@@ -151,14 +151,7 @@ function AppProvider(props) {
     url,
   };
 
-  // console.log("pageNumb: ", pageNumb);
-  // console.log("searchQuery: ", searchQuery);
-  // console.log("url: ", url);
-  // console.log("AuthContext: ", AuthContext);
-  // console.log("data: ", data);
-  // console.log("favoritCards: ", favoritCards);
-  // console.log("cardId: ", cardsId);
-  // console.log("isLoading: ", isLoading);
+
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

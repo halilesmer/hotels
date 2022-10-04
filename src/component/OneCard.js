@@ -22,12 +22,7 @@ import { useContext } from "react";
 export default function OneCard({ card }) {
   // const [color, setColor] = React.useState("");
   const { isLoading } = useContext(AppContext);
-  const {
-    cardsId,
-    handleAddCardClick,
-
-    styles,
-  } = useContext(MyCardsContext);
+  const { cardsId, handleAddCardClick } = useContext(MyCardsContext);
 
   const [color, setColor] = React.useState("");
 
@@ -43,13 +38,13 @@ export default function OneCard({ card }) {
   // console.log("card: ", card);
   return (
     <>
-      {/* {isLoading && <CircularProgress color="inherit" />} */}
-      {isLoading && (
+      {isLoading ? (
         <CircularProgress
-          style={{ textAlign: "center", margin: "auto", display: "flex" }}
+          style={{ textAlign: "center", margin: "auto", display: "flex", height: '150px' }}
           color="inherit"
         />
-      )} 
+      )
+      :
       <Card
         elevation={14}
         sx={{
@@ -157,6 +152,7 @@ export default function OneCard({ card }) {
           </CardContent>
         </Box>
       </Card>
+}
     </>
   );
 }

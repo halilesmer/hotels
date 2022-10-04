@@ -12,10 +12,7 @@ const Home = () => {
   const { pageNumb } = useContext(AppContext);
   const { user, isLoading } = useContext(AuthContext);
   
-  // const { pagination } = useParams();
-  // console.log("pagination: ", pagination);
-  
-  // const [page, setPage] = useState(pageNumb);
+
 
   return (
     <>

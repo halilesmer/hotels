@@ -35,7 +35,7 @@ export default function Details() {
   const { title } = useParams();
 
   const { data, isLoading, isError } = useContext(AppContext);
-  const { cardsId, handleAddCardClick, styles } = useContext(MyCardsContext);
+  const { cardsId, handleAddCardClick } = useContext(MyCardsContext);
   const [filteredData, setFilteredData] = React.useState(null);
 
   /* ------- Favorit Icon Functs & styles --------- starts */
@@ -52,16 +52,6 @@ export default function Details() {
     cardsId.includes(filter[0].id) ? setColor(true) : setColor(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardsId]);
-
-  const styleDetails = {
-    shareBtn: {
-      // background: "white",
-      // color: color ? "hwb(56deg 16% 66%)" : "white",
-      width: "18px",
-      height: "18px",
-      margin: "0 0.5rem",
-    },
-  };
 
   return (
     <>

@@ -7,7 +7,6 @@ const LoginRegisterBtn = ({text, onClick, color='green',}) => {
 
   return (
     <Button
-    // type="submit"
       variant="bold"
       size="medium"
       startIcon={<Icon><PersonAddAlt1Icon sx={{width:'20px'}} /></Icon>}
