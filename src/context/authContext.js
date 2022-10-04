@@ -72,12 +72,9 @@ const AuthProvider = (props) => {
 
   const checkIfUserLoggedIn = () => {
     setLoading(true);
-    console.log("user :>> ", user);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        // const uid = user.uid;
         setUser(user);
         setLoading(false);
       } else {
@@ -96,6 +93,7 @@ const AuthProvider = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+    // console.log("user :>> ", user);
 
   const value = {
     user,
@@ -113,9 +111,10 @@ const AuthProvider = (props) => {
     someError,
     setSomeError,
     loading,
+    setLoading,
   };
-  console.log("user", user);
-  console.log('loading', loading)
+  // console.log("user", user);
+  // console.log('loading', loading)
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
   );

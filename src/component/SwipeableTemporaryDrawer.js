@@ -2,7 +2,6 @@ import * as React from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { AppContext } from "../context/appContext";
 import { AuthContext } from "../context/authContext";
 import { Badge } from "@mui/material";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
@@ -16,15 +15,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MessageIcon from "@mui/icons-material/Message";
-import { MyCardsContext } from "../context/myCardsContext";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { auth } from "../config/config";
 import { signOut } from "firebase/auth";
 
 export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
-  // const { favoritCards } = React.useContext(AppContext);
   const { setUser, setLoading } = React.useContext(AuthContext);
-  // const {favoritCards} = React.useContext(MyCardsContext)
 
   const navigateTo = useNavigate();
   const toggleDrawer = (open) => (event) => {
@@ -35,7 +31,6 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
     ) {
       return;
     }
-    //  setState({ ...state, [anchor]: open });
     setDrawerKey(open);
   };
   const logout = (e) => {
@@ -61,7 +56,7 @@ export default function SwipeableTemporaryDrawer({ drawerKey, setDrawerKey }) {
     textDecoration: "none",
   };
 
-  const list = (anchor) => (
+  const list = () => (
     <Box
       sx={{ width: "auto" }}
       role="presentation"

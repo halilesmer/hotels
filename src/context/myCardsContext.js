@@ -10,12 +10,9 @@ const MyCardsProvider = (props) => {
   // const [color, setColor] = useState(() => {
   //   return undefined;
   // });
-  const [color, setColor] = React.useState("");
   const [cardsId, setCardsId] = useState([]);
-  const [cardIdendification, setCardIdendification] = useState("");
   const [favoritCards, setFavoritCards] = useState(null);
 
-  const [loading, setLoading] = useState(false);
   const { data } = useContext(AppContext);
 
   function handleAddCardClick(newId) {
@@ -64,8 +61,6 @@ const MyCardsProvider = (props) => {
             lg={4}
             xl={4}
             style={{ paddingTop: "0" }}
-
-            // style={{ margin: "0 auto 4rem auto" }}
           >
             <OneCard cardId={card.id} card={card} />
           </Grid>
@@ -73,20 +68,9 @@ const MyCardsProvider = (props) => {
       );
     });
 
-  // const styles = {
-  //   favBtn: {
-  //     background: "white",
-  //     color: color ? "blue" : "white",
-  //     width: "18px",
-  //     height: "18px",
-  //     margin: "0 0.5rem",
-  //   },
-  // };
-
   // console.log("cardsId: ", cardsId);
   // console.log("color: ", color);
   // console.log("cardIdendification: ", cardIdendification);
-  // console.log("dataForEachCards: ", dataForEachCards);
 
   return (
     <MyCardsContext.Provider
@@ -95,7 +79,6 @@ const MyCardsProvider = (props) => {
         cardsId,
         setCardsId,
         favoritCards,
-        setCardIdendification,
         // styles,
         dataForEachCards,
       }}

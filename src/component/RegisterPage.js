@@ -7,15 +7,10 @@ import AuthErrorAlert from "./AuthErrorAlert";
 import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import LoginRegisterBtn from "./Buttons/LoginRegisterBtn";
-// import LoginRegisterBtn from '../component/LoginRegisterBtn';
 import RegisterForm from "./RegisterForm";
 
-// import { useLocation } from 'react-router-dom';
-
 const RegisterPage = () => {
-  // const url = useLocation();
-  // const [firstName, setFirstName] = React.useState("");
-  // const [lastName, setLastName] = React.useState("");
+  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
@@ -29,8 +24,8 @@ const RegisterPage = () => {
   const handleSubmitRegisterClick = (e) => {
     /* ---- Email Check ---- */
     let re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+ 
     if (!re.test(email)) {
       // invalid email, maybe show an error to the user.
       console.log("not valid email");
@@ -50,9 +45,9 @@ const RegisterPage = () => {
 
   useEffect(() => {
     handleClose();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focused]);
 
-  console.log("isEmailValid :>> ", isEmailValid);
   return (
     <Container
       id="registerCon"
