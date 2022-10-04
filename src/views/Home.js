@@ -47,7 +47,7 @@ const Home = () => {
               }}
             >
               <Link style={{ textDecoration: "none" }} to={`/cards/1`}>
-                To the Cards
+                Cards
               </Link>
             </Button>
           </>
